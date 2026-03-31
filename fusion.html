@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fusion Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div><strong>My Portfolio</strong></div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="articles.html">Articles</a>
+    <a href="fusion.html">Fusion</a>
+    <a href="eagle.html">Eagle</a>
+    <a href="gokart.html">Go Kart</a>
+    <a href="putter.html">Putter</a>
+    <span class="toggle-btn" onclick="toggleMode()">🌙</span>
+  </div>
+</div>
+
+<!-- TITLE -->
+<div class="section">
+  <h2>Fusion Portfolio</h2>
+
+  <!-- PROJECT -->
+  <div class="fusion-item fade-in">
+    <img src="canoe.png" onclick="openModal(this.src)">
+    <h3>Canoe</h3>
+    <p>Canoe built in Fusion 360 and rendered in Blender using shaders and sculpt tools.</p>
+  </div>
+
+  <!-- PROJECT -->
+  <div class="fusion-item fade-in">
+    <img src="candle.png" onclick="openModal(this.src)">
+    <h3>Candle Holder</h3>
+    <p>Candle holder designed in Fusion 360 and manufactured on a 3-axis CNC.</p>
+  </div>
+
+  <!-- PROJECT -->
+  <div class="fusion-item fade-in">
+    <img src="clock.png" onclick="openModal(this.src)">
+    <h3>Wooden Clock</h3>
+    <p>Designed in Fusion 360 and cut on a CNC machine with precise dimensions.</p>
+  </div>
+
+  <!-- PROJECT -->
+  <div class="fusion-item fade-in">
+    <img src="helicopter.png" onclick="openModal(this.src)">
+    <h3>Helicopter</h3>
+    <p>Modeled in Fusion 360 and rendered in Blender.</p>
+  </div>
+
+  <!-- PROJECT -->
+  <div class="fusion-item fade-in">
+    <img src="objects.png" onclick="openModal(this.src)">
+    <h3>Orthographic Models</h3>
+    <p>Practice models created from engineering drawings.</p>
+  </div>
+
+  <!-- PROJECT -->
+  <div class="fusion-item fade-in">
+    <img src="hellfire.png" onclick="openModal(this.src)">
+    <h3>AGM-65 Maverick Model</h3>
+    <p>Focused on textures and appearance tools in Fusion 360.</p>
+  </div>
+
+</div>
+
+<!-- IMAGE MODAL -->
+<div id="imgModal" class="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
+
+</body>
+</html>

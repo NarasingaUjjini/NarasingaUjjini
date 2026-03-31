@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Go-Kart Project</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="navbar">
+  <div><strong>My Portfolio</strong></div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="articles.html">Articles</a>
+    <a href="fusion.html">Fusion</a>
+    <a href="eagle.html">Eagle</a>
+    <a href="gokart.html">Go Kart</a>
+    <a href="putter.html">Putter</a>
+    <span class="toggle" onclick="toggleMode()">🌙</span>
+  </div>
+</div>
+
+<div class="section">
+
+  <h2 class="fade-in">Go-Kart Project</h2>
+
+  <p class="fade-in">
+  A fully functional go-kart built using repurposed materials and precision fabrication techniques.
+  </p>
+
+  <div class="image-grid fade-in">
+    <img src="kart1.png" onclick="openModal(this.src)">
+    <img src="kart2.png" onclick="openModal(this.src)">
+  </div>
+
+  <div class="grid">
+
+    <div class="card fade-in">
+      <h3>Build</h3>
+      <p>Constructed from a modified shopping cart chassis reinforced with a MIG-welded steel frame.</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>Performance</h3>
+      <p>Powered by a Predator 212cc engine running on E85 ethanol, reaching ~40 mph.</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>Challenge</h3>
+      <p>Resolved chain slippage caused by axle misalignment through manual adjustment and tensioning.</p>
+    </div>
+
+  </div>
+
+</div>
+<div id="imgModal" class="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Golf Putter</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="navbar">
+  <div><strong>My Portfolio</strong></div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="articles.html">Articles</a>
+    <a href="fusion.html">Fusion</a>
+    <a href="eagle.html">Eagle</a>
+    <a href="gokart.html">Go Kart</a>
+    <a href="putter.html">Putter</a>
+    <span class="toggle" onclick="toggleMode()">🌙</span>
+  </div>
+</div>
+
+<div class="section">
+
+  <h2 class="fade-in">Golf Putter Project</h2>
+
+  <p class="fade-in">
+  A precision-designed golf putter created using CAD modeling and machining techniques.
+  </p>
+
+  
+
+  <div class="grid">
+
+    <div class="card fade-in">
+      <h3>Design</h3>
+      <p>Modeled in Fusion 360 with focus on balance, symmetry, and clean geometry.</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>Manufacturing</h3>
+      <p>Produced using precision machining techniques for accuracy and finish quality.</p>
+    </div>
+
+    <div class="card fade-in">
+      <h3>Goal</h3>
+      <p>Explore the intersection of engineering design and functional performance.</p>
+    </div>
+
+  </div>
+  <div class="image-grid fade-in">
+    <img src="putter.png" onclick="openModal(this.src)">
+    <img src="putter2.png" onclick="openModal(this.src)">
+    <img src="putter3.png" onclick="openModal(this.src)">
+    <img src="putter4.png" onclick="openModal(this.src)">
+  </div>
+<div id="imgModal" class="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
+
+</div>
+
+</body>
+</html>

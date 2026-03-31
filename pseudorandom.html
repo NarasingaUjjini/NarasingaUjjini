@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pseudorandom Numbers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+  <div><strong>My Portfolio</strong></div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="articles.html">Articles</a>
+    <a href="fusion.html">Fusion</a>
+    <a href="eagle.html">Eagle</a>
+    <a href="gokart.html">Go Kart</a>
+    <a href="putter.html">Putter</a>
+    <span class="toggle" onclick="toggleMode()">🌙</span>
+  </div>
+</div>
+
+
+<div class="section">
+  <h2>Pseudorandom Number Generators</h2>
+
+  <p>
+  Computers are inherently deterministic machines, meaning they cannot generate truly random numbers on their own. Instead, they rely on pseudorandom number generators (PRNGs), which use mathematical formulas to produce sequences that appear random.
+  </p>
+
+  <p>
+  One of the most common approaches is the linear congruential generator (LCG), which generates numbers using a recurrence relation:
+  </p>
+
+  <p><strong>Xₙ₊₁ = (aXₙ + c) mod m</strong></p>
+
+  <p>
+  While simple and efficient, PRNGs have limitations. If the seed value and parameters are known, the sequence becomes predictable. This makes them unsuitable for cryptographic applications but useful for simulations, games, and modeling.
+  </p>
+
+  <p>
+  More advanced generators, such as Mersenne Twister or cryptographically secure PRNGs, improve randomness quality and period length. Understanding these systems highlights the balance between efficiency and unpredictability in computational design.
+  </p>
+
+</div>
+
+</body>
+</html>

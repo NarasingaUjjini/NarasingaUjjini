@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --text: #111827;
+  --card: #f3f4f6;
+  --accent: #2563eb;
+}
+
+body.dark {
+  --bg: #020617;
+  --text: #e5e7eb;
+  --card: rgba(255,255,255,0.05);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.navbar a {
+  text-decoration: none;
+  margin: 0 12px;
+  color: var(--text);
+}
+
+.toggle-btn {
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--card);
+}
+
+/* HERO (RESTORED CLEAN LOOK) */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: var(--text); /* FIXED readability */
+}
+
+/* SECTION */
+.section {
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* IMAGE GRID */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  gap: 20px;
+}
+
+.image-grid img {
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* MODAL IMAGE */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+}
+
+.modal img {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+}
+
+/* PARALLAX */
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* FADE */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.6s;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* FIXED FUSION LAYOUT */
+.fusion-item {
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.fusion-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.fusion-item h3 {
+  margin-top: 15px;
+}
+
+.fusion-item p {
+  margin-top: 8px;
+  line-height: 1.5;
+}
+/* --- SMALL VISUAL UPGRADE (SAFE) --- */
+
+.fusion-item {
+  max-width: 800px;
+  margin: 60px auto;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Dark mode divider */
+body.dark .fusion-item {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.fusion-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+
+  /* subtle shadow */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+  transition: 0.25s;
+}
+
+/* very subtle hover (not flashy) */
+.fusion-item img:hover {
+  transform: scale(1.01);
+}
+
+.fusion-item h3 {
+  margin-top: 18px;
+  font-size: 1.4rem;
+}
+
+.fusion-item p {
+  margin-top: 8px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* nicer section title spacing */
+.section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+/* --- FULL WIDTH HERO BANNER --- */
+.hero-banner {
+  width: 100%;
+  height: 420px; /* bigger banner */
+  background: url("banner.png") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* overlay for readability */
+.hero-overlay {
+  background: rgba(0,0,0,0.45);
+  padding: 50px 70px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.hero-overlay h1 {
+  color: white;
+  font-size: 3.5rem;
+  margin: 0;
+}
+
+.hero-overlay p {
+  color: #e5e7eb;
+  margin-top: 12px;
+  font-size: 1.1rem;
+}
+/* --- NAV CARDS UPGRADE --- */
+.nav-card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text);
+  transition: 0.25s;
+
+  /* subtle shadow */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.nav-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.nav-card h3 {
+  margin-bottom: 10px;
+}
+
+.nav-card p {
+  opacity: 0.85;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
