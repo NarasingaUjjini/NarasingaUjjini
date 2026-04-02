@@ -271,3 +271,53 @@ body.dark .fusion-item {
 .button:hover {
   opacity: 0.9;
 }
+
+/* --- BIGGER PAGE TITLES --- */
+.section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+/* --- SUBTLE COLOR ACCENTS --- */
+h2 {
+  color: var(--accent);
+}
+
+/* --- NAVBAR ICON SPACING --- */
+.navbar a {
+  margin: 0 10px;
+}
+
+/* --- SPLIT LAYOUT (HOME PAGE) --- */
+.split {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 50px auto;
+  max-width: 1000px;
+}
+
+.split img {
+  width: 50%;
+  border-radius: 12px;
+}
+
+.split-text {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .split {
+    flex-direction: column;
+  }
+
+  .split img,
+  .split-text {
+    width: 100%;
+  }
+}
+
+/* --- SECTION SPACING --- */
+.subsection {
+  margin-top: 30px;
+}
