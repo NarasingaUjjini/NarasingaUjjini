@@ -323,11 +323,16 @@ h2 {
 }
 
 .code-block {
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: auto;
-  background: #1e1e1e;
-  color: #ffffff;
-  padding: 15px;
-  border-radius: 10px;
-  font-family: monospace;
+  border-radius: 12px;
+  margin-top: 20px;
 }
+
+/* Optional: make it feel nicer */
+.code-block pre {
+  margin: 0;
+  padding: 15px;
+  font-size: 0.9rem;
+}
+

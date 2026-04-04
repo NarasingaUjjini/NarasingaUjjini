@@ -4,9 +4,13 @@
   <title>Python Tuner</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" />
+
 </head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 
 <div class="navbar">
   <div><strong>My Portfolio</strong></div>
@@ -56,10 +60,14 @@
     </div>
 
   </div>
-
-  <div class="code-block">
-    <pre><code>
-        import numpy as np
+  <p>
+This Python program is a real-time guitar tuner. It captures audio from the microphone,
+uses an FFT to extract the dominant frequency, and maps it to the nearest musical note.
+A tuning meter shows how many cents sharp or flat the note is.
+</p>
+<div class="code-block">
+<pre><code class="language-python">
+import numpy as np
 import sounddevice as sd
 from scipy.fft import rfft, rfftfreq
 from collections import deque
@@ -182,9 +190,9 @@ def update():
     # Update text
     if note:
         label.setText(
-            f"<h2>{note}</h2>"
-            f"{freq:.1f} Hz (target {exact:.1f} Hz)<br>"
-            f"<b>{cents:+.1f} cents</b>"
+            f"&lt;h2&gt;{note}&lt;/h2&gt;"
+            f"{freq:.1f} Hz (target {exact:.1f} Hz)&lt;br&gt;"
+            f"&lt;b&gt;{cents:+.1f} cents&lt;/b&gt;"
         )
 
 # Run update loop
@@ -193,9 +201,9 @@ timer.timeout.connect(update)
 timer.start(20)  # update every 20 ms (~50 FPS)
 
 app.exec_()
+</code></pre>
+</div>
 
-    </code></pre>
-    </div>
 
 
 </div>
