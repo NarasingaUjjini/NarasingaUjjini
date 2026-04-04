@@ -190,10 +190,11 @@ def update():
     # Update text
     if note:
         label.setText(
-            f"&lt;h2&gt;{note}&lt;/h2&gt;"
-            f"{freq:.1f} Hz (target {exact:.1f} Hz)&lt;br&gt;"
-            f"&lt;b&gt;{cents:+.1f} cents&lt;/b&gt;"
-        )
+    f"{note}\n"
+    f"{freq:.1f} Hz (target {exact:.1f} Hz)\n"
+    f"{cents:+.1f} cents"
+)
+
 
 # Run update loop
 timer = QtCore.QTimer()
