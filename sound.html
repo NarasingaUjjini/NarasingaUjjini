@@ -1,52 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Python Tuner</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python Tuner — Narasinga Ujjini</title>
+  <meta name="description" content="Real-time guitar tuner in Python with FFT, PyQtGraph, and audio I/O.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
-  <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" />
-
 </head>
-
 <body>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
-
-<div class="navbar">
-  <div><strong>My Portfolio</strong></div>
-  <div>
+<header class="navbar" role="banner">
+  <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+  <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html">Home</a>
+    <a href="index.html#work">Work</a>
     <a href="about.html">About</a>
     <a href="articles.html">Articles</a>
-    <a href="fusion.html">Fusion</a>
-    <a href="eagle.html">Eagle</a>
-    <a href="gokart.html">Go Kart</a>
-    <a href="putter.html">Putter</a>
-    <a href="sound.html">Tuner</a>
-    <span class="toggle" onclick="toggleMode()">🌙</span>
-  </div>
-</div>
+    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
+  </nav>
+</header>
 
-<div class="section">
-
-  <h2 class="fade-in">Python Tuner</h2>
+<main class="section">
+  <h1 class="page-title fade-in">Python tuner</h1>
 
   <p class="fade-in">
-  A Python-based audio tuning application for real-time pitch detection and adjustment.
+    A Python-based audio tuning application for real-time pitch detection and adjustment.
   </p>
 
   <div class="image-grid fade-in">
-    <img src="sound1.png" onclick="openModal(this.src)">
-    <img src="sound2.png" onclick="openModal(this.src)">
+    <img src="sound1.png" alt="Tuner application interface" onclick="openModal(this.src)" loading="lazy" width="900" height="600">
+    <img src="sound2.png" alt="Tuner visualization" onclick="openModal(this.src)" loading="lazy" width="900" height="600">
   </div>
 
-  
-
   <div class="grid">
-
     <div class="card fade-in">
       <h3>Code</h3>
-      <p>Used numpy and PyQtGraph libraries for audio processing and visualization.</p>
+      <p>Used NumPy and PyQtGraph libraries for audio processing and visualization.</p>
     </div>
 
     <div class="card fade-in">
@@ -58,14 +48,17 @@
       <h3>Challenge</h3>
       <p>Overcame audio buffer issues by implementing efficient data handling and processing techniques.</p>
     </div>
-
   </div>
-  <p>
-This Python program is a real-time guitar tuner. It captures audio from the microphone,
-uses an FFT to extract the dominant frequency, and maps it to the nearest musical note.
-A tuning meter shows how many cents sharp or flat the note is.
-</p>
-<div class="code-block">
+
+  <div class="prose fade-in">
+    <p>
+      This Python program is a real-time guitar tuner. It captures audio from the microphone,
+      uses an FFT to extract the dominant frequency, and maps it to the nearest musical note.
+      A tuning meter shows how many cents sharp or flat the note is.
+    </p>
+  </div>
+
+  <div class="code-block">
 <pre><code class="language-python">
 import numpy as np
 import sounddevice as sd
@@ -203,14 +196,19 @@ timer.start(20)  # update every 20 ms (~50 FPS)
 
 app.exec_()
 </code></pre>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
+  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+</footer>
+
+<div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">
+  <img id="modalImg" src="" alt="">
 </div>
 
-
-
-</div>
-<div id="imgModal" class="modal" onclick="closeModal()">
-  <img id="modalImg">
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
 </body>
 </html>

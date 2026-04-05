@@ -1,81 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Fusion Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fusion Portfolio — Narasinga Ujjini</title>
+  <meta name="description" content="CAD models, renders, and CNC projects in Fusion 360 and Blender.">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
-
-<!-- NAVBAR -->
-<div class="navbar">
-  <div><strong>My Portfolio</strong></div>
-  <div>
+<header class="navbar" role="banner">
+  <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+  <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html">Home</a>
+    <a href="index.html#work">Work</a>
     <a href="about.html">About</a>
     <a href="articles.html">Articles</a>
-    <a href="fusion.html">Fusion</a>
-    <a href="eagle.html">Eagle</a>
-    <a href="gokart.html">Go Kart</a>
-    <a href="putter.html">Putter</a>
-    <a href="sound.html">Tuner</a>
-    <span class="toggle-btn" onclick="toggleMode()">🌙</span>
-  </div>
-</div>
+    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
+  </nav>
+</header>
 
-<!-- TITLE -->
-<div class="section">
-  <h2>Fusion Portfolio</h2>
+<main class="section">
+  <h1 class="page-title fade-in">Fusion portfolio</h1>
 
-  <!-- PROJECT -->
-  <div class="fusion-item fade-in">
-    <img src="canoe.png" onclick="openModal(this.src)">
+  <article class="fusion-item fade-in">
+    <img src="canoe.png" alt="Canoe model render" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
     <h3>Canoe</h3>
     <p>Canoe built in Fusion 360 and rendered in Blender using shaders and sculpt tools.</p>
-  </div>
+  </article>
 
-  <!-- PROJECT -->
-  <div class="fusion-item fade-in">
-    <img src="candle.png" onclick="openModal(this.src)">
-    <h3>Candle Holder</h3>
+  <article class="fusion-item fade-in">
+    <img src="candle.png" alt="Candle holder CAD model" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
+    <h3>Candle holder</h3>
     <p>Candle holder designed in Fusion 360 and manufactured on a 3-axis CNC.</p>
-  </div>
+  </article>
 
-  <!-- PROJECT -->
-  <div class="fusion-item fade-in">
-    <img src="clock.png" onclick="openModal(this.src)">
-    <h3>Wooden Clock</h3>
+  <article class="fusion-item fade-in">
+    <img src="clock.png" alt="Wooden clock design" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
+    <h3>Wooden clock</h3>
     <p>Designed in Fusion 360 and cut on a CNC machine with precise dimensions.</p>
-  </div>
+  </article>
 
-  <!-- PROJECT -->
-  <div class="fusion-item fade-in">
-    <img src="helicopter.png" onclick="openModal(this.src)">
+  <article class="fusion-item fade-in">
+    <img src="helicopter.png" alt="Helicopter 3D model" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
     <h3>Helicopter</h3>
     <p>Modeled in Fusion 360 and rendered in Blender.</p>
-  </div>
+  </article>
 
-  <!-- PROJECT -->
-  <div class="fusion-item fade-in">
-    <img src="objects.png" onclick="openModal(this.src)">
-    <h3>Orthographic Models</h3>
+  <article class="fusion-item fade-in">
+    <img src="objects.png" alt="Orthographic practice models" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
+    <h3>Orthographic models</h3>
     <p>Practice models created from engineering drawings.</p>
-  </div>
+  </article>
 
-  <!-- PROJECT -->
-  <div class="fusion-item fade-in">
-    <img src="hellfire.png" onclick="openModal(this.src)">
-    <h3>AGM-65 Maverick Model</h3>
+  <article class="fusion-item fade-in">
+    <img src="hellfire.png" alt="AGM-65 Maverick missile model" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
+    <h3>AGM-65 Maverick model</h3>
     <p>Focused on textures and appearance tools in Fusion 360.</p>
-  </div>
+  </article>
+</main>
 
+<footer class="site-footer">
+  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
+  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+</footer>
+
+<div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">
+  <img id="modalImg" src="" alt="">
 </div>
-
-<!-- IMAGE MODAL -->
-<div id="imgModal" class="modal" onclick="closeModal()">
-  <img id="modalImg">
-</div>
-
 </body>
 </html>

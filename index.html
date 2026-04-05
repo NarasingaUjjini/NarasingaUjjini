@@ -1,76 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Narasinga Ujjini — Portfolio</title>
+  <meta name="description" content="Engineering, design, and hands-on projects — CAD, fabrication, software, and Eagle Scout leadership.">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
-
-<!-- NAVBAR -->
-<div class="navbar">
-  <div><strong>My Portfolio</strong></div>
-  <div>
+<header class="navbar" role="banner">
+  <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="index.html#work">Work</a>
     <a href="about.html">About</a>
     <a href="articles.html">Articles</a>
-    <a href="fusion.html">Fusion</a>
-    <a href="eagle.html">Eagle</a>
-    <a href="gokart.html">Go Kart</a>
-    <a href="putter.html">Putter</a>
-    <a href="sound.html">Tuner</a>
-    <span class="toggle-btn" onclick="toggleMode()">🌙</span>
-  </div>
-</div>
+    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
+  </nav>
+</header>
 
-<!-- HERO / BANNER -->
 <div class="hero-banner">
   <div class="hero-overlay">
+    <p class="hero-eyebrow">Engineering · Design · Projects</p>
     <h1>Narasinga Ujjini</h1>
-    <p>Engineering • Design • Projects</p>
+    <p class="hero-lead">Hands-on engineering, CAD, fabrication, and software — from go-karts and CNC work to real-time audio tools.</p>
+    <div class="hero-actions">
+      <a href="#work" class="button">View work</a>
+      <a href="about.html" class="button button--ghost">About me</a>
+    </div>
   </div>
 </div>
 
-<div class="section">
+<main>
+<section id="work" class="section section--work" aria-labelledby="work-heading">
+  <h2 id="work-heading" class="page-title section-intro-title">Selected work</h2>
 
-  <div class="split fade-in">
-    <img src="canoe.png">
+  <article class="split fade-in">
+    <div class="split-media">
+      <img src="canoe.png" alt="Fusion 360 render of a canoe model" loading="lazy" width="800" height="600">
+    </div>
     <div class="split-text">
       <h2>Fusion Portfolio</h2>
       <p>CAD modeling, rendering, and manufacturing projects.</p>
-      <a href="fusion.html" class="button">View</a>
+      <a href="fusion.html" class="button">View project</a>
     </div>
-  </div>
+  </article>
 
-  <div class="split fade-in">
-    <img src="Eaglehero.png">
+  <article class="split split--reverse fade-in">
+    <div class="split-media">
+      <img src="Eaglehero.png" alt="Eagle Scout bench and cubby woodworking project" loading="lazy" width="800" height="600">
+    </div>
     <div class="split-text">
       <h2>Eagle Project</h2>
-      <p>Leadership, planning, and construction experience.</p>
-      <a href="eagle.html" class="button">View</a>
+      <p>Leadership, planning, and construction for Torrey Pines Wrestling.</p>
+      <a href="eagle.html" class="button">View project</a>
     </div>
-  </div>
+  </article>
 
-  <div class="split fade-in">
-    <img src="sound2.png">
+  <article class="split fade-in">
+    <div class="split-media">
+      <img src="sound2.png" alt="Python tuner application visualization" loading="lazy" width="800" height="600">
+    </div>
     <div class="split-text">
       <h2>Python Tuner</h2>
-      <p>Audio processing and visualization project.</p>
-      <a href="sound.html" class="button">View</a>
+      <p>Real-time audio processing and visualization.</p>
+      <a href="sound.html" class="button">View project</a>
     </div>
-  </div>
+  </article>
 
-  <div class="split fade-in">
-    <img src="kart1.png">
+  <article class="split split--reverse fade-in">
+    <div class="split-media">
+      <img src="kart1.png" alt="Custom go-kart build" loading="lazy" width="800" height="600">
+    </div>
     <div class="split-text">
       <h2>Go Kart</h2>
-      <p>Mechanical design and hands-on building.</p>
-      <a href="gokart.html" class="button">View</a>
+      <p>Mechanical design and hands-on fabrication.</p>
+      <a href="gokart.html" class="button">View project</a>
     </div>
-  </div>
+  </article>
+</section>
+</main>
 
-</div>
-
-
+<footer class="site-footer">
+  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
+  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+</footer>
 </body>
 </html>

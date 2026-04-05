@@ -1,50 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Pseudorandom Numbers</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pseudorandom Numbers — Narasinga Ujjini</title>
+  <meta name="description" content="How computers generate pseudorandom numbers: PRNGs, seeds, and applications.">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
-
-<div class="navbar">
-  <div><strong>My Portfolio</strong></div>
-  <div>
+<header class="navbar" role="banner">
+  <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+  <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html">Home</a>
+    <a href="index.html#work">Work</a>
     <a href="about.html">About</a>
     <a href="articles.html">Articles</a>
-    <a href="fusion.html">Fusion</a>
-    <a href="eagle.html">Eagle</a>
-    <a href="gokart.html">Go Kart</a>
-    <a href="putter.html">Putter</a>
-    <a href="sound.html">Tuner</a>
-    <span class="toggle" onclick="toggleMode()">🌙</span>
-  </div>
-</div>
+    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
+  </nav>
+</header>
 
-
-<div class="section">
-  <h2>Pseudorandom Number Generators</h2>
+<main class="section prose">
+  <h1 class="page-title">Pseudorandom number generators</h1>
 
   <p>
-  Computers are inherently deterministic machines, meaning they cannot generate truly random numbers on their own. Instead, they rely on pseudorandom number generators (PRNGs), which use mathematical formulas to produce sequences that appear random.
+    Computers are inherently deterministic machines, meaning they cannot generate truly random numbers on their own. Instead, they rely on pseudorandom number generators (PRNGs), which use mathematical formulas to produce sequences that appear random.
   </p>
 
   <p>
-  One of the most common approaches is the linear congruential generator (LCG), which generates numbers using a recurrence relation:
+    One of the most common approaches is the linear congruential generator (LCG), which generates numbers using a recurrence relation:
   </p>
 
   <p><strong>Xₙ₊₁ = (aXₙ + c) mod m</strong></p>
 
   <p>
-  While simple and efficient, PRNGs have limitations. If the seed value and parameters are known, the sequence becomes predictable. This makes them unsuitable for cryptographic applications but useful for simulations, games, and modeling.
+    While simple and efficient, PRNGs have limitations. If the seed value and parameters are known, the sequence becomes predictable. This makes them unsuitable for cryptographic applications but useful for simulations, games, and modeling.
   </p>
 
   <p>
-  More advanced generators, such as Mersenne Twister or cryptographically secure PRNGs, improve randomness quality and period length. Understanding these systems highlights the balance between efficiency and unpredictability in computational design.
+    More advanced generators, such as Mersenne Twister or cryptographically secure PRNGs, improve randomness quality and period length. Understanding these systems highlights the balance between efficiency and unpredictability in computational design.
   </p>
 
-</div>
+  <p><a href="articles.html" class="button">Back to articles</a></p>
+</main>
 
+<footer class="site-footer">
+  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
+  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+</footer>
 </body>
 </html>

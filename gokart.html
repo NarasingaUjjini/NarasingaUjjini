@@ -1,43 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Go-Kart Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Go-Kart Project — Narasinga Ujjini</title>
+  <meta name="description" content="Custom go-kart: fabrication, Predator engine, and performance.">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
-
-<div class="navbar">
-  <div><strong>My Portfolio</strong></div>
-  <div>
+<header class="navbar" role="banner">
+  <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+  <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html">Home</a>
+    <a href="index.html#work">Work</a>
     <a href="about.html">About</a>
     <a href="articles.html">Articles</a>
-    <a href="fusion.html">Fusion</a>
-    <a href="eagle.html">Eagle</a>
-    <a href="gokart.html">Go Kart</a>
-    <a href="putter.html">Putter</a>
-    <a href="sound.html">Tuner</a>
-    <span class="toggle" onclick="toggleMode()">🌙</span>
-  </div>
-</div>
+    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
+  </nav>
+</header>
 
-<div class="section">
-
-  <h2 class="fade-in">Go-Kart Project</h2>
+<main class="section">
+  <h1 class="page-title fade-in">Go-kart project</h1>
 
   <p class="fade-in">
-  A fully functional go-kart built using repurposed materials and precision fabrication techniques.
+    A fully functional go-kart built using repurposed materials and precision fabrication techniques.
   </p>
 
   <div class="image-grid fade-in">
-    <img src="kart1.png" onclick="openModal(this.src)">
-    <img src="kart2.png" onclick="openModal(this.src)">
+    <img src="kart1.png" alt="Go-kart exterior view" onclick="openModal(this.src)" loading="lazy" width="900" height="600">
+    <img src="kart2.png" alt="Go-kart build detail" onclick="openModal(this.src)" loading="lazy" width="900" height="600">
   </div>
 
   <div class="grid">
-
     <div class="card fade-in">
       <h3>Build</h3>
       <p>Constructed from a modified shopping cart chassis reinforced with a MIG-welded steel frame.</p>
@@ -52,13 +47,16 @@
       <h3>Challenge</h3>
       <p>Resolved chain slippage caused by axle misalignment through manual adjustment and tensioning.</p>
     </div>
-
   </div>
+</main>
 
-</div>
-<div id="imgModal" class="modal" onclick="closeModal()">
-  <img id="modalImg">
-</div>
+<footer class="site-footer">
+  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
+  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+</footer>
 
+<div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">
+  <img id="modalImg" src="" alt="">
+</div>
 </body>
 </html>

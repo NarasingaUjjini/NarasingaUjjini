@@ -1,63 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Golf Putter</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Golf Putter Project — Narasinga Ujjini</title>
+  <meta name="description" content="Custom golf putter: Fusion 360 design and precision machining.">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
-
-<div class="navbar">
-  <div><strong>My Portfolio</strong></div>
-  <div>
+<header class="navbar" role="banner">
+  <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+  <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html">Home</a>
+    <a href="index.html#work">Work</a>
     <a href="about.html">About</a>
     <a href="articles.html">Articles</a>
-    <a href="fusion.html">Fusion</a>
-    <a href="eagle.html">Eagle</a>
-    <a href="gokart.html">Go Kart</a>
-    <a href="putter.html">Putter</a>
-    <a href="sound.html">Tuner</a>
-    <span class="toggle" onclick="toggleMode()">🌙</span>
-  </div>
-</div>
+    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
+  </nav>
+</header>
 
-<div class="section">
+<main class="section">
+  <h1 class="page-title fade-in">Golf putter project</h1>
 
-  <h2>Golf Putter Project</h2>
-
-  <!-- IMAGES FIRST -->
-  <div class="image-grid">
-    <img src="putter.png" onclick="openModal(this.src)">
-    <img src="putter2.png" onclick="openModal(this.src)">
-    <img src="putter3.png" onclick="openModal(this.src)">
-    <img src="putter4.png" onclick="openModal(this.src)">
+  <div class="image-grid fade-in">
+    <img src="putter.png" alt="Custom putter — main view" onclick="openModal(this.src)" loading="lazy" width="800" height="600">
+    <img src="putter2.png" alt="Putter angle view" onclick="openModal(this.src)" loading="lazy" width="800" height="600">
+    <img src="putter3.png" alt="Putter design detail" onclick="openModal(this.src)" loading="lazy" width="800" height="600">
+    <img src="putter4.png" alt="Putter manufacturing detail" onclick="openModal(this.src)" loading="lazy" width="800" height="600">
   </div>
 
-  <!-- TEXT SECTIONS -->
-  <div class="subsection">
+  <div class="subsection fade-in">
     <h3>Goal</h3>
     <p>Explore the intersection of engineering design and functional performance.</p>
   </div>
 
-  <div class="subsection">
+  <div class="subsection fade-in">
     <h3>Design</h3>
     <p>Modeled in Fusion 360 with focus on balance, symmetry, and clean geometry.</p>
   </div>
 
-  <div class="subsection">
+  <div class="subsection fade-in">
     <h3>Manufacturing</h3>
     <p>Produced using precision machining techniques for accuracy and finish quality.</p>
   </div>
+</main>
 
+<footer class="site-footer">
+  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
+  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+</footer>
+
+<div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">
+  <img id="modalImg" src="" alt="">
 </div>
-
-<div id="imgModal" class="modal" onclick="closeModal()">
-  <img id="modalImg">
-</div>
-
-</div>
-
 </body>
 </html>

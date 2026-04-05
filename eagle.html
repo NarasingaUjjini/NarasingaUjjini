@@ -1,44 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Eagle Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eagle Scout Project — Narasinga Ujjini</title>
+  <meta name="description" content="Eagle Scout project: bench and cubby system for Torrey Pines Wrestling.">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
-
-<div class="navbar">
-  <div><strong>My Portfolio</strong></div>
-  <div>
+<header class="navbar" role="banner">
+  <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+  <nav class="nav-inner" aria-label="Main navigation">
     <a href="index.html">Home</a>
+    <a href="index.html#work">Work</a>
     <a href="about.html">About</a>
     <a href="articles.html">Articles</a>
-    <a href="fusion.html">Fusion</a>
-    <a href="eagle.html">Eagle</a>
-    <a href="gokart.html">Go Kart</a>
-    <a href="putter.html">Putter</a>
-    <a href="sound.html">Tuner</a>
-    <span class="toggle" onclick="toggleMode()">🌙</span>
-  </div>
-</div>
+    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
+  </nav>
+</header>
 
-<div class="section">
-
-  <h2 class="fade-in">Eagle Scout Project</h2>
+<main class="section">
+  <h1 class="page-title fade-in">Eagle Scout project</h1>
 
   <p class="fade-in">
-  Designed and built an integrated bench and cubby system for Torrey Pines Wrestling to address storage limitations.
+    Designed and built an integrated bench and cubby system for Torrey Pines Wrestling to address storage limitations.
   </p>
 
   <div class="image-grid fade-in">
-    <img src="bench.png" onclick="openModal(this.src)">
-    <img src="cubbies.png" onclick="openModal(this.src)">
-    <img src="Eaglehero.png" onclick="openModal(this.src)">
+    <img src="bench.png" alt="Built bench for wrestling team storage" onclick="openModal(this.src)" loading="lazy" width="900" height="600">
+    <img src="cubbies.png" alt="Cubby storage units" onclick="openModal(this.src)" loading="lazy" width="900" height="600">
+    <img src="Eaglehero.png" alt="Overview of Eagle Scout woodworking project" onclick="openModal(this.src)" loading="lazy" width="900" height="600">
   </div>
 
   <div class="grid">
-
     <div class="card fade-in">
       <h3>Construction</h3>
       <p>Built using Baltic Birch plywood cut with precision tools including table saws and panel saws.</p>
@@ -53,13 +48,16 @@
       <h3>Leadership</h3>
       <p>Led planning, design, and execution while coordinating volunteers and managing workflow.</p>
     </div>
-
   </div>
-<div id="imgModal" class="modal" onclick="closeModal()">
-  <img id="modalImg">
-</div>
+</main>
 
-</div>
+<footer class="site-footer">
+  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
+  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+</footer>
 
+<div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">
+  <img id="modalImg" src="" alt="">
+</div>
 </body>
 </html>
