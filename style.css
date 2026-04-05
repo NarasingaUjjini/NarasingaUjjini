@@ -1,8 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap");
 
 :root {
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --font-display: "Outfit", var(--font-body);
+  --font-code: "JetBrains Mono", ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
 
   --bg: #f4f6f9;
   --bg-subtle: #eef1f6;
@@ -37,8 +38,10 @@
   --max-content: 68rem;
   --max-prose: 42rem;
 
-  --code-bg: #15202b;
-  --code-text: #e2e8f0;
+  --code-bg: #141c2b;
+  --code-text: #f1f5f9;
+  --code-comment: #8b9cb3;
+  --code-punct: #b8c5d6;
 }
 
 body.dark {
@@ -57,8 +60,10 @@ body.dark {
   --shadow-md: 0 12px 36px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 28px 64px rgba(0, 0, 0, 0.45);
 
-  --code-bg: #070d18;
-  --code-text: #cbd5e1;
+  --code-bg: #060a14;
+  --code-text: #e8edf4;
+  --code-comment: #8b9eb5;
+  --code-punct: #a8b8cc;
 }
 
 *,
@@ -530,6 +535,35 @@ body.dark .navbar {
   box-shadow: var(--shadow-lg);
 }
 
+/* Screenshots / UI captures: avoid upscaling small bitmaps and skip hover scale (reduces soft/blurry look) */
+.image-grid--screenshots {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 380px));
+  justify-content: center;
+  justify-items: center;
+}
+
+.image-grid--screenshots img {
+  width: auto;
+  max-width: 100%;
+  max-height: min(420px, 55vh);
+  height: auto;
+  object-fit: contain;
+  image-rendering: auto;
+  background: var(--surface);
+  box-sizing: content-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-grid--screenshots img {
+    transition: box-shadow 0.2s ease;
+  }
+}
+
+.image-grid--screenshots img:hover {
+  transform: none;
+  box-shadow: var(--shadow-lg);
+}
+
 /* ----- Fusion items ----- */
 .fusion-item {
   max-width: 50rem;
@@ -627,19 +661,29 @@ body.dark .navbar {
 
 /* ----- Code blocks + Prism ----- */
 .code-block {
-  max-height: 420px;
+  max-height: min(72vh, 720px);
   overflow: auto;
-  border-radius: var(--radius-md);
-  margin-top: var(--space-5);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-6);
   border: 1px solid var(--border);
   background: var(--code-bg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .code-block pre {
   margin: 0;
-  padding: var(--space-5);
-  font-size: 0.875rem;
-  line-height: 1.55;
+  min-width: min(100%, max-content);
+  padding: var(--space-5) var(--space-6);
+  font-family: var(--font-code);
+  font-size: clamp(0.9rem, 0.82rem + 0.35vw, 1.02rem);
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  tab-size: 4;
+  -moz-tab-size: 4;
   background: transparent !important;
 }
 
@@ -649,18 +693,20 @@ body.dark .navbar {
 }
 
 .code-block code[class*="language-"] {
-  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
+  font-family: var(--font-code);
+  font-size: inherit;
 }
 
 .code-block .token.comment,
 .code-block .token.prolog,
 .code-block .token.doctype,
 .code-block .token.cdata {
-  color: var(--text-muted) !important;
+  color: var(--code-comment) !important;
+  font-style: italic;
 }
 
 .code-block .token.punctuation {
-  color: color-mix(in srgb, var(--code-text) 75%, transparent) !important;
+  color: var(--code-punct) !important;
 }
 
 .code-block .token.property,
@@ -668,12 +714,12 @@ body.dark .navbar {
 .code-block .token.constant,
 .code-block .token.symbol,
 .code-block .token.deleted {
-  color: #f472b6 !important;
+  color: #f9a8d4 !important;
 }
 
 .code-block .token.boolean,
 .code-block .token.number {
-  color: #fbbf24 !important;
+  color: #fcd34d !important;
 }
 
 .code-block .token.selector,
@@ -682,7 +728,7 @@ body.dark .navbar {
 .code-block .token.char,
 .code-block .token.builtin,
 .code-block .token.inserted {
-  color: #34d399 !important;
+  color: #6ee7b7 !important;
 }
 
 .code-block .token.operator,
@@ -690,18 +736,25 @@ body.dark .navbar {
 .code-block .token.url,
 .language-css .code-block .token.string,
 .style .code-block .token.string {
-  color: #67e8f9 !important;
+  color: #7dd3fc !important;
 }
 
 .code-block .token.atrule,
 .code-block .token.attr-value,
 .code-block .token.keyword {
-  color: var(--accent) !important;
+  color: #5eead4 !important;
+  font-weight: 600;
+}
+
+body:not(.dark) .code-block .token.atrule,
+body:not(.dark) .code-block .token.attr-value,
+body:not(.dark) .code-block .token.keyword {
+  color: #2dd4bf !important;
 }
 
 .code-block .token.function,
 .code-block .token.class-name {
-  color: #a78bfa !important;
+  color: #c4b5fd !important;
 }
 
 /* ----- Legacy / misc ----- */
