@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# After deployment, submit your sitemap in Google Search Console using your live site URL,
+# or add: Sitemap: https://YOUR_DOMAIN/sitemap.xml

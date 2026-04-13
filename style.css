@@ -660,6 +660,13 @@ body.dark .navbar {
     transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Visible when JS is off so text stays indexable without relying on IntersectionObserver */
+.no-js .fade-in {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 .fade-in.show {
   opacity: 1;
   transform: translateY(0);
