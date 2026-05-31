@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.classList.remove("no-js");</script>
   <title>Pseudorandom Numbers — Narasinga Ujjini</title>
-  <meta name="description" content="How computers generate pseudorandom numbers: PRNGs, seeds, and applications.">
+  <meta name="description" content="How computers generate pseudorandom numbers: definition of random, linear congruential generators, and true randomness from hardware.">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -25,22 +25,99 @@
 <main class="section prose">
   <h1 class="page-title">Pseudorandom number generators</h1>
 
+  <p class="article-byline">Narasinga Ujjini Havildar</p>
+
   <p>
-    Computers are inherently deterministic machines, meaning they cannot generate truly random numbers on their own. Instead, they rely on pseudorandom number generators (PRNGs), which use mathematical formulas to produce sequences that appear random.
+    Every computer science or engineering student at some point has come across a random number library they used via Java, Python, or even Scratch. But how exactly do computers generate random numbers? We shall explore the definition of ‘random’, and explore how computers generate random numbers.
   </p>
 
   <p>
-    One of the most common approaches is the linear congruential generator (LCG), which generates numbers using a recurrence relation:
-  </p>
-
-  <p><strong>Xₙ₊₁ = (aXₙ + c) mod m</strong></p>
-
-  <p>
-    While simple and efficient, PRNGs have limitations. If the seed value and parameters are known, the sequence becomes predictable. This makes them unsuitable for cryptographic applications but useful for simulations, games, and modeling.
+    The word ‘random’ means something ‘made, done, happening, or chosen without method or conscious decision’. A random number, by extension, is a value chosen without a process or deliberation. Interestingly, the word ‘random’ comes from the Germanic and Old French word ‘randir’ meaning gallop. The word evolved into ‘randon’ and eventually ‘random’ in Middle English, meaning ‘with great speed’ or a ‘headlong rush’. Over time, the term became associated with a careless or haphazard action.
   </p>
 
   <p>
-    More advanced generators, such as Mersenne Twister or cryptographically secure PRNGs, improve randomness quality and period length. Understanding these systems highlights the balance between efficiency and unpredictability in computational design.
+    The definition of ‘random’ in the context of random number <em>generation</em> contradicts itself. How can a computer (or anyone, for that matter) <em>generate</em> a random number? To generate something you need a process or algorithm. Therefore a truly random number cannot be generated. Hence, we call generated random numbers ‘<em>pseudo</em>random’, pseudo meaning ‘false’ or ‘feigned’.
+  </p>
+
+  <p>
+    Now we shall explore the most basic form through which computers generate random numbers: the Linear Congruential Generator (LCG). The formula was discovered by American mathematician Derrick Henry Lehmer. He was looking for a method to easily generate random numbers for computer simulations, for use in nuclear physics laboratories like Los Alamos. The word ‘linear’ refers to the linear equation that provides the basis for the formula (which you shall see soon). ‘Congruential’ refers to a mathematical property in which if two numbers <em>a</em> and <em>b</em> leave the same remainder when divided by <em>m</em>, they are ‘congruent’.
+  </p>
+
+  <p>We start with the equation:</p>
+
+  <ol>
+    <li>X<sub>n+1</sub> = (aX<sub>n</sub> + c) mod m</li>
+  </ol>
+
+  <p>Where:</p>
+
+  <p>X<sub>n</sub> is the current number and a, c, and m are constants.</p>
+
+  <p>The constants <em>a</em>, <em>c</em>, and <em>m</em> are chosen very carefully, using these rules:</p>
+
+  <ol>
+    <li><em>c</em> and <em>m</em> are relatively prime
+      <ol>
+        <li>This means that <em>c</em> and <em>m</em> share no common factors except for 1.</li>
+        <li>Ex: if <em>m</em> = 9, <em>c</em> cannot be 3 or 9, but can be 2 or 7.</li>
+      </ol>
+    </li>
+    <li><em>a</em> − 1 is divisible by all prime factors of <em>m</em>
+      <ol>
+        <li>Ex: if <em>m</em> = 9, (<em>a</em> − 1) must be divisible by 3 (since 3 is the prime factor of <em>m</em>).</li>
+      </ol>
+    </li>
+    <li>If <em>m</em> is divisible by 4, (<em>a</em> − 1) must also be divisible by 4
+      <ol>
+        <li>This is an ‘extra’ rule to account for the unique properties of 2, since it is the only even prime. It was discovered that when the modulus in equation (1) was 4, the generated numbers repeated very frequently.</li>
+      </ol>
+    </li>
+  </ol>
+
+  <p>Using these rules, we can generate seemingly random numbers:</p>
+
+  <ul>
+    <li>Suppose:
+      <ul>
+        <li><em>a</em> = 4; <em>c</em> = 1; <em>m</em> = 9</li>
+        <li>We pick a ‘seed’ value X<sub>0</sub> at which we start generating. For more sophisticated LCGs, the seed value itself is randomly generated. Suppose, for this case, that X<sub>0</sub> = 0.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <ol>
+    <li>X<sub>1</sub> = (4 × 0 + 1) mod 9 = 1</li>
+    <li>X<sub>2</sub> = (4 × 1 + 1) mod 9 = 5</li>
+    <li>X<sub>3</sub> = (4 × 5 + 1) mod 9 = 3</li>
+    <li>X<sub>4</sub> = (4 × 3 + 1) mod 9 = 4</li>
+    <li>X<sub>5</sub> = (4 × 4 + 1) mod 9 = 8</li>
+    <li>X<sub>6</sub> = (4 × 8 + 1) mod 9 = 6</li>
+    <li>X<sub>7</sub> = (4 × 6 + 1) mod 9 = 7</li>
+    <li>X<sub>8</sub> = (4 × 7 + 1) mod 9 = 2</li>
+    <li>X<sub>9</sub> = (4 × 2 + 1) mod 9 = 0</li>
+  </ol>
+
+  <p>
+    You can see how starting with the seed value X<sub>0</sub>, the previous value is constantly ‘referenced’ to generate the <em>new</em> random value.
+  </p>
+
+  <p>
+    It is important to note that the ‘rules’ outlined above for choosing the constants need not be followed. Choosing the constants <em>a</em>, <em>c</em>, and <em>m</em> at will can still generate pseudorandom numbers. However, following those constraints will guarantee that you know <em>exactly</em> when your sequence of randomly generated numbers will repeat. In the above sequence of generated numbers, you can see that we reach our seed value of X<sub>0</sub> = 0 after 9 iterations, 9 being the <em>m</em> value chosen. Computers often choose extremely large <em>m</em> values to generate numbers. For example, the rand() library in C uses an <em>m</em> value of 2<sup>31</sup>, which is about 2.15 billion iterations.
+  </p>
+
+  <p>
+    Since D.H. Lehmer’s time, scientists have invented a method to generate truly random numbers, used for cybersecurity, cryptography, and gambling applications. Computers now use hardware to measure truly random natural events, and process that into a binary sequence (and later a random number). Such random natural events are:
+  </p>
+
+  <ul>
+    <li>The thermal signature output by a resistor</li>
+    <li>Human keyboard/mouse/keystroke inputs (human behavior is mathematically unpredictable)</li>
+    <li>Small variations in voltage or current readings</li>
+    <li>Some random number generators, like Fourmilab’s <a href="https://www.fourmilab.ch/hotbits/">HotBits</a>, record moments at which particles decay</li>
+  </ul>
+
+  <p>
+    The term “pseudo-random” highlights the fundamental fact that human-determined processes <em>cannot</em> be random. While Linear Congruential Generators and other algorithmic methods allow computers to efficiently produce sequences that appear random, they are ultimately deterministic and reproducible, limited by their formulas and constants. True randomness, by contrast, relies on unpredictable natural processes, from electronic noise to radioactive decay, and is crucial in applications where predictability could have serious consequences, such as cybersecurity and cryptography.
   </p>
 
   <p><a href="articles.html" class="button">Back to articles</a></p>
