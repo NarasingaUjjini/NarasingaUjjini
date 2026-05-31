@@ -304,6 +304,40 @@ body.dark .navbar {
   margin-bottom: 0;
 }
 
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 3vw, 1.35rem);
+  font-weight: 600;
+  color: var(--text);
+  margin: var(--space-6) 0 var(--space-4);
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-weight: 600;
+  color: var(--text);
+  margin: var(--space-5) 0 var(--space-3);
+}
+
+.prose .formula {
+  font-family: var(--font-code);
+  font-size: 0.9375rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  overflow-x: auto;
+  text-align: center;
+}
+
+.prose .article-related {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  font-weight: 500;
+}
+
 /* Article / subsection headings stay neutral */
 .subsection h3,
 .card h3,
@@ -854,24 +888,6 @@ body.dark .navbar {
   padding-top: var(--space-6);
 }
 
-.resume-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  margin-bottom: var(--space-6);
-}
-
-.resume-page-title {
-  margin-bottom: 0;
-}
-
-.resume-download {
-  margin-top: 0;
-  flex-shrink: 0;
-}
-
 .resume {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1034,15 +1050,5 @@ body.dark .navbar {
 
   .resume-date {
     white-space: normal;
-  }
-
-  .resume-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .resume-download {
-    width: 100%;
-    text-align: center;
   }
 }
