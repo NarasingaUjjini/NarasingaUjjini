@@ -71,8 +71,38 @@ const observer = new IntersectionObserver(
   { threshold: 0.08, rootMargin: "0px 0px -20px 0px" }
 );
 
+function initNav() {
+  const navbar = document.querySelector(".navbar");
+  const toggle = document.getElementById("nav-toggle");
+  const nav = document.getElementById("main-nav");
+  if (!navbar || !toggle || !nav) return;
+
+  const desktopMq = window.matchMedia("(min-width: 769px)");
+
+  function setNavOpen(open) {
+    navbar.classList.toggle("nav-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+
+  toggle.addEventListener("click", () => {
+    setNavOpen(!navbar.classList.contains("nav-open"));
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!desktopMq.matches) setNavOpen(false);
+    });
+  });
+
+  desktopMq.addEventListener("change", (e) => {
+    if (e.matches) setNavOpen(false);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
+  initNav();
   const themeBtn = document.getElementById("theme-toggle");
   if (themeBtn) themeBtn.addEventListener("click", toggleMode);
 

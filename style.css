@@ -113,10 +113,9 @@ button:focus-visible {
   top: 0;
   z-index: 1000;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--space-3);
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
   min-height: var(--header-h);
   padding: var(--space-3) clamp(var(--space-4), 4vw, var(--space-8));
   background: rgba(255, 255, 255, 0.82);
@@ -124,6 +123,59 @@ button:focus-visible {
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
+}
+
+.navbar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.nav-toggle:hover {
+  border-color: var(--accent-muted);
+  background: var(--accent-muted);
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 1.125rem;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navbar.nav-open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar.nav-open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar.nav-open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 body.dark .navbar {
@@ -144,10 +196,64 @@ body.dark .navbar {
 }
 
 .nav-inner {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-1);
+  width: 100%;
+  padding-top: var(--space-3);
+}
+
+.navbar.nav-open .nav-inner {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-1) var(--space-2);
+}
+
+.nav-inner a {
+  text-align: left;
+}
+
+.nav-inner .toggle-btn {
+  margin-left: 0;
+  margin-top: var(--space-2);
+  align-self: flex-start;
+}
+
+@media (min-width: 769px) {
+  .navbar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .navbar-top {
+    display: contents;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-inner {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: auto;
+    padding-top: 0;
+    gap: var(--space-1) var(--space-2);
+  }
+
+  .nav-inner a {
+    text-align: center;
+  }
+
+  .nav-inner .toggle-btn {
+    margin-left: var(--space-2);
+    margin-top: 0;
+    align-self: center;
+  }
 }
 
 .nav-inner a {
@@ -893,11 +999,10 @@ body.dark .navbar {
 }
 
 .resume-entry-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2) var(--space-4);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.125rem 1.25rem;
+  align-items: start;
   margin-bottom: var(--space-2);
 }
 
@@ -907,15 +1012,18 @@ body.dark .navbar {
   font-weight: 600;
   color: var(--text);
   margin: 0;
-  flex: 1 1 12rem;
   min-width: 0;
+  grid-column: 1;
 }
 
 .resume-date {
   font-size: 0.875rem;
   color: var(--text-muted);
   white-space: nowrap;
-  flex-shrink: 0;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  line-height: 1.4;
 }
 
 .resume-list {
@@ -935,7 +1043,7 @@ body.dark .navbar {
 }
 
 .resume-list--nested {
-  margin-top: var(--space-2);
+  margin-top: 0;
 }
 
 .resume-list strong {
@@ -948,14 +1056,19 @@ body.dark .navbar {
   background: var(--accent-muted);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .resume-entry-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-1);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .resume-entry-title {
+    margin-bottom: 0.125rem;
   }
 
   .resume-date {
+    display: block;
+    margin-bottom: var(--space-2);
     white-space: normal;
   }
 }

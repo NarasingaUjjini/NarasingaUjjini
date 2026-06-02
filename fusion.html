@@ -11,8 +11,15 @@
 </head>
 <body>
 <header class="navbar" role="banner">
-  <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
-  <nav class="nav-inner" aria-label="Main navigation">
+  <div class="navbar-top">
+    <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    </button>
+  </div>
+  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
     <a href="index.html">Home</a>
     <a href="index.html#work">Work</a>
     <a href="about.html">About</a>
