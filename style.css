@@ -726,6 +726,26 @@ body.dark .navbar {
   box-shadow: var(--shadow-lg);
 }
 
+/* Full-width project figures that break out of narrow prose */
+.image-grid--wide {
+  width: min(100vw - 2 * var(--space-5), var(--max-content));
+  max-width: none;
+  /* Center without transform so .fade-in animations don't shove images right */
+  margin-left: calc(50% - min((100vw - 2 * var(--space-5)) / 2, var(--max-content) / 2));
+  grid-template-columns: 1fr;
+  justify-items: stretch;
+}
+
+.image-grid--wide img {
+  width: 100%;
+  max-width: 100%;
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+  margin-inline: auto;
+  display: block;
+}
+
 /* ----- Fusion items ----- */
 .fusion-item {
   max-width: 50rem;
