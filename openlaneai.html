@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>document.documentElement.classList.remove("no-js");</script>
   <title>OpenLaneAI — Narasinga Ujjini</title>
-  <meta name="description" content="OpenLaneAI turns plain English into a verified sky130 digital chip layout (GDSII).">
+  <meta name="description" content="OpenLaneAI is a proof-of-concept that turns an English circuit description into a sky130 GDSII layout — and shows why ASIC design still needs people.">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -31,15 +31,38 @@
 
 <main class="section prose">
   <h1 class="page-title fade-in">OpenLaneAI</h1>
-  <p class="article-byline fade-in">English → chip layout</p>
+  <p class="article-byline fade-in">Proof of concept · still in development</p>
 
   <p class="fade-in">
-    Describe a small digital circuit in plain English. OpenLaneAI writes Verilog, checks it, and runs LibreLane on sky130 to produce a GDSII layout.
+    OpenLaneAI is an experiment: type a plain-English description of a small digital circuit, and the tool tries to produce Verilog, run automated checks, and push the design through LibreLane on the open SkyWater 130&nbsp;nm process until a GDSII layout comes out. The screenshots below are from a successful demo of a four-bit counter.
+  </p>
+
+  <p class="fade-in">
+    It is still early. This is a proof of concept, not a finished or practical way to tape out real chips. It only aims at tiny, clocked digital blocks on sky130. Anything analog, RF, mixed-signal, proprietary foundries, or large SoCs is out of scope. Even when the flow “passes,” the result is a candidate layout—not guaranteed working silicon.
   </p>
 
   <div class="image-grid image-grid--wide fade-in">
-    <img src="openlaneai-preview.png" alt="KLayout preview of an OpenLaneAI sky130 GDS layout" onclick="openModal(this.src)" loading="eager" decoding="async" width="1400" height="900">
+    <img src="openlaneai-ui-01.png" alt="OpenLaneAI UI: project overview with in-bounds and out-of-bounds limits" onclick="openModal(this.src)" loading="eager" decoding="async" width="1400" height="900">
   </div>
+  <div class="image-grid image-grid--wide fade-in">
+    <img src="openlaneai-ui-02.png" alt="OpenLaneAI UI: English prompt for a 4-bit counter and manufacturability pass results" onclick="openModal(this.src)" loading="lazy" decoding="async" width="1400" height="900">
+  </div>
+  <div class="image-grid image-grid--wide fade-in">
+    <img src="openlaneai-ui-03.png" alt="OpenLaneAI UI: generated Verilog and KLayout GDS preview" onclick="openModal(this.src)" loading="lazy" decoding="async" width="1400" height="900">
+  </div>
+  <div class="image-grid image-grid--wide fade-in">
+    <img src="openlaneai-ui-04.png" alt="OpenLaneAI UI: technical log showing quality gates and example prompts" onclick="openModal(this.src)" loading="lazy" decoding="async" width="1400" height="900">
+  </div>
+
+  <h2 class="fade-in">What makes this hard</h2>
+  <p class="fade-in">
+    Getting from words to layout is not one step. The RTL has to compile, synthesize without accidental latches, and survive a self-checking simulation. Then place-and-route has to finish, and DRC, LVS, antenna, and timing checks all have to clear. Small mistakes in the prompt, the generated code, the pin list, or the floorplan can fail late and for opaque reasons. Tooling spans Docker, a PDK install, simulators, synthesis, and layout viewers—each with its own failure modes. A demo that works on a counter does not mean the same path is reliable for something useful.
+  </p>
+
+  <h2 class="fade-in">Why people still matter</h2>
+  <p class="fade-in">
+    Building this flow made the limits obvious. Automated gates catch many broken designs, but they do not know whether the English description matched the intent, whether the I/O will plug into a real shuttle wrapper, or whether the part will behave once it is packaged and powered. Timing reports, DRC waivers, die area, and pin planning still need judgment. OpenLaneAI is useful as a way to explore that pipeline and to show how far automation can go on a toy block—and, more importantly, how much human involvement ASIC design still requires before anything should be trusted near a fab.
+  </p>
 
   <p class="fade-in">
     <a href="asic-librelane.html" class="button button--ghost">Related: first ASIC</a>
