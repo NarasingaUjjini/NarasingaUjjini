@@ -3,59 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.remove("no-js");</script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
   <title>Python Tuner — Narasinga Ujjini</title>
   <meta name="description" content="Real-time guitar tuner in Python with FFT, PyQtGraph, and audio I/O.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="navbar-top">
+<header class="site-header">
+  <div class="header-inner">
     <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
   </div>
-  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="resume.html">Resume</a>
-    <a href="articles.html">Articles</a>
-    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
-  </nav>
 </header>
 
-<main class="section">
-  <h1 class="page-title fade-in">Python tuner</h1>
+<main class="canvas">
+  <header class="case-head fade-in">
+    <h1 class="display">Python tuner</h1>
+    <p class="lede">A Python-based audio tuning application for real-time pitch detection and adjustment.</p>
+  </header>
 
-  <p class="fade-in">
-    A Python-based audio tuning application for real-time pitch detection and adjustment.
-  </p>
-
-  <div class="image-grid image-grid--screenshots fade-in">
-    <img src="sound1.png" alt="Tuner application interface" onclick="openModal(this.src)" loading="eager" decoding="async">
-    <img src="sound2.png" alt="Tuner visualization" onclick="openModal(this.src)" loading="eager" decoding="async">
+  <div class="gallery fade-in">
+    <figure class="module">
+      <span class="module-marks"></span>
+      <img src="sound1.png" alt="Tuner application interface" onclick="openModal(this.src)">
+    </figure>
+    <figure class="module">
+      <span class="module-marks"></span>
+      <img src="sound2.png" alt="Tuner visualization" onclick="openModal(this.src)">
+    </figure>
   </div>
 
-  <div class="grid">
-    <div class="card fade-in">
+  <div class="process-grid fade-in">
+    <article class="module process">
       <h3>Code</h3>
       <p>Used NumPy and PyQtGraph libraries for audio processing and visualization.</p>
-    </div>
-
-    <div class="card fade-in">
+    </article>
+    <article class="module process">
       <h3>Performance</h3>
       <p>Delivers real-time pitch detection with minimal latency and high accuracy.</p>
-    </div>
-
-    <div class="card fade-in">
+    </article>
+    <article class="module process">
       <h3>Challenge</h3>
       <p>Overcame audio buffer issues by implementing efficient data handling and processing techniques.</p>
-    </div>
+    </article>
   </div>
 
   <div class="prose fade-in">
@@ -66,8 +80,9 @@
     </p>
   </div>
 
-  <div class="code-block">
-<pre><code>import numpy as np
+  <div class="module code-block fade-in" style="margin-top: 2.5rem;">
+    <div class="code-block-head">tuner.py</div>
+    <pre><code>import numpy as np
 import sounddevice as sd
 from scipy.fft import rfft, rfftfreq
 from collections import deque
@@ -85,7 +100,7 @@ NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F',
               'F#', 'G', 'G#', 'A', 'A#', 'B']
 
 def freq_to_note(freq):
-    if freq <= 0:
+    if freq &lt;= 0:
         return None, None, None
 
     midi = 69 + 12 * np.log2(freq / 440.0)
@@ -203,11 +218,19 @@ timer.start(20)  # update every 20 ms (~50 FPS)
 
 app.exec_()</code></pre>
   </div>
+
+  <p class="back-row fade-in"><a href="work.html" class="button button--ghost">All work</a></p>
 </main>
 
 <footer class="site-footer">
-  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
-  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
 </footer>
 
 <div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">

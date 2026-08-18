@@ -3,106 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.remove("no-js");</script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
   <title>ASIC Design via LibreLane — Narasinga Ujjini</title>
   <meta name="description" content="Designing a first ASIC: taking a four-bit counter from Verilog through simulation, synthesis, and physical layout with LibreLane.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="navbar-top">
+<header class="site-header">
+  <div class="header-inner">
     <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
   </div>
-  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="resume.html">Resume</a>
-    <a href="articles.html">Articles</a>
-    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
-  </nav>
 </header>
 
-<main class="section prose">
-  <h1 class="page-title fade-in">ASIC Design via LibreLane</h1>
-  <p class="article-byline fade-in">Designing My First ASIC: From a Counter to Silicon</p>
+<main class="canvas">
+  <header class="case-head fade-in">
+    <h1 class="display">ASIC Design via LibreLane</h1>
+    <p class="lede">Designing My First ASIC: From a Counter to Silicon</p>
+  </header>
 
-  <h2 class="fade-in">Introduction</h2>
-  <p class="fade-in">
-    When I first started learning about chip design, I wanted to understand what actually happens between writing a piece of code and producing a physical computer chip. I had worked with microcontrollers and computers before, but I had never designed the hardware itself. To start learning, I built something deceptively simple: a four-bit digital counter.
-  </p>
+  <div class="case-layout">
+    <div class="prose fade-in">
+      <figure class="module figure">
+        <span class="module-marks"></span>
+        <img src="asic-klayout.png" alt="KLayout view of the counter.gds physical layout with SkyWater 130 nm standard cells" onclick="openModal(this.src)" width="1400" height="900">
+        <figcaption>KLayout view of the counter.gds physical layout with SkyWater 130 nm standard cells</figcaption>
+      </figure>
 
-  <h2 class="fade-in">The Counter</h2>
-  <p class="fade-in">
-    A counter is one of the simplest examples of digital logic. Its job is exactly what its name suggests: every time it receives a clock signal, it increases its stored number by one. Starting from zero, it might count: 0000 → 0001 → 0010 → 0011 → 0100 → 0101 → … Four binary digits allow the counter to represent numbers from 0 through 15.
-  </p>
+      <h2>Introduction</h2>
+      <p>
+        When I first started learning about chip design, I wanted to understand what actually happens between writing a piece of code and producing a physical computer chip. I had worked with microcontrollers and computers before, but I had never designed the hardware itself. To start learning, I built something deceptively simple: a four-bit digital counter.
+      </p>
 
-  <h2 class="fade-in">From Code to Hardware</h2>
-  <p class="fade-in">
-    I designed the counter using a hardware description language called Verilog. Verilog looks somewhat like a programming language, but its purpose is different. When I write a normal program, I am giving a computer a sequence of instructions to execute. With Verilog, I am describing the electronic components and connections that should exist inside a chip.
-  </p>
+      <h2>The Counter</h2>
+      <p>
+        A counter is one of the simplest examples of digital logic. Its job is exactly what its name suggests: every time it receives a clock signal, it increases its stored number by one. Starting from zero, it might count: 0000 → 0001 → 0010 → 0011 → 0100 → 0101 → … Four binary digits allow the counter to represent numbers from 0 through 15.
+      </p>
 
-  <h2 class="fade-in">Simulating the Design</h2>
-  <p class="fade-in">
-    Before attempting to manufacture anything, I needed to make sure my design actually worked. I created a testbench, which is essentially a controlled experiment for digital hardware. The testbench provides inputs to the design and observes its outputs. I could reset the counter and then provide clock pulses to verify that it progressed through the expected binary sequence.
-  </p>
+      <h2>From Code to Hardware</h2>
+      <p>
+        I designed the counter using a hardware description language called Verilog. Verilog looks somewhat like a programming language, but its purpose is different. When I write a normal program, I am giving a computer a sequence of instructions to execute. With Verilog, I am describing the electronic components and connections that should exist inside a chip.
+      </p>
 
-  <div class="image-grid image-grid--wide fade-in">
-    <img src="asic-gtkwave.png" alt="GTKWave simulation of the four-bit counter showing clk, rst, and count[3:0]" onclick="openModal(this.src)" loading="eager" decoding="async" width="1400" height="780">
+      <h2>Simulating the Design</h2>
+      <p>
+        Before attempting to manufacture anything, I needed to make sure my design actually worked. I created a testbench, which is essentially a controlled experiment for digital hardware. The testbench provides inputs to the design and observes its outputs. I could reset the counter and then provide clock pulses to verify that it progressed through the expected binary sequence.
+      </p>
+
+      <figure class="module figure">
+        <span class="module-marks"></span>
+        <img src="asic-gtkwave.png" alt="GTKWave simulation of the four-bit counter showing clk, rst, and count[3:0]" onclick="openModal(this.src)" width="1400" height="780">
+        <figcaption>GTKWave simulation of the four-bit counter showing clk, rst, and count[3:0]</figcaption>
+      </figure>
+
+      <h2>Turning Logic Into Physical Components</h2>
+      <p>
+        Once the counter behaved correctly in simulation, I used an open-source ASIC design flow called LibreLane. The first major step was synthesis. Synthesis takes my high-level description of the counter and determines how to implement it using actual electronic building blocks from the SkyWater 130 nm process. The result is a description much closer to the hardware that will actually be manufactured.
+      </p>
+
+      <h2>Timing the Circuit</h2>
+      <p>
+        After synthesis, the design needs to be checked to make sure the circuit can operate fast enough. This process is called static timing analysis, or STA. Digital circuits operate according to a clock. If one circuit produces a result and another circuit needs to store that result, the signal must travel through the intervening logic quickly enough to arrive before the next clock edge. My counter had substantial timing margin, meaning the circuit was capable of operating faster than the clock period I specified.
+      </p>
+
+      <h2>Designing the Physical Chip</h2>
+      <p>
+        After synthesis and timing analysis, the design moves into physical design. Floorplanning determines the general physical dimensions of the chip and where its major structures will go. Placement positions the individual standard cells. Clock-tree synthesis creates a network that distributes the clock signal throughout the circuit. Finally, routing connects the individual components with physical wires.
+      </p>
+
+      <h2>From Layout to a Chip</h2>
+      <p>
+        The final result of this process is a file called a GDS, which contains the geometric information needed to manufacture the chip. I was able to take my counter all the way through this process. The accompanying KLayout image shows the resulting physical layout. The colored geometric shapes are not a picture of a computer program; they are the physical representation of the electronic circuit I designed.
+      </p>
+
+      <h2>What I Learned</h2>
+      <p>
+        The counter itself is extremely simple. It is nowhere near the complexity of a modern processor, and by itself it isn't a particularly useful computer. That wasn't really the point. The purpose of the project was to follow a digital design through the entire ASIC process: from an idea, to a hardware description, to simulation, to synthesized logic, to physical placement and routing, and finally to a manufacturing-ready layout.
+      </p>
+
+      <h2>Looking Forward</h2>
+      <p>
+        The project gave me my first understanding of what happens inside an ASIC before it ever becomes silicon. More importantly, it changed how I think about computers. A processor isn't fundamentally a mysterious box that executes code. At the lowest level, it is an enormous collection of extremely small physical circuits—circuits that store information, perform logical operations, move signals, and coordinate everything according to a clock. My four-bit counter was my first opportunity to build one of those circuits myself.
+      </p>
+      <p>
+        That foundation led to <a href="openlaneai.html">OpenLaneAI</a>: the same LibreLane / sky130 path, but with English prompts, AI-generated RTL, and automated quality gates so a layout is only accepted when simulation, synthesis, DRC, LVS, and timing all pass. Longer term, I still want to build something much more ambitious—a 32-bit RISC-V system-on-chip as the foundation for a custom guitar-effects processor.
+      </p>
+    </div>
+
+    <aside class="module telemetry fade-in">
+      <span class="module-marks"></span>
+      <h3>Tools and Libraries</h3>
+      <div class="chips" style="margin: 0 0 1.75rem;">
+        <span class="chip">Verilog</span>
+        <span class="chip">GTKWave</span>
+        <span class="chip">LibreLane</span>
+        <span class="chip">KLayout</span>
+      </div>
+      <a class="button" href="openlaneai.html" style="width:100%;margin-bottom:0.75rem;">OpenLaneAI</a>
+      <a class="button button--ghost" href="work.html" style="width:100%;">All work</a>
+    </aside>
   </div>
-
-  <h2 class="fade-in">Turning Logic Into Physical Components</h2>
-  <p class="fade-in">
-    Once the counter behaved correctly in simulation, I used an open-source ASIC design flow called LibreLane. The first major step was synthesis. Synthesis takes my high-level description of the counter and determines how to implement it using actual electronic building blocks from the SkyWater 130 nm process. The result is a description much closer to the hardware that will actually be manufactured.
-  </p>
-
-  <h2 class="fade-in">Timing the Circuit</h2>
-  <p class="fade-in">
-    After synthesis, the design needs to be checked to make sure the circuit can operate fast enough. This process is called static timing analysis, or STA. Digital circuits operate according to a clock. If one circuit produces a result and another circuit needs to store that result, the signal must travel through the intervening logic quickly enough to arrive before the next clock edge. My counter had substantial timing margin, meaning the circuit was capable of operating faster than the clock period I specified.
-  </p>
-
-  <h2 class="fade-in">Designing the Physical Chip</h2>
-  <p class="fade-in">
-    After synthesis and timing analysis, the design moves into physical design. Floorplanning determines the general physical dimensions of the chip and where its major structures will go. Placement positions the individual standard cells. Clock-tree synthesis creates a network that distributes the clock signal throughout the circuit. Finally, routing connects the individual components with physical wires.
-  </p>
-
-  <h2 class="fade-in">From Layout to a Chip</h2>
-  <p class="fade-in">
-    The final result of this process is a file called a GDS, which contains the geometric information needed to manufacture the chip. I was able to take my counter all the way through this process. The accompanying KLayout image shows the resulting physical layout. The colored geometric shapes are not a picture of a computer program; they are the physical representation of the electronic circuit I designed.
-  </p>
-
-  <div class="image-grid image-grid--wide fade-in">
-    <img src="asic-klayout.png" alt="KLayout view of the counter.gds physical layout with SkyWater 130 nm standard cells" onclick="openModal(this.src)" loading="lazy" decoding="async" width="1400" height="900">
-  </div>
-
-  <h2 class="fade-in">What I Learned</h2>
-  <p class="fade-in">
-    The counter itself is extremely simple. It is nowhere near the complexity of a modern processor, and by itself it isn't a particularly useful computer. That wasn't really the point. The purpose of the project was to follow a digital design through the entire ASIC process: from an idea, to a hardware description, to simulation, to synthesized logic, to physical placement and routing, and finally to a manufacturing-ready layout.
-  </p>
-
-  <h2 class="fade-in">Looking Forward</h2>
-  <p class="fade-in">
-    The project gave me my first understanding of what happens inside an ASIC before it ever becomes silicon. More importantly, it changed how I think about computers. A processor isn't fundamentally a mysterious box that executes code. At the lowest level, it is an enormous collection of extremely small physical circuits—circuits that store information, perform logical operations, move signals, and coordinate everything according to a clock. My four-bit counter was my first opportunity to build one of those circuits myself.
-  </p>
-  <p class="fade-in">
-    That foundation led to <a href="openlaneai.html">OpenLaneAI</a>: the same LibreLane / sky130 path, but with English prompts, AI-generated RTL, and automated quality gates so a layout is only accepted when simulation, synthesis, DRC, LVS, and timing all pass. Longer term, I still want to build something much more ambitious—a 32-bit RISC-V system-on-chip as the foundation for a custom guitar-effects processor.
-  </p>
-
-  <p class="fade-in">
-    <a href="openlaneai.html" class="button">OpenLaneAI</a>
-    <a href="index.html#work" class="button button--ghost">Back to work</a>
-  </p>
 </main>
 
 <footer class="site-footer">
-  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
-  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
 </footer>
 
 <div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">

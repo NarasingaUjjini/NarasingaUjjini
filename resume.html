@@ -3,40 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.remove("no-js");</script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
   <title>Resume — Narasinga Ujjini</title>
   <meta name="description" content="Resume of Narasinga Ujjini — engineering, electronics, programming, and project experience.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="navbar-top">
+<header class="site-header">
+  <div class="header-inner">
     <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html" aria-current="page">Resume</a>
+      <a href="articles.html">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
   </div>
-  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="resume.html" aria-current="page">Resume</a>
-    <a href="articles.html">Articles</a>
-    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
-  </nav>
 </header>
 
-<main class="section resume-page">
-  <h1 class="page-title fade-in">Resume</h1>
+<main class="canvas">
+  <div class="resume-toolbar fade-in">
+    <h1 class="display">Resume</h1>
+  </div>
 
   <article class="resume fade-in" aria-label="Narasinga Ujjini resume">
     <header class="resume-header">
       <h2 class="resume-name">Narasinga Ujjini</h2>
       <ul class="resume-contact">
-        <li><a href="index.html">My Website</a></li>
+        <li><a href="index.html">Website</a></li>
         <li><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       </ul>
     </header>
@@ -160,7 +173,7 @@
           </li>
           <li>
             <strong>Python Tuner &amp; Fourier Transform Proof-of-Concept</strong> —
-            <a href="sound.html">Link to Portfolio Page</a>
+            <a href="sound.html">Portfolio page</a>
             <ul class="resume-list resume-list--nested">
               <li>Used NumPy and PyQtGraph libraries for audio processing and visualization.</li>
               <li>Used a Fast Fourier Transform (FFT) to identify the dominant frequency and convert it to a musical note</li>
@@ -201,7 +214,7 @@
           <li>
             <strong>Group Challenge:</strong> Created School Lunch application via Voiceflow that enabled parents to set a schedule for children’s school lunches
           </li>
-          <li>More Projects on my <a href="index.html#work">Website</a></li>
+          <li>More projects on the <a href="work.html">work index</a></li>
         </ul>
       </div>
     </section>
@@ -209,8 +222,14 @@
 </main>
 
 <footer class="site-footer">
-  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
-  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
 </footer>
 </body>
 </html>

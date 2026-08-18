@@ -3,59 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.remove("no-js");</script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
   <title>Articles — Narasinga Ujjini</title>
   <meta name="description" content="Technical writing and explorations in computing.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="navbar-top">
+<header class="site-header">
+  <div class="header-inner">
     <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html" aria-current="page">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
   </div>
-  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="resume.html">Resume</a>
-    <a href="articles.html">Articles</a>
-    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
-  </nav>
 </header>
 
-<main class="section">
-  <h1 class="page-title fade-in">Articles</h1>
+<main class="canvas">
+  <header class="fade-in" style="margin-bottom: 4rem;">
+    <h1 class="display">Articles</h1>
+  </header>
 
-  <div class="grid">
-    <article class="card fade-in">
-      <h3>Pseudorandom numbers</h3>
-      <p>An exploration of how computers generate randomness using deterministic algorithms, including seeds and real-world applications.</p>
-      <a href="pseudorandom.html" class="button">Read</a>
-    </article>
+  <div class="article-grid">
+    <a class="module essay-card span-8 fade-in" href="pseudorandom.html">
+      <span class="module-marks"></span>
+      <div>
+        <h2 class="headline">Pseudorandom numbers</h2>
+        <p>An exploration of how computers generate randomness using deterministic algorithms, including seeds and real-world applications.</p>
+      </div>
+      <div class="essay-foot">
+        <span class="meta">Essay</span>
+        <span class="meta" style="color:var(--primary);">Read <span class="material-symbols-outlined" style="font-size:1rem;">arrow_forward</span></span>
+      </div>
+    </a>
 
-    <article class="card fade-in">
-      <h3>How does an electric guitar really work?</h3>
-      <p>From vibrating strings and pickups to preamps, power amps, and speakers — the journey of a guitar signal.</p>
-      <a href="electric-guitar.html" class="button">Read</a>
-    </article>
+    <a class="module essay-card span-4 fade-in" href="electric-guitar.html">
+      <span class="module-marks"></span>
+      <div>
+        <h3 class="headline">How does an electric guitar really work?</h3>
+        <p>From vibrating strings and pickups to preamps, power amps, and speakers — the journey of a guitar signal.</p>
+      </div>
+      <div class="essay-foot">
+        <span class="meta">Read</span>
+        <span class="material-symbols-outlined" style="color:var(--primary);">north_east</span>
+      </div>
+    </a>
 
-    <article class="card fade-in">
-      <h3>Signal chains and effects</h3>
-      <p>How distortion, delay, reverb, modulation, and filter effects transform a guitar signal into expressive tone.</p>
-      <a href="signal-chains.html" class="button">Read</a>
-    </article>
+    <a class="module essay-card span-12 fade-in" href="signal-chains.html">
+      <span class="module-marks"></span>
+      <div>
+        <h2 class="headline">Signal chains and effects</h2>
+        <p>How distortion, delay, reverb, modulation, and filter effects transform a guitar signal into expressive tone.</p>
+      </div>
+      <div class="essay-foot">
+        <span class="meta">Read</span>
+        <span class="material-symbols-outlined" style="color:var(--primary);">arrow_forward</span>
+      </div>
+    </a>
   </div>
 </main>
 
 <footer class="site-footer">
-  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
-  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
 </footer>
 </body>
 </html>

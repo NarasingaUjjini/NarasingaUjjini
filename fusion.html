@@ -3,75 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.remove("no-js");</script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
   <title>Fusion Portfolio — Narasinga Ujjini</title>
   <meta name="description" content="CAD models, renders, and CNC projects in Fusion 360 and Blender.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="navbar-top">
+<header class="site-header">
+  <div class="header-inner">
     <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
   </div>
-  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="resume.html">Resume</a>
-    <a href="articles.html">Articles</a>
-    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
-  </nav>
 </header>
 
-<main class="section">
-  <h1 class="page-title fade-in">Fusion portfolio</h1>
+<main class="canvas">
+  <header class="case-head fade-in">
+    <h1 class="display">Fusion portfolio</h1>
+  </header>
 
-  <article class="fusion-item fade-in">
-    <img src="canoe.png" alt="Canoe model render" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
-    <h3>Canoe</h3>
-    <p>Canoe built in Fusion 360 and rendered in Blender using shaders and sculpt tools.</p>
-  </article>
+  <div class="fusion-list fade-in">
+    <article class="module fusion-row">
+      <span class="module-marks"></span>
+      <div class="fusion-row-media">
+        <img src="banner.png" alt="Canoe model render" onclick="openModal(this.src)">
+      </div>
+      <div>
+        <h3>Canoe</h3>
+        <p>Canoe built in Fusion 360 and rendered in Blender using shaders and sculpt tools.</p>
+      </div>
+    </article>
 
-  <article class="fusion-item fade-in">
-    <img src="candle.png" alt="Candle holder CAD model" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
-    <h3>Candle holder</h3>
-    <p>Candle holder designed in Fusion 360 and manufactured on a 3-axis CNC.</p>
-  </article>
+    <article class="module fusion-row">
+      <span class="module-marks"></span>
+      <div class="fusion-row-media">
+        <img src="candle.png" alt="Candle holder CAD model" onclick="openModal(this.src)" width="800" height="500">
+      </div>
+      <div>
+        <h3>Candle holder</h3>
+        <p>Candle holder designed in Fusion 360 and manufactured on a 3-axis CNC.</p>
+      </div>
+    </article>
 
-  <article class="fusion-item fade-in">
-    <img src="clock.png" alt="Wooden clock design" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
-    <h3>Wooden clock</h3>
-    <p>Designed in Fusion 360 and cut on a CNC machine with precise dimensions.</p>
-  </article>
+    <article class="module fusion-row">
+      <span class="module-marks"></span>
+      <div class="fusion-row-media">
+        <img src="clock.png" alt="Wooden clock design" onclick="openModal(this.src)" width="800" height="500">
+      </div>
+      <div>
+        <h3>Wooden clock</h3>
+        <p>Designed in Fusion 360 and cut on a CNC machine with precise dimensions.</p>
+      </div>
+    </article>
 
-  <article class="fusion-item fade-in">
-    <img src="helicopter.png" alt="Helicopter 3D model" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
-    <h3>Helicopter</h3>
-    <p>Modeled in Fusion 360 and rendered in Blender.</p>
-  </article>
+    <article class="module fusion-row">
+      <span class="module-marks"></span>
+      <div class="fusion-row-media">
+        <img src="helicopter.png" alt="Helicopter 3D model" onclick="openModal(this.src)" width="800" height="500">
+      </div>
+      <div>
+        <h3>Helicopter</h3>
+        <p>Modeled in Fusion 360 and rendered in Blender.</p>
+      </div>
+    </article>
 
-  <article class="fusion-item fade-in">
-    <img src="objects.png" alt="Orthographic practice models" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
-    <h3>Orthographic models</h3>
-    <p>Practice models created from engineering drawings.</p>
-  </article>
+    <article class="module fusion-row">
+      <span class="module-marks"></span>
+      <div class="fusion-row-media">
+        <img src="objects.png" alt="Orthographic practice models" onclick="openModal(this.src)" width="800" height="500">
+      </div>
+      <div>
+        <h3>Orthographic models</h3>
+        <p>Practice models created from engineering drawings.</p>
+      </div>
+    </article>
 
-  <article class="fusion-item fade-in">
-    <img src="hellfire.png" alt="AGM-65 Maverick missile model" onclick="openModal(this.src)" loading="lazy" width="800" height="500">
-    <h3>AGM-65 Maverick model</h3>
-    <p>Focused on textures and appearance tools in Fusion 360.</p>
-  </article>
+    <article class="module fusion-row">
+      <span class="module-marks"></span>
+      <div class="fusion-row-media">
+        <img src="hellfire.png" alt="AGM-65 Maverick missile model" onclick="openModal(this.src)" width="800" height="500">
+      </div>
+      <div>
+        <h3>AGM-65 Maverick model</h3>
+        <p>Focused on textures and appearance tools in Fusion 360.</p>
+      </div>
+    </article>
+  </div>
+
+  <p class="back-row fade-in"><a href="work.html" class="button button--ghost">All work</a></p>
 </main>
 
 <footer class="site-footer">
-  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
-  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
 </footer>
 
 <div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">

@@ -1,6 +1,11 @@
 const THEME_KEY = "portfolio-theme";
 
+function isDark() {
+  return document.documentElement.classList.contains("dark");
+}
+
 function applyTheme(dark) {
+  document.documentElement.classList.toggle("dark", dark);
   document.body.classList.toggle("dark", dark);
   const btn = document.getElementById("theme-toggle");
   if (!btn) return;
@@ -10,11 +15,11 @@ function applyTheme(dark) {
     "aria-label",
     dark ? "Switch to light mode" : "Switch to dark mode"
   );
-  if (icon) icon.textContent = dark ? "☀️" : "🌙";
+  if (icon) icon.textContent = dark ? "light_mode" : "dark_mode";
 }
 
 function toggleMode() {
-  const dark = !document.body.classList.contains("dark");
+  const dark = !isDark();
   applyTheme(dark);
   try {
     localStorage.setItem(THEME_KEY, dark ? "dark" : "light");
@@ -27,8 +32,7 @@ function initTheme() {
     const stored = localStorage.getItem(THEME_KEY);
     if (stored === "dark") dark = true;
     else if (stored === "light") dark = false;
-    else
-      dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    else dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   } catch (_) {
     dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
@@ -71,22 +75,28 @@ const observer = new IntersectionObserver(
   { threshold: 0.08, rootMargin: "0px 0px -20px 0px" }
 );
 
+function placeThemeToggle() {
+  const btn = document.getElementById("theme-toggle");
+  const inner = document.querySelector(".header-inner");
+  if (btn && inner) inner.appendChild(btn);
+}
+
 function initNav() {
-  const navbar = document.querySelector(".navbar");
+  const header = document.querySelector(".site-header");
   const toggle = document.getElementById("nav-toggle");
   const nav = document.getElementById("main-nav");
-  if (!navbar || !toggle || !nav) return;
+  if (!header || !toggle || !nav) return;
 
   const desktopMq = window.matchMedia("(min-width: 769px)");
 
   function setNavOpen(open) {
-    navbar.classList.toggle("nav-open", open);
+    header.classList.toggle("nav-open", open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   }
 
   toggle.addEventListener("click", () => {
-    setNavOpen(!navbar.classList.contains("nav-open"));
+    setNavOpen(!header.classList.contains("nav-open"));
   });
 
   nav.querySelectorAll("a").forEach((link) => {
@@ -100,9 +110,33 @@ function initNav() {
   });
 }
 
+function initFilters() {
+  const bar = document.getElementById("work-filters");
+  if (!bar) return;
+  const buttons = bar.querySelectorAll("[data-filter]");
+  const cards = document.querySelectorAll("[data-tags]");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.getAttribute("data-filter");
+      buttons.forEach((b) => {
+        b.classList.toggle("is-active", b === btn);
+        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+      });
+      cards.forEach((card) => {
+        const tags = (card.getAttribute("data-tags") || "").split(/\s+/);
+        const show = filter === "all" || tags.includes(filter);
+        card.classList.toggle("is-hidden", !show);
+      });
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  placeThemeToggle();
   initTheme();
   initNav();
+  initFilters();
   const themeBtn = document.getElementById("theme-toggle");
   if (themeBtn) themeBtn.addEventListener("click", toggleMode);
 

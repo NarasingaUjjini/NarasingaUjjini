@@ -3,136 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.remove("no-js");</script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
   <title>Pseudorandom Numbers — Narasinga Ujjini</title>
   <meta name="description" content="How computers generate pseudorandom numbers: definition of random, linear congruential generators, and true randomness from hardware.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="navbar-top">
+<header class="site-header">
+  <div class="header-inner">
     <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html" aria-current="page">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
   </div>
-  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="resume.html">Resume</a>
-    <a href="articles.html">Articles</a>
-    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
-  </nav>
 </header>
 
-<main class="section prose">
-  <h1 class="page-title">Pseudorandom number generators</h1>
+<main class="canvas">
+  <header class="case-head fade-in">
+    <h1 class="display">Pseudorandom number generators</h1>
+    <p class="meta" style="margin-top: 1rem;">Narasinga Ujjini Havildar</p>
+  </header>
 
-  <p class="article-byline">Narasinga Ujjini Havildar</p>
-
-  <p>
-    Every computer science or engineering student at some point has come across a random number library they used via Java, Python, or even Scratch. But how exactly do computers generate random numbers? We shall explore the definition of ‘random’, and explore how computers generate random numbers.
-  </p>
-
-  <p>
-    The word ‘random’ means something ‘made, done, happening, or chosen without method or conscious decision’. A random number, by extension, is a value chosen without a process or deliberation. Interestingly, the word ‘random’ comes from the Germanic and Old French word ‘randir’ meaning gallop. The word evolved into ‘randon’ and eventually ‘random’ in Middle English, meaning ‘with great speed’ or a ‘headlong rush’. Over time, the term became associated with a careless or haphazard action.
-  </p>
-
-  <p>
-    The definition of ‘random’ in the context of random number <em>generation</em> contradicts itself. How can a computer (or anyone, for that matter) <em>generate</em> a random number? To generate something you need a process or algorithm. Therefore a truly random number cannot be generated. Hence, we call generated random numbers ‘<em>pseudo</em>random’, pseudo meaning ‘false’ or ‘feigned’.
-  </p>
-
-  <p>
-    Now we shall explore the most basic form through which computers generate random numbers: the Linear Congruential Generator (LCG). The formula was discovered by American mathematician Derrick Henry Lehmer. He was looking for a method to easily generate random numbers for computer simulations, for use in nuclear physics laboratories like Los Alamos. The word ‘linear’ refers to the linear equation that provides the basis for the formula (which you shall see soon). ‘Congruential’ refers to a mathematical property in which if two numbers <em>a</em> and <em>b</em> leave the same remainder when divided by <em>m</em>, they are ‘congruent’.
-  </p>
-
-  <p>We start with the equation:</p>
-
-  <ol>
-    <li>X<sub>n+1</sub> = (aX<sub>n</sub> + c) mod m</li>
-  </ol>
-
-  <p>Where:</p>
-
-  <p>X<sub>n</sub> is the current number and a, c, and m are constants.</p>
-
-  <p>The constants <em>a</em>, <em>c</em>, and <em>m</em> are chosen very carefully, using these rules:</p>
-
-  <ol>
-    <li><em>c</em> and <em>m</em> are relatively prime
-      <ol>
-        <li>This means that <em>c</em> and <em>m</em> share no common factors except for 1.</li>
-        <li>Ex: if <em>m</em> = 9, <em>c</em> cannot be 3 or 9, but can be 2 or 7.</li>
-      </ol>
-    </li>
-    <li><em>a</em> − 1 is divisible by all prime factors of <em>m</em>
-      <ol>
-        <li>Ex: if <em>m</em> = 9, (<em>a</em> − 1) must be divisible by 3 (since 3 is the prime factor of <em>m</em>).</li>
-      </ol>
-    </li>
-    <li>If <em>m</em> is divisible by 4, (<em>a</em> − 1) must also be divisible by 4
-      <ol>
-        <li>This is an ‘extra’ rule to account for the unique properties of 2, since it is the only even prime. It was discovered that when the modulus in equation (1) was 4, the generated numbers repeated very frequently.</li>
-      </ol>
-    </li>
-  </ol>
-
-  <p>Using these rules, we can generate seemingly random numbers:</p>
-
-  <ul>
-    <li>Suppose:
-      <ul>
-        <li><em>a</em> = 4; <em>c</em> = 1; <em>m</em> = 9</li>
-        <li>We pick a ‘seed’ value X<sub>0</sub> at which we start generating. For more sophisticated LCGs, the seed value itself is randomly generated. Suppose, for this case, that X<sub>0</sub> = 0.</li>
-      </ul>
-    </li>
-  </ul>
-
-  <ol>
-    <li>X<sub>1</sub> = (4 × 0 + 1) mod 9 = 1</li>
-    <li>X<sub>2</sub> = (4 × 1 + 1) mod 9 = 5</li>
-    <li>X<sub>3</sub> = (4 × 5 + 1) mod 9 = 3</li>
-    <li>X<sub>4</sub> = (4 × 3 + 1) mod 9 = 4</li>
-    <li>X<sub>5</sub> = (4 × 4 + 1) mod 9 = 8</li>
-    <li>X<sub>6</sub> = (4 × 8 + 1) mod 9 = 6</li>
-    <li>X<sub>7</sub> = (4 × 6 + 1) mod 9 = 7</li>
-    <li>X<sub>8</sub> = (4 × 7 + 1) mod 9 = 2</li>
-    <li>X<sub>9</sub> = (4 × 2 + 1) mod 9 = 0</li>
-  </ol>
-
-  <p>
-    You can see how starting with the seed value X<sub>0</sub>, the previous value is constantly ‘referenced’ to generate the <em>new</em> random value.
-  </p>
-
-  <p>
-    It is important to note that the ‘rules’ outlined above for choosing the constants need not be followed. Choosing the constants <em>a</em>, <em>c</em>, and <em>m</em> at will can still generate pseudorandom numbers. However, following those constraints will guarantee that you know <em>exactly</em> when your sequence of randomly generated numbers will repeat. In the above sequence of generated numbers, you can see that we reach our seed value of X<sub>0</sub> = 0 after 9 iterations, 9 being the <em>m</em> value chosen. Computers often choose extremely large <em>m</em> values to generate numbers. For example, the rand() library in C uses an <em>m</em> value of 2<sup>31</sup>, which is about 2.15 billion iterations.
-  </p>
-
-  <p>
-    Since D.H. Lehmer’s time, scientists have invented a method to generate truly random numbers, used for cybersecurity, cryptography, and gambling applications. Computers now use hardware to measure truly random natural events, and process that into a binary sequence (and later a random number). Such random natural events are:
-  </p>
-
-  <ul>
-    <li>The thermal signature output by a resistor</li>
-    <li>Human keyboard/mouse/keystroke inputs (human behavior is mathematically unpredictable)</li>
-    <li>Small variations in voltage or current readings</li>
-    <li>Some random number generators, like Fourmilab’s <a href="https://www.fourmilab.ch/hotbits/">HotBits</a>, record moments at which particles decay</li>
-  </ul>
-
-  <p>
-    The term “pseudo-random” highlights the fundamental fact that human-determined processes <em>cannot</em> be random. While Linear Congruential Generators and other algorithmic methods allow computers to efficiently produce sequences that appear random, they are ultimately deterministic and reproducible, limited by their formulas and constants. True randomness, by contrast, relies on unpredictable natural processes, from electronic noise to radioactive decay, and is crucial in applications where predictability could have serious consequences, such as cybersecurity and cryptography.
-  </p>
-
-  <p><a href="articles.html" class="button">Back to articles</a></p>
+  <article class="prose fade-in">
+    <p>Every computer science or engineering student at some point has come across a random number library they used via Java, Python, or even Scratch. But how exactly do computers generate random numbers? We shall explore the definition of ‘random’, and explore how computers generate random numbers.</p>
+    <p>The word ‘random’ means something ‘made, done, happening, or chosen without method or conscious decision’. A random number, by extension, is a value chosen without a process or deliberation. Interestingly, the word ‘random’ comes from the Germanic and Old French word ‘randir’ meaning gallop. The word evolved into ‘randon’ and eventually ‘random’ in Middle English, meaning ‘with great speed’ or a ‘headlong rush’. Over time, the term became associated with a careless or haphazard action.</p>
+    <p>The definition of ‘random’ in the context of random number <em>generation</em> contradicts itself. How can a computer (or anyone, for that matter) <em>generate</em> a random number? To generate something you need a process or algorithm. Therefore a truly random number cannot be generated. Hence, we call generated random numbers ‘<em>pseudo</em>random’, pseudo meaning ‘false’ or ‘feigned’.</p>
+    <p>Now we shall explore the most basic form through which computers generate random numbers: the Linear Congruential Generator (LCG). The formula was discovered by American mathematician Derrick Henry Lehmer. He was looking for a method to easily generate random numbers for computer simulations, for use in nuclear physics laboratories like Los Alamos. The word ‘linear’ refers to the linear equation that provides the basis for the formula (which you shall see soon). ‘Congruential’ refers to a mathematical property in which if two numbers <em>a</em> and <em>b</em> leave the same remainder when divided by <em>m</em>, they are ‘congruent’.</p>
+    <p>We start with the equation:</p>
+    <ol>
+      <li>X<sub>n+1</sub> = (aX<sub>n</sub> + c) mod m</li>
+    </ol>
+    <p>Where X<sub>n</sub> is the current number and a, c, and m are constants.</p>
+    <p>The constants <em>a</em>, <em>c</em>, and <em>m</em> are chosen very carefully, using these rules:</p>
+    <ol>
+      <li><em>c</em> and <em>m</em> are relatively prime
+        <ol>
+          <li>This means that <em>c</em> and <em>m</em> share no common factors except for 1.</li>
+          <li>Ex: if <em>m</em> = 9, <em>c</em> cannot be 3 or 9, but can be 2 or 7.</li>
+        </ol>
+      </li>
+      <li><em>a</em> − 1 is divisible by all prime factors of <em>m</em>
+        <ol>
+          <li>Ex: if <em>m</em> = 9, (<em>a</em> − 1) must be divisible by 3 (since 3 is the prime factor of <em>m</em>).</li>
+        </ol>
+      </li>
+      <li>If <em>m</em> is divisible by 4, (<em>a</em> − 1) must also be divisible by 4
+        <ol>
+          <li>This is an ‘extra’ rule to account for the unique properties of 2, since it is the only even prime. It was discovered that when the modulus in equation (1) was 4, the generated numbers repeated very frequently.</li>
+        </ol>
+      </li>
+    </ol>
+    <p>Using these rules, we can generate seemingly random numbers:</p>
+    <ul>
+      <li>Suppose:
+        <ul>
+          <li><em>a</em> = 4; <em>c</em> = 1; <em>m</em> = 9</li>
+          <li>We pick a ‘seed’ value X<sub>0</sub> at which we start generating. For more sophisticated LCGs, the seed value itself is randomly generated. Suppose, for this case, that X<sub>0</sub> = 0.</li>
+        </ul>
+      </li>
+    </ul>
+    <ol>
+      <li>X<sub>1</sub> = (4 × 0 + 1) mod 9 = 1</li>
+      <li>X<sub>2</sub> = (4 × 1 + 1) mod 9 = 5</li>
+      <li>X<sub>3</sub> = (4 × 5 + 1) mod 9 = 3</li>
+      <li>X<sub>4</sub> = (4 × 3 + 1) mod 9 = 4</li>
+      <li>X<sub>5</sub> = (4 × 4 + 1) mod 9 = 8</li>
+      <li>X<sub>6</sub> = (4 × 8 + 1) mod 9 = 6</li>
+      <li>X<sub>7</sub> = (4 × 6 + 1) mod 9 = 7</li>
+      <li>X<sub>8</sub> = (4 × 7 + 1) mod 9 = 2</li>
+      <li>X<sub>9</sub> = (4 × 2 + 1) mod 9 = 0</li>
+    </ol>
+    <p>You can see how starting with the seed value X<sub>0</sub>, the previous value is constantly ‘referenced’ to generate the <em>new</em> random value.</p>
+    <p>It is important to note that the ‘rules’ outlined above for choosing the constants need not be followed. Choosing the constants <em>a</em>, <em>c</em>, and <em>m</em> at will can still generate pseudorandom numbers. However, following those constraints will guarantee that you know <em>exactly</em> when your sequence of randomly generated numbers will repeat. In the above sequence of generated numbers, you can see that we reach our seed value of X<sub>0</sub> = 0 after 9 iterations, 9 being the <em>m</em> value chosen. Computers often choose extremely large <em>m</em> values to generate numbers. For example, the rand() library in C uses an <em>m</em> value of 2<sup>31</sup>, which is about 2.15 billion iterations.</p>
+    <p>Since D.H. Lehmer’s time, scientists have invented a method to generate truly random numbers, used for cybersecurity, cryptography, and gambling applications. Computers now use hardware to measure truly random natural events, and process that into a binary sequence (and later a random number). Such random natural events are:</p>
+    <ul>
+      <li>The thermal signature output by a resistor</li>
+      <li>Human keyboard/mouse/keystroke inputs (human behavior is mathematically unpredictable)</li>
+      <li>Small variations in voltage or current readings</li>
+      <li>Some random number generators, like Fourmilab’s <a href="https://www.fourmilab.ch/hotbits/">HotBits</a>, record moments at which particles decay</li>
+    </ul>
+    <p>The term “pseudo-random” highlights the fundamental fact that human-determined processes <em>cannot</em> be random. While Linear Congruential Generators and other algorithmic methods allow computers to efficiently produce sequences that appear random, they are ultimately deterministic and reproducible, limited by their formulas and constants. True randomness, by contrast, relies on unpredictable natural processes, from electronic noise to radioactive decay, and is crucial in applications where predictability could have serious consequences, such as cybersecurity and cryptography.</p>
+    <p>Continue: <a href="electric-guitar.html">How does an electric guitar really work?</a></p>
+    <p class="back-row"><a href="articles.html" class="button button--ghost">All writing</a></p>
+  </article>
 </main>
 
 <footer class="site-footer">
-  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
-  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
 </footer>
 </body>
 </html>

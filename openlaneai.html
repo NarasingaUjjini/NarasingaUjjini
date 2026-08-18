@@ -3,76 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.remove("no-js");</script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
   <title>OpenLaneAI — Narasinga Ujjini</title>
   <meta name="description" content="OpenLaneAI is a proof-of-concept that turns an English circuit description into a sky130 GDSII layout — and shows why ASIC design still needs people.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="navbar-top">
+<header class="site-header">
+  <div class="header-inner">
     <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
   </div>
-  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="resume.html">Resume</a>
-    <a href="articles.html">Articles</a>
-    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
-  </nav>
 </header>
 
-<main class="section prose">
-  <h1 class="page-title fade-in">OpenLaneAI</h1>
-  <p class="article-byline fade-in">Proof of concept · still in development</p>
+<main class="canvas">
+  <header class="case-head fade-in">
+    <h1 class="display">OpenLaneAI</h1>
+    <p class="lede">Proof of concept · still in development</p>
+  </header>
 
-  <p class="fade-in">
-    OpenLaneAI is an experiment: type a plain-English description of a small digital circuit, and the tool tries to produce Verilog, run automated checks, and push the design through LibreLane on the open SkyWater 130&nbsp;nm process until a GDSII layout comes out. The screenshots below are from a successful demo of a four-bit counter.
-  </p>
+  <div class="case-layout">
+    <div class="prose fade-in">
+      <p>
+        OpenLaneAI is an experiment: type a plain-English description of a small digital circuit, and the tool tries to produce Verilog, run automated checks, and push the design through LibreLane on the open SkyWater 130&nbsp;nm process until a GDSII layout comes out. The screenshots below are from a successful demo of a four-bit counter.
+      </p>
+      <p>
+        It is still early. This is a proof of concept, not a finished or practical way to tape out real chips. It only aims at tiny, clocked digital blocks on sky130. Anything analog, RF, mixed-signal, proprietary foundries, or large SoCs is out of scope. Even when the flow “passes,” the result is a candidate layout—not guaranteed working silicon.
+      </p>
 
-  <p class="fade-in">
-    It is still early. This is a proof of concept, not a finished or practical way to tape out real chips. It only aims at tiny, clocked digital blocks on sky130. Anything analog, RF, mixed-signal, proprietary foundries, or large SoCs is out of scope. Even when the flow “passes,” the result is a candidate layout—not guaranteed working silicon.
-  </p>
+      <figure class="module figure">
+        <span class="module-marks"></span>
+        <img src="openlaneai-ui-01.png" alt="OpenLaneAI UI: project overview with in-bounds and out-of-bounds limits" onclick="openModal(this.src)" width="1400" height="900">
+        <figcaption>Project overview with in-bounds and out-of-bounds limits</figcaption>
+      </figure>
+      <figure class="module figure">
+        <span class="module-marks"></span>
+        <img src="openlaneai-ui-02.png" alt="OpenLaneAI UI: English prompt for a 4-bit counter and manufacturability pass results" onclick="openModal(this.src)" width="1400" height="900">
+        <figcaption>English prompt for a 4-bit counter and manufacturability pass results</figcaption>
+      </figure>
+      <figure class="module figure">
+        <span class="module-marks"></span>
+        <img src="openlaneai-ui-03.png" alt="OpenLaneAI UI: generated Verilog and KLayout GDS preview" onclick="openModal(this.src)" width="1400" height="900">
+        <figcaption>Generated Verilog and KLayout GDS preview</figcaption>
+      </figure>
+      <figure class="module figure">
+        <span class="module-marks"></span>
+        <img src="openlaneai-ui-04.png" alt="OpenLaneAI UI: technical log showing quality gates and example prompts" onclick="openModal(this.src)" width="1400" height="900">
+        <figcaption>Technical log showing quality gates and example prompts</figcaption>
+      </figure>
 
-  <div class="image-grid image-grid--wide fade-in">
-    <img src="openlaneai-ui-01.png" alt="OpenLaneAI UI: project overview with in-bounds and out-of-bounds limits" onclick="openModal(this.src)" loading="eager" decoding="async" width="1400" height="900">
+      <h2>What makes this hard</h2>
+      <p>
+        Getting from words to layout is not one step. The RTL has to compile, synthesize without accidental latches, and survive a self-checking simulation. Then place-and-route has to finish, and DRC, LVS, antenna, and timing checks all have to clear. Small mistakes in the prompt, the generated code, the pin list, or the floorplan can fail late and for opaque reasons. Tooling spans Docker, a PDK install, simulators, synthesis, and layout viewers—each with its own failure modes. A demo that works on a counter does not mean the same path is reliable for something useful.
+      </p>
+
+      <h2>Why people still matter</h2>
+      <p>
+        Building this flow made the limits obvious. Automated gates catch many broken designs, but they do not know whether the English description matched the intent, whether the I/O will plug into a real shuttle wrapper, or whether the part will behave once it is packaged and powered. Timing reports, DRC waivers, die area, and pin planning still need judgment. OpenLaneAI is useful as a way to explore that pipeline and to show how far automation can go on a toy block—and, more importantly, how much human involvement ASIC design still requires before anything should be trusted near a fab.
+      </p>
+    </div>
+
+    <aside class="module telemetry fade-in">
+      <span class="module-marks"></span>
+      <h3>Tools and Libraries</h3>
+      <div class="chips" style="margin: 0 0 1.75rem;">
+        <span class="chip">LibreLane</span>
+        <span class="chip">sky130</span>
+        <span class="chip">Verilog</span>
+        <span class="chip">Gradio</span>
+      </div>
+      <a class="button button--ghost" href="asic-librelane.html" style="width:100%;margin-bottom:0.75rem;">Related: first ASIC</a>
+      <a class="button" href="work.html" style="width:100%;">All work</a>
+    </aside>
   </div>
-  <div class="image-grid image-grid--wide fade-in">
-    <img src="openlaneai-ui-02.png" alt="OpenLaneAI UI: English prompt for a 4-bit counter and manufacturability pass results" onclick="openModal(this.src)" loading="lazy" decoding="async" width="1400" height="900">
-  </div>
-  <div class="image-grid image-grid--wide fade-in">
-    <img src="openlaneai-ui-03.png" alt="OpenLaneAI UI: generated Verilog and KLayout GDS preview" onclick="openModal(this.src)" loading="lazy" decoding="async" width="1400" height="900">
-  </div>
-  <div class="image-grid image-grid--wide fade-in">
-    <img src="openlaneai-ui-04.png" alt="OpenLaneAI UI: technical log showing quality gates and example prompts" onclick="openModal(this.src)" loading="lazy" decoding="async" width="1400" height="900">
-  </div>
-
-  <h2 class="fade-in">What makes this hard</h2>
-  <p class="fade-in">
-    Getting from words to layout is not one step. The RTL has to compile, synthesize without accidental latches, and survive a self-checking simulation. Then place-and-route has to finish, and DRC, LVS, antenna, and timing checks all have to clear. Small mistakes in the prompt, the generated code, the pin list, or the floorplan can fail late and for opaque reasons. Tooling spans Docker, a PDK install, simulators, synthesis, and layout viewers—each with its own failure modes. A demo that works on a counter does not mean the same path is reliable for something useful.
-  </p>
-
-  <h2 class="fade-in">Why people still matter</h2>
-  <p class="fade-in">
-    Building this flow made the limits obvious. Automated gates catch many broken designs, but they do not know whether the English description matched the intent, whether the I/O will plug into a real shuttle wrapper, or whether the part will behave once it is packaged and powered. Timing reports, DRC waivers, die area, and pin planning still need judgment. OpenLaneAI is useful as a way to explore that pipeline and to show how far automation can go on a toy block—and, more importantly, how much human involvement ASIC design still requires before anything should be trusted near a fab.
-  </p>
-
-  <p class="fade-in">
-    <a href="asic-librelane.html" class="button button--ghost">Related: first ASIC</a>
-    <a href="index.html#work" class="button">Back to work</a>
-  </p>
 </main>
 
 <footer class="site-footer">
-  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
-  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
 </footer>
 
 <div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">

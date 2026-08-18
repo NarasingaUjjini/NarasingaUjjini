@@ -3,78 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.documentElement.classList.remove("no-js");</script>
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
   <title>About — Narasinga Ujjini</title>
   <meta name="description" content="Background in electrical engineering, design, CAD, fabrication, certifications, and activities.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-<header class="navbar" role="banner">
-  <div class="navbar-top">
+<header class="site-header">
+  <div class="header-inner">
     <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
     </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html">Work</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
   </div>
-  <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="index.html#work">Work</a>
-    <a href="about.html">About</a>
-    <a href="resume.html">Resume</a>
-    <a href="articles.html">Articles</a>
-    <button type="button" class="toggle-btn" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
-  </nav>
 </header>
 
-<main class="section">
-  <h1 class="page-title fade-in">About me</h1>
+<main class="canvas">
+  <header class="fade-in" style="margin-bottom: 3rem;">
+    <h1 class="display">About me</h1>
+    <p class="lede" style="margin-top: 1.5rem;">
+      I am Narasinga Ujjini Havildar, a senior at Torrey Pines High School with a strong interest in electrical engineering, design, and hands-on building. My work focuses on combining CAD, fabrication, and real-world problem solving.
+    </p>
+  </header>
 
-  <p class="fade-in">
-    I am Narasinga Ujjini Havildar, a senior at Torrey Pines High School with a strong interest in electrical engineering, design, and hands-on building. My work focuses on combining CAD, fabrication, and real-world problem solving.
-  </p>
-
-  <div class="grid">
-    <div class="card fade-in">
+  <div class="skill-grid fade-in">
+    <div class="module skill-box">
       <h3>Circuit design / electronics</h3>
       <p>Experience with Google Coral TPU, Edge Impulse suite, Arduino Uno, Intel Edison, Raspi, Metro M0 boards.</p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>Certifications / licenses</h3>
       <p>FCC HAM Radio License — Technician Class</p>
       <p>AWS Certified Cloud Practitioner</p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>Activities</h3>
       <p>Varsity wrestler at Torrey Pines HS</p>
       <p>UCSD Jacobs School of Engineering Internship</p>
       <p>UCSD Karate</p>
       <p>Eagle Scout</p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>Work experience</h3>
       <p><i>[Jun '25 - Jul '25; Jun '26 - Jul '26]</i><br>San Diego County Fair — Shuttle Ambassador</p>
       <p><i>[Oct '25 - Feb '26]</i><br>SDUHSD Food Service</p>
       <p><i>[Jun '24 - Present]</i><br>Wrestling &amp; Karate refereeing</p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>Projects</h3>
-      <p>Designed and built systems ranging from go-karts to structural storage systems and precision tools. Browse the <a href="index.html#work">work</a> section for more.</p>
+      <p>Designed and built systems ranging from go-karts to structural storage systems and precision tools. Browse the <a href="work.html">work</a> section for more.</p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>Engineering</h3>
       <p>Experience with Fusion 360, CAD/CAM workflows, CNC machining, and fabrication tools.</p>
       <p>Machining experience with: Haas CNC suite for Haas VF-4; Avid CNC PRO4896, lathes, TIG/MIG welding, many 3D printers.</p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>Education / awards</h3>
       <p>Torrey Pines HS — Senior, 4.4 GPA</p>
       <p>MiraCosta Community College — Math &amp; Sciences Associate's Degree <i>[in progress]</i></p>
@@ -82,18 +88,15 @@
       <p>National Merit Commended Student</p>
       <p>CollegeBoard National Recognition Program</p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>Resume</h3>
       <p><a href="resume.html">View my resume</a>.</p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>LinkedIn</h3>
       <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">View my LinkedIn profile</a></p>
     </div>
-
-    <div class="card fade-in">
+    <div class="module skill-box">
       <h3>Skills</h3>
       <p>Java, Python, Godot, Arduino</p>
       <p>RoboRio FPGA</p>
@@ -107,8 +110,14 @@
 </main>
 
 <footer class="site-footer">
-  <p>Narasinga Ujjini — Engineering · Design · Projects</p>
-  <p><a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · © 2026</p>
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
 </footer>
 </body>
 </html>
