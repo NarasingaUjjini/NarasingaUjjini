@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Python Tuner Case Study</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=Source+Serif+4:opsz@8..60&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "outline-variant": "#d9c2b4",
+                "tertiary-fixed-dim": "#c6c6ca",
+                "tertiary": "#5a5c5f",
+                "secondary-container": "#8df4e6",
+                "on-background": "#1b1c1a",
+                "inverse-primary": "#ffb782",
+                "background": "#faf9f5",
+                "on-surface": "#1b1c1a",
+                "text-primary": "#1A1C1F",
+                "on-secondary-container": "#007167",
+                "secondary": "#006a61",
+                "on-primary": "#ffffff",
+                "soldermask-tint": "rgba(42, 155, 143, 0.15)",
+                "surface-raised": "#EAE9E4",
+                "surface-variant": "#e3e2df",
+                "primary": "#8c4b0f",
+                "tertiary-fixed": "#e2e2e6",
+                "surface-container-highest": "#e3e2df",
+                "surface-container": "#efeeea",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#30312e",
+                "primary-fixed": "#ffdcc5",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#ffb782",
+                "on-error-container": "#93000a",
+                "text-muted": "#5A5E66",
+                "surface": "#faf9f5",
+                "on-tertiary": "#ffffff",
+                "surface-tint": "#8f4d11",
+                "on-tertiary-fixed-variant": "#45474a",
+                "on-tertiary-container": "#fdfcff",
+                "surface-container-high": "#e9e8e4",
+                "on-secondary-fixed-variant": "#005049",
+                "surface-bright": "#faf9f5",
+                "surface-dim": "#dbdad6",
+                "copper-trace": "rgba(196, 120, 58, 0.25)",
+                "on-primary-container": "#fffbff",
+                "on-surface-variant": "#534439",
+                "tertiary-container": "#737478",
+                "secondary-fixed-dim": "#70d8ca",
+                "secondary-fixed": "#8df4e6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#aa6327",
+                "on-secondary-fixed": "#00201d",
+                "on-primary-fixed-variant": "#703800",
+                "on-tertiary-fixed": "#1a1c1f",
+                "inverse-on-surface": "#f2f1ed",
+                "on-primary-fixed": "#301400",
+                "outline": "#867368",
+                "on-error": "#ffffff",
+                "surface-container-low": "#f5f4f0"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "4px",
+                "margin-mobile": "16px",
+                "max-width-ui": "1152px",
+                "gutter": "24px",
+                "margin-desktop": "48px",
+                "max-width-editorial": "672px",
+                "max-width-standard": "1152px"
+        },
+        "fontFamily": {
+                "display-xl": [
+                        "Space Grotesk"
+                ],
+                "headline-lg": [
+                        "Space Grotesk"
+                ],
+                "headline-lg-mobile": [
+                        "Space Grotesk"
+                ],
+                "body-base": [
+                        "IBM Plex Sans"
+                ],
+                "display-2xl": [
+                        "Space Grotesk"
+                ],
+                "meta-mono": [
+                        "IBM Plex Mono"
+                ],
+                "meta-mono-sm": [
+                        "IBM Plex Mono"
+                ],
+                "body-bold": [
+                        "IBM Plex Sans"
+                ]
+        },
+        "fontSize": {
+                "display-xl": [
+                        "40px",
+                        {
+                                "lineHeight": "46px",
+                                "letterSpacing": "-0.035em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-base": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-2xl": [
+                        "56px",
+                        {
+                                "lineHeight": "60px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "meta-mono": [
+                        "13px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "meta-mono-sm": [
+                        "11px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.06em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-bold": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .trace-corner {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 1px solid rgba(196, 120, 58, 0.25);
+        }
+        .trace-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .trace-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+        .trace-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+        .trace-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+        
+        .pcb-divider {
+            position: relative;
+            height: 1px;
+            background-color: rgba(196, 120, 58, 0.25);
+            width: 100%;
+            margin: 40px 0;
+        }
+        .pcb-divider::before {
+            content: '';
+            position: absolute;
+            left: 20%;
+            top: -4px;
+            width: 8px;
+            height: 8px;
+            border: 1px solid rgba(196, 120, 58, 0.25);
+            transform: rotate(45deg);
+            background-color: #F5F4F0;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 w-full h-16 z-50 border-b border-copper-trace bg-surface-container-low/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-max-width-standard mx-auto h-full">
+<div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tighter">
+                Narasinga Ujjini
+            </div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant font-body-base pb-1 hover:text-primary transition-colors duration-200" href="#">Work</a>
+<a class="text-on-surface-variant font-body-base pb-1 hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-on-surface-variant font-body-base pb-1 hover:text-primary transition-colors duration-200" href="#">Resume</a>
+<a class="text-on-surface-variant font-body-base pb-1 hover:text-primary transition-colors duration-200" href="#">Articles</a>
+</div>
+<div class="flex items-center">
+<button class="text-primary hover:text-primary-fixed transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-[144px] pb-[112px] px-margin-mobile md:px-margin-desktop max-w-max-width-standard mx-auto">
+<!-- Case Study Header -->
+<header class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-8 flex flex-col justify-end">
+<div class="font-meta-mono text-meta-mono text-primary mb-4 uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 bg-primary rounded-none"></span>
+                    Project 04 · Software
+                </div>
+<h1 class="font-display-2xl text-display-2xl text-on-surface mb-6">Python Tuner</h1>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-max-width-editorial">
+                    A real-time audio visualization and tuning utility built with high-performance Python libraries. Designed for low-latency DSP analysis, providing immediate visual feedback for instrument tuning and harmonic inspection.
+                </p>
+</div>
+<div class="md:col-span-4 flex flex-col justify-end mt-8 md:mt-0 gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">code</span>
+<span class="font-meta-mono text-meta-mono text-on-surface">Python, PyQtGraph, NumPy</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">timeline</span>
+<span class="font-meta-mono text-meta-mono text-on-surface">Real-time FFT Analysis</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">memory</span>
+<span class="font-meta-mono text-meta-mono text-on-surface">Low Latency DSP</span>
+</div>
+</div>
+</header>
+<!-- Hero Screens -->
+<section class="mb-32">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="relative bg-surface border border-copper-trace p-2 overflow-hidden aspect-[4/3] group">
+<div class="trace-corner trace-tl"></div><div class="trace-corner trace-tr"></div>
+<div class="trace-corner trace-bl"></div><div class="trace-corner trace-br"></div>
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80 group-hover:opacity-100" data-alt="A detailed user interface screenshot of a software application showing a dark mode real-time audio waveform visualization. The interface features stark black and silicon gray tones with sharp copper-orange data lines plotting an audio signal. The layout is technical, resembling an oscilloscope display within an IDE environment, prioritizing high-contrast data rendering over decorative elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATTRpUInxU9DIQXz2tP2lw3riWL-PLV_WK3nDHKJXSuDRGMBjE-4666P_hXELCxq5aNyGqwfeg_zTHk2Khy4xBFBxASHpiZtsR175pUeI33eaHMqB9WIzvO03e6bRLvAh2eEHLb8CbBTs2RSe5RmAu_SYhPFAJsr-PFHNkulW9iZqGGb0sVKfPiyazKzKmAly4TxgjfXURPDOBdNimVjq8ahM4CFYzR1EIpNnKYt5HFJfFuJjKcGdZag"/>
+<div class="absolute bottom-4 left-4 bg-surface-container-highest/90 backdrop-blur px-3 py-1 border border-copper-trace flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-secondary animate-pulse rounded-full"></span>
+<span class="font-meta-mono-sm text-meta-mono-sm text-on-surface">Waveform_Buffer.py</span>
+</div>
+</div>
+<div class="relative bg-surface border border-copper-trace p-2 overflow-hidden aspect-[4/3] group">
+<div class="trace-corner trace-tl"></div><div class="trace-corner trace-tr"></div>
+<div class="trace-corner trace-bl"></div><div class="trace-corner trace-br"></div>
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80 group-hover:opacity-100" data-alt="A detailed user interface screenshot of a software application showing a dark mode Fast Fourier Transform (FFT) frequency spectrum visualization. The UI utilizes a brutalist industrial aesthetic with deep slate backgrounds. Vivid soldermask green and copper orange peaks indicate frequency harmonic intensities on a rigid grid structure, looking like professional acoustic analysis software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_0y7QMwEVKEn2zcy4NqDXwU6an1kruQFiBQBB3yPVSmQzb8QkHeb8EDn4vVxsE2SURyeDLCtZuZvGaeROl79LQJMx8mEwx1P8mHrMv7q-qBg3XlTs4yP5octTWCHN2AvkfskRwEhy7PpD9MXvMO_zu9Td6ZxBfZBrFem_gcSt4SjbPEbk6rgF4wnaM4-7VQXOr9FJDNrChYRowJDSgYDpi6xCed8tt9zQEIo6TivCn9tBhb-NpT0B_w"/>
+<div class="absolute bottom-4 left-4 bg-surface-container-highest/90 backdrop-blur px-3 py-1 border border-copper-trace flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary animate-pulse rounded-full"></span>
+<span class="font-meta-mono-sm text-meta-mono-sm text-on-surface">FFT_Analysis_View.py</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Breakdown Bento Grid -->
+<section class="mb-32">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 flex items-center gap-4">
+<span class="text-primary font-meta-mono text-meta-mono">01.</span> Architecture &amp; Methods
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Stack Card -->
+<div class="md:col-span-4 bg-surface border border-copper-trace p-6 relative">
+<div class="trace-corner trace-tl"></div><div class="trace-corner trace-tr"></div>
+<div class="trace-corner trace-bl"></div><div class="trace-corner trace-br"></div>
+<div class="w-10 h-10 border border-copper-trace flex items-center justify-center mb-6 bg-surface-container-lowest">
+<span class="material-symbols-outlined text-primary">layers</span>
+</div>
+<h3 class="font-body-bold text-body-bold text-on-surface mb-4">The Stack</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mb-6 text-sm">
+                        Built entirely in Python to leverage mature scientific computing ecosystems while pushing GUI performance boundaries.
+                    </p>
+<div class="flex flex-col gap-2">
+<div class="bg-surface-container-lowest border border-copper-trace px-3 py-2 flex justify-between items-center">
+<span class="font-meta-mono text-meta-mono text-on-surface">NumPy</span>
+<span class="text-xs text-outline font-meta-mono">v1.24</span>
+</div>
+<div class="bg-surface-container-lowest border border-copper-trace px-3 py-2 flex justify-between items-center">
+<span class="font-meta-mono text-meta-mono text-on-surface">PyQtGraph</span>
+<span class="text-xs text-outline font-meta-mono">v0.13</span>
+</div>
+<div class="bg-surface-container-lowest border border-copper-trace px-3 py-2 flex justify-between items-center">
+<span class="font-meta-mono text-meta-mono text-on-surface">PyAudio</span>
+<span class="text-xs text-outline font-meta-mono">I/O</span>
+</div>
+</div>
+</div>
+<!-- Method Card -->
+<div class="md:col-span-8 bg-surface border border-copper-trace p-6 relative flex flex-col justify-between">
+<div class="trace-corner trace-tl"></div><div class="trace-corner trace-tr"></div>
+<div class="trace-corner trace-bl"></div><div class="trace-corner trace-br"></div>
+<div>
+<div class="w-10 h-10 border border-copper-trace flex items-center justify-center mb-6 bg-surface-container-lowest">
+<span class="material-symbols-outlined text-secondary">graphic_eq</span>
+</div>
+<h3 class="font-body-bold text-body-bold text-on-surface mb-4">The Method: Fast Fourier Transform</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<p class="font-body-base text-body-base text-on-surface-variant text-sm">
+                                To accurately determine pitch, the incoming raw audio stream (time domain) is continuously sliced into overlapping windowed frames. An FFT algorithm is applied to each frame, converting the signal into the frequency domain. 
+                            </p>
+<p class="font-body-base text-body-base text-on-surface-variant text-sm">
+                                Peak detection algorithms then identify the fundamental frequency among the harmonic series, filtering out noise floor artifacts to provide a stable tuning readout.
+                            </p>
+</div>
+</div>
+<div class="mt-8 bg-surface-container-lowest border border-copper-trace p-4 font-meta-mono text-meta-mono-sm text-outline overflow-x-auto relative">
+<div class="absolute top-1 right-1 w-2 h-2 rounded-full border border-copper-trace"></div>
+<div class="absolute top-1 left-1 w-2 h-2 rounded-full border border-copper-trace"></div>
+<code>
+<span class="text-primary">def</span> <span class="text-secondary">compute_fft</span>(data, rate):<br/>
+    <span class="text-outline"># Apply Hanning window to reduce spectral leakage</span><br/>
+    window = np.hanning(len(data))<br/>
+    fft_data = np.fft.rfft(data * window)<br/>
+    freqs = np.fft.rfftfreq(len(data), 1.0/rate)<br/>
+    <span class="text-primary">return</span> freqs, np.abs(fft_data)
+                        </code>
+</div>
+</div>
+<!-- Why Card -->
+<div class="md:col-span-12 bg-surface-container-high border border-copper-trace p-8 relative mt-4">
+<div class="trace-corner trace-tl"></div><div class="trace-corner trace-tr"></div>
+<div class="trace-corner trace-bl"></div><div class="trace-corner trace-br"></div>
+<div class="max-w-3xl">
+<div class="font-meta-mono text-meta-mono text-primary mb-4 uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">psychology</span>
+                            The Problem Statement
+                        </div>
+<h3 class="font-display-xl text-display-xl text-on-surface mb-6">Why build another tuner?</h3>
+<p class="font-body-base text-body-base text-on-surface-variant">
+                            Standard GUI frameworks often struggle with continuous high frame-rate rendering of large data arrays, leading to UI thread blocking and unacceptable latency for a real-time tuning application. This project served as an engineering exercise to bypass typical matplotlib bottlenecks by utilizing PyQtGraph's OpenGL-accelerated plotting, achieving a stable 60FPS refresh rate while processing 44.1kHz audio streams on moderate hardware.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<div class="pcb-divider"></div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-12 border-t border-copper-trace mt-20 bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-margin-mobile md:px-margin-desktop max-w-max-width-standard mx-auto gap-gutter">
+<div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">
+                Narasinga Ujjini
+            </div>
+<div class="font-meta-mono text-meta-mono text-on-surface-variant">
+                © 2024 Narasinga Ujjini. All rights reserved.
+            </div>
+<div class="flex gap-6">
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors" href="#">LinkedIn</a>
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors" href="#">GitHub</a>
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors" href="#">Email</a>
+</div>
+</div>
+</footer>
+</body></html>

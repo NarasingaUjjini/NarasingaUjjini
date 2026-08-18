@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ASIC Design via LibreLane - Narasinga Ujjini</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=Source+Serif+4:wght@400&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config injected from system prompt -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-bright": "#37393d",
+                      "primary": "#ffb782",
+                      "inverse-primary": "#8f4d11",
+                      "error-container": "#93000a",
+                      "outline-variant": "#534439",
+                      "secondary-container": "#32a094",
+                      "primary-container": "#cc7e40",
+                      "copper-hairline": "rgba(196, 120, 58, 0.18)",
+                      "anodized-slate": "#9BA7B7",
+                      "surface-slate": "#14181F",
+                      "primary-fixed": "#ffdcc5",
+                      "on-surface-variant": "#d9c2b4",
+                      "inverse-on-surface": "#2f3034",
+                      "secondary": "#70d8ca",
+                      "background": "#111317",
+                      "on-secondary": "#003732",
+                      "on-tertiary-container": "#002d40",
+                      "surface": "#111317",
+                      "inverse-surface": "#e2e2e6",
+                      "on-primary-container": "#452000",
+                      "outline": "#a18d80",
+                      "on-secondary-fixed-variant": "#005049",
+                      "surface-container-high": "#282a2d",
+                      "on-secondary-container": "#00302b",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-container": "#009bd1",
+                      "surface-container": "#1e2023",
+                      "on-tertiary-fixed-variant": "#004c69",
+                      "silicon-white": "#E6ECF2",
+                      "surface-container-low": "#1a1c1f",
+                      "surface-variant": "#333538",
+                      "surface-tint": "#ffb782",
+                      "on-surface": "#e2e2e6",
+                      "error": "#ffb4ab",
+                      "surface-container-lowest": "#0c0e11",
+                      "secondary-fixed": "#8df4e6",
+                      "soldermask-dim": "rgba(42, 155, 143, 0.12)",
+                      "primary-fixed-dim": "#ffb782",
+                      "on-tertiary-fixed": "#001e2c",
+                      "on-primary-fixed-variant": "#703800",
+                      "surface-dim": "#111317",
+                      "tertiary-fixed": "#c4e7ff",
+                      "trace-gray": "#5E6C80",
+                      "tertiary-fixed-dim": "#7bd0ff",
+                      "on-primary": "#4f2500",
+                      "on-background": "#e2e2e6",
+                      "on-tertiary": "#00354a",
+                      "on-primary-fixed": "#301400",
+                      "surface-container-highest": "#333538",
+                      "secondary-fixed-dim": "#70d8ca",
+                      "surface-high": "#1B222B",
+                      "on-secondary-fixed": "#00201d",
+                      "on-error": "#690005",
+                      "tertiary": "#7bd0ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "max-width-editorial": "672px",
+                      "margin-mobile": "16px",
+                      "max-width-standard": "1152px",
+                      "margin-desktop": "48px",
+                      "gutter": "24px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Space Grotesk"
+                      ],
+                      "ui-bold": [
+                              "IBM Plex Sans"
+                      ],
+                      "meta-mono-sm": [
+                              "IBM Plex Mono"
+                      ],
+                      "display-xl": [
+                              "Space Grotesk"
+                      ],
+                      "meta-mono": [
+                              "IBM Plex Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Space Grotesk"
+                      ],
+                      "body-editorial": [
+                              "\"Source Serif 4\""
+                      ],
+                      "ui-base": [
+                              "IBM Plex Sans"
+                      ],
+                      "display-2xl": [
+                              "Space Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "ui-bold": [
+                              "15px",
+                              {
+                                      "lineHeight": "22px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "meta-mono-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.06em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "46px",
+                                      "letterSpacing": "-0.035em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "meta-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-editorial": [
+                              "17px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.005em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "ui-base": [
+                              "15px",
+                              {
+                                      "lineHeight": "22px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-2xl": [
+                              "56px",
+                              {
+                                      "lineHeight": "60px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        /* Custom Styles for Modern Industrial / Brutalist Aesthetic */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .pcb-trace-divider {
+            position: relative;
+            height: 1px;
+            background-color: theme('colors.copper-hairline');
+            margin: theme('spacing.12') 0;
+            overflow: visible;
+        }
+
+        .pcb-trace-divider::after {
+            content: '';
+            position: absolute;
+            right: 10%;
+            top: -4px;
+            width: 8px;
+            height: 8px;
+            border: 1px solid theme('colors.copper-hairline');
+            border-radius: 50%;
+            background-color: theme('colors.background');
+        }
+
+        .fiducial-card {
+            position: relative;
+        }
+
+        .fiducial-card::before, .fiducial-card::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-color: theme('colors.copper-hairline');
+            border-style: solid;
+            pointer-events: none;
+        }
+
+        .fiducial-card::before {
+            top: 4px;
+            left: 4px;
+            border-width: 1px 0 0 1px;
+        }
+
+        .fiducial-card::after {
+            bottom: 4px;
+            right: 4px;
+            border-width: 0 1px 1px 0;
+        }
+
+        .code-block-header {
+            position: relative;
+        }
+        
+        .screw-head {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: theme('colors.anodized-slate');
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .screw-left { left: 8px; }
+        .screw-right { right: 8px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-editorial min-h-screen flex flex-col">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 w-full h-16 z-50 border-b border-copper-hairline bg-background/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-max-width-standard mx-auto h-full">
+<div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tighter">
+                Narasinga Ujjini
+            </div>
+<nav class="hidden md:flex gap-8 font-ui-base text-ui-base">
+<a class="text-primary font-ui-bold border-b-2 border-primary pb-1" href="#">Work</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200" href="#">Resume</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200" href="#">Articles</a>
+</nav>
+<div class="flex items-center">
+<button aria-label="Toggle Dark Mode" class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[120px] pb-24 px-margin-mobile md:px-margin-desktop max-w-max-width-standard mx-auto w-full">
+<!-- Article Header -->
+<header class="mb-16 md:mb-24 text-center md:text-left">
+<div class="font-meta-mono text-meta-mono text-primary mb-4 uppercase tracking-widest">
+                Project 01 · Silicon
+            </div>
+<h1 class="font-display-2xl text-display-2xl text-on-surface mb-6">
+                ASIC Design via LibreLane
+            </h1>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant max-w-max-width-editorial mx-auto md:mx-0">
+                A technical exploration of synthesizing hardware description languages into physical silicon layouts using open-source EDA tools.
+            </p>
+</header>
+<!-- Layout Grid: 8/4 Asymmetrical Split -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter relative">
+<!-- Main Content Column (8 columns) -->
+<div class="md:col-span-8 space-y-16">
+<!-- Hero Figure -->
+<figure class="fiducial-card bg-surface-slate border border-copper-hairline p-1">
+<img class="w-full h-auto object-cover border border-surface-bright filter contrast-125 saturate-50" data-alt="A highly detailed screenshot of a complex integrated circuit physical layout visualized in KLayout. The image displays dense, intricate multi-layered geometric patterns of polysilicon and metal routing. The color scheme features vibrant conductive pathways in neon green, electric blue, and deep red against a stark, high-contrast jet black background, typical of a professional EDA (Electronic Design Automation) software interface. The aesthetic is strictly technical, precise, and industrial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWJcqe2NfIP7qg8yzEHTdynApz0u6I73jyfeOzNLNMZmSsuZL1lfDYoP6rl6cI8LGdovRDeFq-yAQhinX8XFI8xpmRoVYVCKElGvhHT3R0D4ZJb9y1H7VZxkEBiLbcWJZJMa4CKnOk0TNM2edSCmm6DlQEgLXYZLEre8nBJ-QzT2RL2aBLxuY-8Vm8KYnqLIrHu39_mzZCGc2E0G57uhKWiqLbr_z6HEOnAaoVgGjYAnu6U50ZO9XeIw"/>
+<figcaption class="font-meta-mono-sm text-meta-mono-sm text-trace-gray p-4 text-center border-t border-copper-hairline mt-1">
+                        Fig 1. Final GDSII physical layout viewed in KLayout, showing dense standard cell placement and intricate metal routing layers.
+                    </figcaption>
+</figure>
+<!-- Section: Introduction -->
+<section>
+<h2 class="font-display-xl text-display-xl text-on-surface mb-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="memory">memory</span>
+                        Introduction
+                    </h2>
+<div class="font-body-editorial text-body-editorial text-on-surface-variant space-y-6">
+<p>
+                            The transition from behavioral abstraction to physical manifestation is the crucible of digital design. In this case study, I detail the process of taking a custom cryptographic core written in Verilog through a complete RTL-to-GDSII flow.
+                        </p>
+<p>
+                            Historically, this domain was locked behind proprietary, prohibitively expensive Electronic Design Automation (EDA) suites. The emergence of robust open-source toolchains like OpenLane (here referred to in the context of LibreLane principles) has democratized silicon compilation, allowing independent engineers to target real-world process design kits (PDKs) such as SkyWater 130nm.
+                        </p>
+</div>
+</section>
+<div class="pcb-trace-divider w-full"></div>
+<!-- Section: From HDL to layout -->
+<section>
+<h2 class="font-display-xl text-display-xl text-on-surface mb-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="transform">transform</span>
+                        From HDL to Layout
+                    </h2>
+<div class="font-body-editorial text-body-editorial text-on-surface-variant space-y-6">
+<p>
+                            The synthesis pipeline dictates that high-level Verilog constructs are mapped to standard cells defined by the target PDK. This involves logic synthesis using Yosys, followed by static timing analysis (STA) to ensure temporal constraints are met under worst-case process corners.
+                        </p>
+<!-- Code Block -->
+<div class="bg-[#080A0D] border border-copper-hairline rounded-sm overflow-hidden my-8 fiducial-card">
+<div class="code-block-header bg-surface-container-high border-b border-copper-hairline px-4 py-2 flex justify-between items-center">
+<span class="font-meta-mono-sm text-meta-mono-sm text-anodized-slate pl-4">crypto_core.v</span>
+<div class="screw-head screw-left"></div>
+<div class="screw-head screw-right"></div>
+</div>
+<pre class="p-4 overflow-x-auto font-meta-mono text-meta-mono text-silicon-white text-sm leading-relaxed">module crypto_core (
+    input wire clk,
+    input wire rst_n,
+    input wire [31:0] data_in,
+    output reg [31:0] data_out
+);
+    // RTL implementation omitted for brevity
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            data_out &lt;= 32'b0;
+        else
+            data_out &lt;= data_in ^ 32'hDEADBEEF;
+    end
+endmodule</pre>
+</div>
+<p>
+                            Once synthesized, the netlist moves to floorplanning, placement, and routing (PnR). It is here that the abstract logic takes physical volume. Managing power distribution networks (PDN) and minimizing clock skew across the die were paramount challenges during the detailed routing phase.
+                        </p>
+</div>
+</section>
+<div class="pcb-trace-divider w-full"></div>
+<!-- Section: What the layout taught me -->
+<section>
+<h2 class="font-display-xl text-display-xl text-on-surface mb-6 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="insights">insights</span>
+                        What the Layout Taught Me
+                    </h2>
+<div class="font-body-editorial text-body-editorial text-on-surface-variant space-y-6">
+<p>
+                            Observing the final GDSII artifact is an exercise in appreciating scale and complexity. A few key takeaways emerged from wrestling with the physical constraints:
+                        </p>
+<ul class="list-none space-y-4 pl-4 border-l-2 border-copper-hairline">
+<li class="pl-4">
+<strong class="text-on-surface font-ui-bold">Parasitic Extraction is Unforgiving:</strong> Ideal timing behavior in RTL simulation often degrades significantly once parasitic capacitance and resistance of physical interconnects are factored in.
+                            </li>
+<li class="pl-4">
+<strong class="text-on-surface font-ui-bold">Congestion Over Density:</strong> Pushing for high utilization (density) often leads to unroutable designs. Leaving adequate "white space" is critical for the router to complete connections without design rule check (DRC) violations.
+                            </li>
+<li class="pl-4">
+<strong class="text-on-surface font-ui-bold">The Value of Visualization:</strong> Tools like KLayout aren't just viewers; they are essential diagnostic instruments for understanding spatial relationships and identifying structural flaws in the layout.
+                            </li>
+</ul>
+</div>
+</section>
+</div>
+<!-- Sidebar Column (4 columns) -->
+<aside class="md:col-span-4 mt-16 md:mt-0">
+<div class="sticky top-24 bg-surface-slate border border-copper-hairline p-6 fiducial-card">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-6 border-b border-copper-hairline pb-2">
+                        Telemetry Data
+                    </h3>
+<div class="space-y-6">
+<!-- Fact Strip Item -->
+<div>
+<div class="font-meta-mono-sm text-meta-mono-sm text-trace-gray uppercase tracking-widest mb-1">Architecture</div>
+<div class="font-ui-bold text-ui-bold text-silicon-white">Custom Cryptographic Core</div>
+</div>
+<!-- Fact Strip Item -->
+<div>
+<div class="font-meta-mono-sm text-meta-mono-sm text-trace-gray uppercase tracking-widest mb-1">Target Node</div>
+<div class="font-ui-bold text-ui-bold text-silicon-white">SkyWater 130nm PDK</div>
+</div>
+<div class="pt-4 border-t border-surface-bright">
+<div class="font-meta-mono-sm text-meta-mono-sm text-trace-gray uppercase tracking-widest mb-3">Toolchain Stack</div>
+<div class="flex flex-wrap gap-2">
+<!-- Metadata Chips -->
+<span class="inline-flex items-center gap-2 px-3 py-1 bg-soldermask-dim border border-secondary/30 rounded-sm font-meta-mono text-meta-mono text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    Verilog
+                                </span>
+<span class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container border border-outline-variant rounded-sm font-meta-mono text-meta-mono text-on-surface">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span>
+                                    GTKWave
+                                </span>
+<span class="inline-flex items-center gap-2 px-3 py-1 bg-soldermask-dim border border-secondary/30 rounded-sm font-meta-mono text-meta-mono text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                    LibreLane
+                                </span>
+<span class="inline-flex items-center gap-2 px-3 py-1 bg-[#1A0A00] border border-primary/30 rounded-sm font-meta-mono text-meta-mono text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                    KLayout
+                                </span>
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full py-3 bg-primary text-on-primary font-ui-bold text-ui-bold rounded-sm shadow-[0_0_15px_rgba(255,183,130,0.2)] hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                                Download GDSII
+                            </button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-12 bg-surface-container-lowest border-t border-copper-hairline mt-20">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-margin-mobile md:px-margin-desktop max-w-max-width-standard mx-auto gap-gutter">
+<div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">
+                Narasinga Ujjini
+            </div>
+<div class="font-meta-mono text-meta-mono text-on-surface-variant">
+                © 2024 Narasinga Ujjini. All rights reserved.
+            </div>
+<div class="flex gap-6 font-meta-mono text-meta-mono">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">GitHub</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Email</a>
+</div>
+</div>
+</footer>
+</body></html>

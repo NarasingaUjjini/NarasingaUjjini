@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Go-kart Build Story - Narasinga Ujjini</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#d9c2b4",
+                        "tertiary-fixed-dim": "#c6c6ca",
+                        "tertiary": "#5a5c5f",
+                        "secondary-container": "#8df4e6",
+                        "on-background": "#1b1c1a",
+                        "inverse-primary": "#ffb782",
+                        "background": "#faf9f5",
+                        "on-surface": "#1b1c1a",
+                        "text-primary": "#1A1C1F",
+                        "on-secondary-container": "#007167",
+                        "secondary": "#006a61",
+                        "on-primary": "#ffffff",
+                        "soldermask-tint": "rgba(42, 155, 143, 0.15)",
+                        "surface-raised": "#EAE9E4",
+                        "surface-variant": "#e3e2df",
+                        "primary": "#8c4b0f",
+                        "tertiary-fixed": "#e2e2e6",
+                        "surface-container-highest": "#e3e2df",
+                        "surface-container": "#efeeea",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#30312e",
+                        "primary-fixed": "#ffdcc5",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#ffb782",
+                        "on-error-container": "#93000a",
+                        "text-muted": "#5A5E66",
+                        "surface": "#faf9f5",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#8f4d11",
+                        "on-tertiary-fixed-variant": "#45474a",
+                        "on-tertiary-container": "#fdfcff",
+                        "surface-container-high": "#e9e8e4",
+                        "on-secondary-fixed-variant": "#005049",
+                        "surface-bright": "#faf9f5",
+                        "surface-dim": "#dbdad6",
+                        "copper-trace": "rgba(196, 120, 58, 0.25)",
+                        "on-primary-container": "#fffbff",
+                        "on-surface-variant": "#534439",
+                        "tertiary-container": "#737478",
+                        "secondary-fixed-dim": "#70d8ca",
+                        "secondary-fixed": "#8df4e6",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-container": "#aa6327",
+                        "on-secondary-fixed": "#00201d",
+                        "on-primary-fixed-variant": "#703800",
+                        "on-tertiary-fixed": "#1a1c1f",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-primary-fixed": "#301400",
+                        "outline": "#867368",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f5f4f0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "max-width-ui": "1152px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "display-xl": [
+                            "Space Grotesk"
+                        ],
+                        "headline-lg": [
+                            "Space Grotesk"
+                        ],
+                        "headline-lg-mobile": [
+                            "Space Grotesk"
+                        ],
+                        "body-base": [
+                            "IBM Plex Sans"
+                        ],
+                        "display-2xl": [
+                            "Space Grotesk"
+                        ],
+                        "meta-mono": [
+                            "IBM Plex Mono"
+                        ],
+                        "meta-mono-sm": [
+                            "IBM Plex Mono"
+                        ],
+                        "body-bold": [
+                            "IBM Plex Sans"
+                        ]
+                    },
+                    "fontSize": {
+                        "display-xl": [
+                            "40px",
+                            {
+                                "lineHeight": "46px",
+                                "letterSpacing": "-0.035em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "headline-lg": [
+                            "32px",
+                            {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "headline-lg-mobile": [
+                            "28px",
+                            {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "body-base": [
+                            "15px",
+                            {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "display-2xl": [
+                            "56px",
+                            {
+                                "lineHeight": "60px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "meta-mono": [
+                            "13px",
+                            {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "meta-mono-sm": [
+                            "11px",
+                            {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.06em",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "body-bold": [
+                            "15px",
+                            {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .trace-corner {
+            position: relative;
+        }
+        .trace-corner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 8px; height: 8px;
+            border-top: 1px solid rgba(196, 120, 58, 0.5);
+            border-left: 1px solid rgba(196, 120, 58, 0.5);
+        }
+        .trace-corner::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 8px; height: 8px;
+            border-bottom: 1px solid rgba(196, 120, 58, 0.5);
+            border-right: 1px solid rgba(196, 120, 58, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full h-16 z-50 border-b border-copper-trace bg-background/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-desktop max-w-max-width-ui mx-auto h-full">
+<a class="font-headline-lg text-headline-lg text-on-surface tracking-tighter" href="#">Narasinga Ujjini</a>
+<div class="hidden md:flex gap-gutter">
+<a class="text-primary font-body-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform hover:text-primary transition-colors duration-200" href="#">Work</a>
+<a class="text-on-surface-variant font-body-base pb-1 active:scale-95 transition-transform hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-on-surface-variant font-body-base pb-1 active:scale-95 transition-transform hover:text-primary transition-colors duration-200" href="#">Resume</a>
+<a class="text-on-surface-variant font-body-base pb-1 active:scale-95 transition-transform hover:text-primary transition-colors duration-200" href="#">Articles</a>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Toggle Dark Mode" class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-[144px] pb-[112px] px-margin-mobile md:px-margin-desktop max-w-max-width-ui mx-auto">
+<!-- Header Section -->
+<header class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-8 flex flex-col justify-end">
+<div class="flex items-center gap-2 mb-6">
+<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-meta-mono text-meta-mono text-primary uppercase tracking-widest">Project 05 · Mechanical</span>
+</div>
+<h1 class="font-display-2xl text-display-2xl text-on-surface mb-6">Go-kart</h1>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-max-width-ui">
+                Designing and fabricating a custom go-kart from raw tubular steel. This build focuses on robust structural integrity, precise steering geometry, and integrating a high-torque power plant for maximum mechanical grip and acceleration.
+            </p>
+</div>
+<div class="md:col-span-4 flex items-end">
+<div class="w-full bg-surface border border-copper-trace p-4 trace-corner">
+<ul class="space-y-3 font-meta-mono-sm text-meta-mono-sm text-on-surface-variant">
+<li class="flex justify-between border-b border-copper-trace pb-2">
+<span>STATUS</span>
+<span class="text-secondary">ASSEMBLY</span>
+</li>
+<li class="flex justify-between border-b border-copper-trace pb-2">
+<span>TOLERANCE</span>
+<span>± 0.5mm</span>
+</li>
+<li class="flex justify-between border-b border-copper-trace pb-2">
+<span>MATERIAL</span>
+<span>4130 Chromoly</span>
+</li>
+<li class="flex justify-between">
+<span>DRIVETRAIN</span>
+<span>Chain &amp; Sprocket</span>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<!-- Gallery / Schematic Layout -->
+<section class="mb-24 grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-7">
+<div class="relative w-full aspect-[4/3] bg-surface border border-copper-trace trace-corner overflow-hidden group">
+<img class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="A raw, unfinished tubular steel go-kart chassis sitting on a concrete workshop floor. The metal is bare, showing grinding marks and precise MIG welds at the joints. The setting is a dimly lit, industrial machine shop with stark, high-contrast lighting highlighting the structural geometry of the frame, adhering to a modern industrial, brutalist dark-mode aesthetic with deep graphite blacks and subtle copper-toned highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeBh8EHZRwt03_M4AVeB3hEhUvNjPe3pp2zwsI2v_P-drY-8BrCPvKoQKLsYPfkXvYFz_W12LJ8iMy7nB5g471CsYemupeDpXeQ_CVeiO0C1pgsq3GlDoslyPZ3ufZlqkg6sA2DAnq-Qhdb64JQt5UHHoWNZmAtxhjsmi5w6USeRbhBaKi6e4xFhvSrXf5a1n39JeiEk7Si33eTg9M_zedYMBAQDU7p1iemW1I0LFDmeNYFqzyIgoYTw"/>
+<div class="absolute bottom-4 left-4 bg-background/90 border border-copper-trace px-3 py-1">
+<span class="font-meta-mono-sm text-meta-mono-sm text-primary">FIG 1. BARE CHASSIS</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 flex flex-col justify-between gap-gutter">
+<div class="relative w-full h-full min-h-[200px] bg-surface border border-copper-trace trace-corner overflow-hidden group">
+<img class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-500" data-alt="Close-up detail shot of a fresh MIG weld on a steel tube joint. The weld bead is iridescent with heat tint, contrasting against the dark, brushed metal of the tubing. The background is completely out of focus, emphasizing the mechanical precision of the fabrication. High-contrast, technical photography style in a dark environment with subtle amber lighting accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Ge4aFswpzswQ6qoxRU2DoDayoUUIZPKuKUfFCEIp6d--CODw57KPuX4nWeV3OLDSt5mQ-IpT4YkQs3H52ykpV0TawS6lbLYEXZNl8jyq7mfCz-t-qnX4HDEXemItPLVrhZ2okr7f3efj9udPwwux4lTOP7DZmrurZe8MBDpCAixtS1zQSEcNqbAtTu4AAM-MiBJ6IoBleyuz6YYKCKj55d2dMljTpBKxf36Pq4jc5HbPfViEInZEqw"/>
+<div class="absolute bottom-4 left-4 bg-background/90 border border-copper-trace px-3 py-1">
+<span class="font-meta-mono-sm text-meta-mono-sm text-primary">FIG 2. JOINT WELD</span>
+</div>
+</div>
+<div class="relative w-full h-full min-h-[200px] bg-surface-container-high border border-copper-trace p-6 font-meta-mono text-meta-mono text-text-muted flex flex-col justify-center">
+<div class="absolute top-2 left-2 w-1.5 h-1.5 rounded-full bg-surface-variant"></div>
+<div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-surface-variant"></div>
+<div class="absolute bottom-2 left-2 w-1.5 h-1.5 rounded-full bg-surface-variant"></div>
+<div class="absolute bottom-2 right-2 w-1.5 h-1.5 rounded-full bg-surface-variant"></div>
+<p class="mb-2"><span class="text-secondary">import</span> structural_calc</p>
+<p class="mb-2">def analyze_load(force, node_pos):</p>
+<p class="mb-2 pl-4">yield_stress = <span class="text-primary">435</span> # MPa</p>
+<p class="mb-2 pl-4">margin = yield_stress / force</p>
+<p class="pl-4">return margin &gt; <span class="text-primary">1.5</span></p>
+</div>
+</div>
+</section>
+<!-- Components Grid (Bento) -->
+<section class="mb-20">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-10 flex items-center gap-4">
+<span class="w-8 h-[1px] bg-copper-trace"></span>
+            System Modules
+        </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1: Chassis -->
+<div class="bg-surface border border-copper-trace p-6 trace-corner hover:bg-surface-container transition-colors duration-300 group">
+<div class="flex items-start justify-between mb-8">
+<div class="bg-soldermask-tint px-2 py-1 rounded-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<span class="font-meta-mono-sm text-meta-mono-sm text-secondary">STRUCTURAL</span>
+</div>
+<span class="font-meta-mono-sm text-meta-mono-sm text-on-surface-variant group-hover:text-primary transition-colors">01</span>
+</div>
+<h3 class="font-body-bold text-body-bold text-on-surface mb-3 text-lg">Chassis Architecture</h3>
+<p class="font-body-base text-body-base text-on-surface-variant text-sm mb-6">
+                    Engineered using 1.25" OD mild steel tubing, coped and notched for maximum weld penetration. Torsional rigidity prioritized to ensure responsive steering input.
+                </p>
+<div class="w-full h-1 bg-background overflow-hidden">
+<div class="w-full h-full bg-primary origin-left transform scale-x-100"></div>
+</div>
+</div>
+<!-- Card 2: Power -->
+<div class="bg-surface border border-copper-trace p-6 trace-corner hover:bg-surface-container transition-colors duration-300 group">
+<div class="flex items-start justify-between mb-8">
+<div class="bg-soldermask-tint px-2 py-1 rounded-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+<span class="font-meta-mono-sm text-meta-mono-sm text-secondary">PROPULSION</span>
+</div>
+<span class="font-meta-mono-sm text-meta-mono-sm text-on-surface-variant group-hover:text-primary transition-colors">02</span>
+</div>
+<h3 class="font-body-bold text-body-bold text-on-surface mb-3 text-lg">Predator 212cc</h3>
+<p class="font-body-base text-body-base text-on-surface-variant text-sm mb-6">
+                    Integrated horizontal shaft OHV gas engine. Governor bypassed and fitted with a high-flow intake and custom straight-pipe exhaust for increased top-end RPM.
+                </p>
+<div class="w-full h-1 bg-background overflow-hidden">
+<div class="w-[85%] h-full bg-primary origin-left"></div>
+</div>
+</div>
+<!-- Card 3: Fabrication -->
+<div class="bg-surface border border-copper-trace p-6 trace-corner hover:bg-surface-container transition-colors duration-300 group">
+<div class="flex items-start justify-between mb-8">
+<div class="bg-soldermask-tint px-2 py-1 rounded-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]" style="font-variation-settings: 'FILL' 1;">construction</span>
+<span class="font-meta-mono-sm text-meta-mono-sm text-secondary">FABRICATION</span>
+</div>
+<span class="font-meta-mono-sm text-meta-mono-sm text-on-surface-variant group-hover:text-primary transition-colors">03</span>
+</div>
+<h3 class="font-body-bold text-body-bold text-on-surface mb-3 text-lg">MIG Assembly</h3>
+<p class="font-body-base text-body-base text-on-surface-variant text-sm mb-6">
+                    Gas-shielded solid wire welding utilized for all structural joints. Careful heat management applied to minimize warpage across the longitudinal rails.
+                </p>
+<div class="w-full h-1 bg-background overflow-hidden">
+<div class="w-[40%] h-full bg-primary origin-left"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-container-lowest border-t border-copper-trace mt-20">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-margin-desktop max-w-max-width-ui mx-auto gap-gutter">
+<div class="font-headline-lg text-headline-lg text-on-surface">Narasinga Ujjini</div>
+<div class="flex gap-8 font-meta-mono text-meta-mono text-on-surface-variant">
+<a class="hover:text-secondary transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-secondary transition-colors" href="#">GitHub</a>
+<a class="hover:text-secondary transition-colors" href="#">Email</a>
+</div>
+<div class="font-meta-mono text-meta-mono text-on-surface-variant">
+            © 2024 Narasinga Ujjini. All rights reserved.
+        </div>
+</div>
+</footer>
+</body></html>

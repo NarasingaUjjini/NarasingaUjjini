@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Narasinga Ujjini - Mobile Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Serif+4:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-bright": "#37393d",
+                      "primary": "#ffb782",
+                      "inverse-primary": "#8f4d11",
+                      "error-container": "#93000a",
+                      "outline-variant": "#534439",
+                      "secondary-container": "#32a094",
+                      "primary-container": "#cc7e40",
+                      "copper-hairline": "rgba(196, 120, 58, 0.18)",
+                      "anodized-slate": "#9BA7B7",
+                      "surface-slate": "#14181F",
+                      "primary-fixed": "#ffdcc5",
+                      "on-surface-variant": "#d9c2b4",
+                      "inverse-on-surface": "#2f3034",
+                      "secondary": "#70d8ca",
+                      "background": "#111317",
+                      "on-secondary": "#003732",
+                      "on-tertiary-container": "#002d40",
+                      "surface": "#111317",
+                      "inverse-surface": "#e2e2e6",
+                      "on-primary-container": "#452000",
+                      "outline": "#a18d80",
+                      "on-secondary-fixed-variant": "#005049",
+                      "surface-container-high": "#282a2d",
+                      "on-secondary-container": "#00302b",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-container": "#009bd1",
+                      "surface-container": "#1e2023",
+                      "on-tertiary-fixed-variant": "#004c69",
+                      "silicon-white": "#E6ECF2",
+                      "surface-container-low": "#1a1c1f",
+                      "surface-variant": "#333538",
+                      "surface-tint": "#ffb782",
+                      "on-surface": "#e2e2e6",
+                      "error": "#ffb4ab",
+                      "surface-container-lowest": "#0c0e11",
+                      "secondary-fixed": "#8df4e6",
+                      "soldermask-dim": "rgba(42, 155, 143, 0.12)",
+                      "primary-fixed-dim": "#ffb782",
+                      "on-tertiary-fixed": "#001e2c",
+                      "on-primary-fixed-variant": "#703800",
+                      "surface-dim": "#111317",
+                      "tertiary-fixed": "#c4e7ff",
+                      "trace-gray": "#5E6C80",
+                      "tertiary-fixed-dim": "#7bd0ff",
+                      "on-primary": "#4f2500",
+                      "on-background": "#e2e2e6",
+                      "on-tertiary": "#00354a",
+                      "on-primary-fixed": "#301400",
+                      "surface-container-highest": "#333538",
+                      "secondary-fixed-dim": "#70d8ca",
+                      "surface-high": "#1B222B",
+                      "on-secondary-fixed": "#00201d",
+                      "on-error": "#690005",
+                      "tertiary": "#7bd0ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "max-width-editorial": "672px",
+                      "margin-mobile": "16px",
+                      "max-width-standard": "1152px",
+                      "margin-desktop": "48px",
+                      "gutter": "24px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Space Grotesk"
+                      ],
+                      "ui-bold": [
+                              "IBM Plex Sans"
+                      ],
+                      "meta-mono-sm": [
+                              "IBM Plex Mono"
+                      ],
+                      "display-xl": [
+                              "Space Grotesk"
+                      ],
+                      "meta-mono": [
+                              "IBM Plex Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Space Grotesk"
+                      ],
+                      "body-editorial": [
+                              "\"Source Serif 4\""
+                      ],
+                      "ui-base": [
+                              "IBM Plex Sans"
+                      ],
+                      "display-2xl": [
+                              "Space Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "38px",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "ui-bold": [
+                              "15px",
+                              {
+                                      "lineHeight": "22px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "meta-mono-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.06em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "46px",
+                                      "letterSpacing": "-0.035em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "meta-mono": [
+                              "13px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-editorial": [
+                              "17px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.005em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "ui-base": [
+                              "15px",
+                              {
+                                      "lineHeight": "22px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-2xl": [
+                              "56px",
+                              {
+                                      "lineHeight": "60px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        /* Mobile specific adjustments */
+        body { -webkit-tap-highlight-color: transparent; }
+        .tap-target { min-height: 44px; min-width: 44px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full h-16 z-50 bg-background dark:bg-background border-b border-copper-hairline bg-background/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-mobile h-full">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tighter">Narasinga Ujjini</span>
+<div class="flex items-center gap-4">
+<button aria-label="Toggle dark mode" class="tap-target flex items-center justify-center text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<!-- Hamburger Menu for Mobile -->
+<button aria-label="Open navigation menu" class="tap-target flex md:hidden items-center justify-center text-on-surface hover:text-primary transition-colors duration-200" id="mobile-menu-btn">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-primary font-ui-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform" href="#">Work</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200 active:scale-95 transition-transform" href="#">About</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200 active:scale-95 transition-transform" href="#">Resume</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200 active:scale-95 transition-transform" href="#">Articles</a>
+</nav>
+</div>
+<!-- Mobile Menu Overlay -->
+<div class="hidden absolute top-16 left-0 w-full bg-surface-slate border-b border-copper-hairline flex-col py-4 px-margin-mobile shadow-lg" id="mobile-menu">
+<a class="tap-target flex items-center text-primary font-ui-bold border-b border-copper-hairline/50 pb-2 mb-2" href="#">Work</a>
+<a class="tap-target flex items-center text-on-surface-variant font-ui-base border-b border-copper-hairline/50 pb-2 mb-2" href="#">About</a>
+<a class="tap-target flex items-center text-on-surface-variant font-ui-base border-b border-copper-hairline/50 pb-2 mb-2" href="#">Resume</a>
+<a class="tap-target flex items-center text-on-surface-variant font-ui-base pb-2" href="#">Articles</a>
+</div>
+</header>
+<main class="flex-grow pt-24 px-margin-mobile flex flex-col gap-12 max-w-[390px] mx-auto w-full">
+<!-- Hero Section -->
+<section class="flex flex-col gap-6 pt-8">
+<h1 class="font-display-xl text-display-xl text-on-surface">Building Industrial Grade Digital Interfaces.</h1>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant">
+                I specialize in high-fidelity engineering environments, combining the extreme rigor of microelectronics with the tactile nature of physical fabrication to create robust user experiences.
+            </p>
+<button class="tap-target bg-primary text-on-primary font-ui-bold text-ui-base px-6 py-3 rounded flex items-center justify-center gap-2 self-start shadow-[0_0_15px_rgba(255,183,130,0.3)]">
+                View Projects
+                <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</section>
+<!-- PCB Trace Divider -->
+<div class="relative h-4 w-full flex items-center opacity-50">
+<div class="h-[1px] bg-copper-hairline w-full"></div>
+<div class="absolute right-10 w-4 h-[1px] bg-copper-hairline rotate-45 transform origin-right"></div>
+</div>
+<!-- Projects Grid -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="memory">memory</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Selected Work</h2>
+</div>
+<!-- Project Tile 1 -->
+<article class="bg-surface-slate border border-copper-hairline rounded flex flex-col relative overflow-hidden group">
+<!-- Fiducial Marks -->
+<div class="absolute top-2 left-2 w-2 h-2 border-t border-l border-copper-hairline"></div>
+<div class="absolute top-2 right-2 w-2 h-2 border-t border-r border-copper-hairline"></div>
+<div class="h-48 w-full bg-surface-container-low border-b border-copper-hairline relative">
+<img class="object-cover w-full h-full opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-300" data-alt="A detailed, modern UI visualization of a silicon wafer processing dashboard. High contrast dark mode aesthetic with bright copper orange and soldermask green accents. Data-dense technical layout reminiscent of an oscilloscope interface. The mood is highly technical and precise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU8xI0Ry81fLCcvlufYv26jjj0rG1YFXFDT5s7oyJhHKkD4JjhinVMWo00B64VUP-IZ4L54VMTP8J67iwPdGjQ2-Cu5vSjM_2StQ2PM08LYDr6kWKMp3wpFtuZCAZSaW47KuqdReIOasTkv8G6fKZf2K2vladkLAdjhTzwmx5s99sS4R741HMdrvHXUeETotObcVXu2dVEal94ZVEpXtaBASoYME9P7e-NEBG9FZYqL0jE3RUFF2MiSg"/>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex gap-2 flex-wrap">
+<span class="bg-soldermask-dim text-secondary font-meta-mono-sm text-meta-mono-sm px-2 py-1 rounded">UX/UI</span>
+<span class="bg-surface-container text-on-surface-variant font-meta-mono-sm text-meta-mono-sm px-2 py-1 rounded">2023</span>
+</div>
+<h3 class="font-ui-bold text-ui-base text-on-surface">ASIC Synthesis Dashboard</h3>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant text-sm">A high-density control panel for real-time monitoring of logic synthesis and physical routing processes.</p>
+</div>
+</article>
+<!-- Project Tile 2 -->
+<article class="bg-surface-slate border border-copper-hairline rounded flex flex-col relative overflow-hidden group">
+<!-- Fiducial Marks -->
+<div class="absolute top-2 left-2 w-2 h-2 border-t border-l border-copper-hairline"></div>
+<div class="absolute top-2 right-2 w-2 h-2 border-t border-r border-copper-hairline"></div>
+<div class="h-48 w-full bg-surface-container-low border-b border-copper-hairline relative">
+<img class="object-cover w-full h-full opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-300" data-alt="A clean, industrial-style interface for a 4-axis CNC milling machine. Dark graphite background with sharp copper outlines and bright teal status indicators. The layout is brutalist and structural, focusing on operational telemetry. The mood is robust and industrial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxUnZ0JY8gckwm7CPolF7FWRFP8Q1telPMCli1AfikS481hBExSAI3QMo0nZWyXHgZtqBON0BhwmvOXR5kpNcWTME44DZS9aKmX8UQ8xh1Z2bqukBgcFDEAKzd54ahT1hfeGxp2SL3vUyjVS4Zl5-X6j7lb9TjU-0VjYyHgK2uHM2slh9gEsF3lkZWXRsiDD0mzldZwq16R5zXsOAnwgVVR1LMQ1ZSrRxHe-9bqVqfePNnlBgexBfjXA"/>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex gap-2 flex-wrap">
+<span class="bg-soldermask-dim text-secondary font-meta-mono-sm text-meta-mono-sm px-2 py-1 rounded">Product Design</span>
+<span class="bg-surface-container text-on-surface-variant font-meta-mono-sm text-meta-mono-sm px-2 py-1 rounded">2024</span>
+</div>
+<h3 class="font-ui-bold text-ui-base text-on-surface">Haas Telemetry Interface</h3>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant text-sm">Industrial HMI overhaul prioritizing critical fabrication metrics and operator safety alerts.</p>
+</div>
+</article>
+<!-- Project Tile 3 -->
+<article class="bg-surface-slate border border-copper-hairline rounded flex flex-col relative overflow-hidden group">
+<div class="absolute top-2 left-2 w-2 h-2 border-t border-l border-copper-hairline"></div>
+<div class="absolute top-2 right-2 w-2 h-2 border-t border-r border-copper-hairline"></div>
+<div class="h-48 w-full bg-surface-container-low border-b border-copper-hairline relative">
+<img class="object-cover w-full h-full opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-300" data-alt="A dark-mode software interface depicting an RF measurement bench. Glowing trace lines on a graphite black background, mimicking a modern vector network analyzer screen. Precise grid lines and monolithic typography. The mood is analytical and advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8uKo8ls5L9uTPoQivPDIMURnXy3gYB177mCF-l6Ewqm3z8daOVzfkVZbj-Duv0Sy9EjrmFdMJuDl3kKtAaDYNMKN6yqR7UuGYJF7tDJgkDsAEWa4jfRBHwLqScRQcxKqbfuZEdSnpKdgd9yKh4YEryVaKJwhXIgWzW4CoBNdhSiZ8DFJX5S2LDBBmb9eRUH5_A2bIYRHrisiGOJFmRxM7s6TUR0qN9_2SKGzPTcJXzp_Pph2V6ZBInQ"/>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex gap-2 flex-wrap">
+<span class="bg-soldermask-dim text-secondary font-meta-mono-sm text-meta-mono-sm px-2 py-1 rounded">System Design</span>
+<span class="bg-surface-container text-on-surface-variant font-meta-mono-sm text-meta-mono-sm px-2 py-1 rounded">2023</span>
+</div>
+<h3 class="font-ui-bold text-ui-base text-on-surface">RF Bench Analytics</h3>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant text-sm">Visualization suite for high-frequency signal analysis, optimized for complex data parsing.</p>
+</div>
+</article>
+<!-- Project Tile 4 -->
+<article class="bg-surface-slate border border-copper-hairline rounded flex flex-col relative overflow-hidden group">
+<div class="absolute top-2 left-2 w-2 h-2 border-t border-l border-copper-hairline"></div>
+<div class="absolute top-2 right-2 w-2 h-2 border-t border-r border-copper-hairline"></div>
+<div class="h-48 w-full bg-surface-container-low border-b border-copper-hairline relative">
+<img class="object-cover w-full h-full opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-300" data-alt="A brutalist, schematic-style dashboard showing structural woodworking joints. Dark slate background with thin copper architectural lines. Sparse, highly functional layout with fixed-grid alignment. The mood is precise, structural, and architectural." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfRJFczBN4MkG__22NzREGXOrQdJBd9i0VLDtp82MkBeKJ09YlVbntPlUYpcjcuR75vOODy-ZneoUiKP884TfvV02MCyYr_JLUGpJy6qb9Uk_4Yo_MenXBoSuCw2TzU6scUzAKFDtGSSpfRyxQB35d-2LW0aHmqXoAvkmLtRjSlCBApiNc-gN0i2PU50idDD1Y2wl9yaC8s35KyQN9-jrU9CYBAxU-1rc493vjeogx24fYgh6GOoUSGQ"/>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex gap-2 flex-wrap">
+<span class="bg-soldermask-dim text-secondary font-meta-mono-sm text-meta-mono-sm px-2 py-1 rounded">Architecture</span>
+<span class="bg-surface-container text-on-surface-variant font-meta-mono-sm text-meta-mono-sm px-2 py-1 rounded">2022</span>
+</div>
+<h3 class="font-ui-bold text-ui-base text-on-surface">Structural Joint Schematics</h3>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant text-sm">Digital reference library for toleranced structural connections, built on a strict 12-column grid.</p>
+</div>
+</article>
+</section>
+<!-- PCB Trace Divider -->
+<div class="relative h-4 w-full flex items-center opacity-50 my-4">
+<div class="absolute left-10 w-4 h-[1px] bg-copper-hairline -rotate-45 transform origin-left"></div>
+<div class="h-[1px] bg-copper-hairline w-full ml-10"></div>
+</div>
+<!-- Short About Strip -->
+<section class="bg-surface-slate border border-copper-hairline rounded p-6 flex flex-col gap-4 relative">
+<div class="absolute top-2 left-2 w-2 h-2 rounded-full bg-surface-container border border-trace-gray flex items-center justify-center"><div class="w-1 h-1 bg-trace-gray rounded-full"></div></div>
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-surface-container border border-trace-gray flex items-center justify-center"><div class="w-1 h-1 bg-trace-gray rounded-full"></div></div>
+<h2 class="font-meta-mono text-meta-mono text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="terminal">terminal</span>
+                ./about_sys
+            </h2>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant">
+                Bridging the gap between raw functional capability and human-centered operability. I design systems that feel as toleranced and deliberate as the hardware they control.
+            </p>
+<a class="font-ui-bold text-ui-base text-secondary flex items-center gap-1 mt-2 hover:underline tap-target self-start" href="#">
+                Read full manifest
+                <span class="material-symbols-outlined text-[16px]" data-icon="arrow_outward">arrow_outward</span>
+</a>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-12 border-t border-copper-hairline mt-20 flex flex-col md:flex-row justify-between items-start md:items-center px-margin-mobile max-w-max-width-standard mx-auto gap-gutter">
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-6 md:mb-0">
+            Narasinga Ujjini
+        </div>
+<div class="flex flex-col gap-4 w-full md:w-auto">
+<div class="flex flex-col gap-4">
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors tap-target flex items-center" href="#">LinkedIn</a>
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors tap-target flex items-center" href="#">GitHub</a>
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors tap-target flex items-center" href="#">Email</a>
+</div>
+<p class="font-meta-mono text-meta-mono text-on-surface-variant mt-4 md:mt-0 text-sm opacity-60">
+                 © 2024 Narasinga Ujjini. All rights reserved.
+             </p>
+</div>
+</footer>
+<script>
+        // Simple toggle for mobile menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+        });
+    </script>
+</body></html>

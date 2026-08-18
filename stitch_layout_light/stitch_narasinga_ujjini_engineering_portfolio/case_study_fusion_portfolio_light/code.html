@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fusion Portfolio - Narasinga Ujjini</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=Space+Grotesk:wght@700&amp;family=Source+Serif+4:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "outline-variant": "#d9c2b4",
+                "tertiary-fixed-dim": "#c6c6ca",
+                "tertiary": "#5a5c5f",
+                "secondary-container": "#8df4e6",
+                "on-background": "#1b1c1a",
+                "inverse-primary": "#ffb782",
+                "background": "#faf9f5",
+                "on-surface": "#1b1c1a",
+                "text-primary": "#1A1C1F",
+                "on-secondary-container": "#007167",
+                "secondary": "#006a61",
+                "on-primary": "#ffffff",
+                "soldermask-tint": "rgba(42, 155, 143, 0.15)",
+                "surface-raised": "#EAE9E4",
+                "surface-variant": "#e3e2df",
+                "primary": "#8c4b0f",
+                "tertiary-fixed": "#e2e2e6",
+                "surface-container-highest": "#e3e2df",
+                "surface-container": "#efeeea",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#30312e",
+                "primary-fixed": "#ffdcc5",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#ffb782",
+                "on-error-container": "#93000a",
+                "text-muted": "#5A5E66",
+                "surface": "#faf9f5",
+                "on-tertiary": "#ffffff",
+                "surface-tint": "#8f4d11",
+                "on-tertiary-fixed-variant": "#45474a",
+                "on-tertiary-container": "#fdfcff",
+                "surface-container-high": "#e9e8e4",
+                "on-secondary-fixed-variant": "#005049",
+                "surface-bright": "#faf9f5",
+                "surface-dim": "#dbdad6",
+                "copper-trace": "rgba(196, 120, 58, 0.25)",
+                "on-primary-container": "#fffbff",
+                "on-surface-variant": "#534439",
+                "tertiary-container": "#737478",
+                "secondary-fixed-dim": "#70d8ca",
+                "secondary-fixed": "#8df4e6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#aa6327",
+                "on-secondary-fixed": "#00201d",
+                "on-primary-fixed-variant": "#703800",
+                "on-tertiary-fixed": "#1a1c1f",
+                "inverse-on-surface": "#f2f1ed",
+                "on-primary-fixed": "#301400",
+                "outline": "#867368",
+                "on-error": "#ffffff",
+                "surface-container-low": "#f5f4f0"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "4px",
+                "margin-mobile": "16px",
+                "max-width-ui": "1152px",
+                "gutter": "24px",
+                "margin-desktop": "48px"
+        },
+        "fontFamily": {
+                "display-xl": [
+                        "Space Grotesk"
+                ],
+                "headline-lg": [
+                        "Space Grotesk"
+                ],
+                "headline-lg-mobile": [
+                        "Space Grotesk"
+                ],
+                "body-base": [
+                        "IBM Plex Sans"
+                ],
+                "display-2xl": [
+                        "Space Grotesk"
+                ],
+                "meta-mono": [
+                        "IBM Plex Mono"
+                ],
+                "meta-mono-sm": [
+                        "IBM Plex Mono"
+                ],
+                "body-bold": [
+                        "IBM Plex Sans"
+                ]
+        },
+        "fontSize": {
+                "display-xl": [
+                        "40px",
+                        {
+                                "lineHeight": "46px",
+                                "letterSpacing": "-0.035em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-base": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-2xl": [
+                        "56px",
+                        {
+                                "lineHeight": "60px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "meta-mono": [
+                        "13px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "meta-mono-sm": [
+                        "11px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.06em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-bold": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Custom styles for PCB trace effects and specialized borders */
+        .pcb-trace-bottom {
+            position: relative;
+        }
+        .pcb-trace-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: theme('colors.copper-trace');
+        }
+        
+        .fiducial-mark {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-color: theme('colors.copper-trace');
+        }
+        .fiducial-tl { top: 4px; left: 4px; border-top-width: 1px; border-left-width: 1px; }
+        .fiducial-tr { top: 4px; right: 4px; border-top-width: 1px; border-right-width: 1px; }
+        .fiducial-bl { bottom: 4px; left: 4px; border-bottom-width: 1px; border-left-width: 1px; }
+        .fiducial-br { bottom: 4px; right: 4px; border-bottom-width: 1px; border-right-width: 1px; }
+
+        .image-overlay-tech {
+            background: linear-gradient(180deg, rgba(250,249,245,0) 0%, rgba(250,249,245,0.9) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-base antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full h-16 z-50 border-b border-copper-trace bg-background/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-desktop max-w-max-width-ui mx-auto h-full">
+<a class="font-headline-lg text-headline-lg text-on-surface tracking-tighter hover:text-primary transition-colors duration-200" href="#">
+                Narasinga Ujjini
+            </a>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-primary font-body-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform hover:text-primary transition-colors duration-200" href="#">Work</a>
+<a class="text-on-surface-variant font-body-base pb-1 active:scale-95 transition-transform hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-on-surface-variant font-body-base pb-1 active:scale-95 transition-transform hover:text-primary transition-colors duration-200" href="#">Resume</a>
+<a class="text-on-surface-variant font-body-base pb-1 active:scale-95 transition-transform hover:text-primary transition-colors duration-200" href="#">Articles</a>
+<button aria-label="Toggle Dark Mode" class="ml-4 text-on-surface hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+<!-- Mobile Menu Button (Placeholder) -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[144px] pb-[112px] px-margin-desktop max-w-max-width-ui mx-auto w-full">
+<!-- Header Section -->
+<header class="mb-[80px] grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
+<div class="md:col-span-8">
+<p class="font-meta-mono text-meta-mono text-primary mb-[16px] uppercase tracking-widest flex items-center gap-[8px]">
+<span class="w-[12px] h-[12px] bg-primary rounded-full inline-block"></span>
+                    Project 02 · CAD
+                </p>
+<h1 class="font-display-2xl text-display-2xl md:text-[56px] text-[40px] text-on-surface mb-[24px]">
+                    Fusion Portfolio
+                </h1>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-[672px]">
+                    A collection of high-fidelity parametric models and CNC-ready assemblies, demonstrating precision tolerancing and complex surfacing workflows in Fusion 360.
+                </p>
+</div>
+<div class="md:col-span-4 flex md:justify-end mt-[32px] md:mt-0">
+<div class="flex flex-wrap gap-[8px]">
+<span class="bg-surface-container border border-copper-trace px-[12px] py-[4px] font-meta-mono-sm text-meta-mono-sm text-tertiary rounded-sm flex items-center gap-[4px]">
+<span class="material-symbols-outlined text-[14px]">architecture</span>
+                        Fusion 360
+                    </span>
+<span class="bg-surface-container border border-copper-trace px-[12px] py-[4px] font-meta-mono-sm text-meta-mono-sm text-tertiary rounded-sm flex items-center gap-[4px]">
+<span class="material-symbols-outlined text-[14px]">3d_rotation</span>
+                        Blender
+                    </span>
+<span class="bg-surface-container border border-copper-trace px-[12px] py-[4px] font-meta-mono-sm text-meta-mono-sm text-tertiary rounded-sm flex items-center gap-[4px]">
+<span class="material-symbols-outlined text-[14px]">precision_manufacturing</span>
+                        CNC
+                    </span>
+</div>
+</div>
+</header>
+<!-- Bento Gallery -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[300px]">
+<!-- Item 1: Canoe (Large feature) -->
+<article class="md:col-span-8 md:row-span-2 bg-surface-container border border-copper-trace rounded relative overflow-hidden group hover:border-primary transition-colors duration-300">
+<div class="fiducial-mark fiducial-tl"></div>
+<div class="fiducial-mark fiducial-tr"></div>
+<div class="fiducial-mark fiducial-bl"></div>
+<div class="fiducial-mark fiducial-br"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter grayscale group-hover:grayscale-0" data-alt="A highly detailed 3D CAD render of a wooden canoe resting on a minimalist dark graphite workbench. The lighting is harsh and directional, emphasizing the complex lofted surfaces and precise joinery of the ribs and hull. The background is a clean, dark industrial environment akin to a silicon cleanroom, with subtle grid lines on the surface. The overall aesthetic is modern, brutalist, and technical, with a focus on form and fabrication readiness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0muZlH57qzelH9nNFy_r7zCrfOEuEEneaUoFpFmcPKqQnIYeV-nRIc7VCF7o9-OsT0NNQbGrdJel-VNocqnOOBDM_kfTAVCT6oVxPEXh0ustnTBSpt0q0xIjbwssSizxlvt4q9CK2RMje4AR_HF9BaSPW6xYNN2Cv5YQ8amjqQ9B87RD_60xlTW0Bkxka8XXJcU9uHUH4B5uxjkiW9yJ9PxSGLhw2FeLwt2p0nz3wRLeN9NP1k_wRLw"/>
+<div class="absolute inset-0 image-overlay-tech flex flex-col justify-end p-[32px]">
+<div class="border-l-2 border-primary pl-[16px]">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-[8px]">Canoe</h2>
+<p class="font-body-base text-body-base text-on-surface-variant font-mono">Lofted hull surfacing for composite layup.</p>
+</div>
+</div>
+</article>
+<!-- Item 2: Candle holder -->
+<article class="md:col-span-4 md:row-span-1 bg-surface-container border border-copper-trace rounded relative overflow-hidden group hover:border-primary transition-colors duration-300">
+<div class="fiducial-mark fiducial-tl"></div>
+<div class="fiducial-mark fiducial-tr"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter grayscale group-hover:grayscale-0" data-alt="A close-up 3D render of a machined metal candle holder on a dark, matte surface. The material appears to be anodized aluminum or raw steel, with distinct tool paths visible from a CNC milling process. The lighting is dramatic, highlighting the sharp chamfers and perfectly toleranced cylindrical cutouts. The scene is dark, moody, and highly technical, fitting a modern industrial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVb2qbMCm625m3qr5Kv7wxQ9bRuDHLdKz6Jjk_oIbjnBCdkHRJ_MNeqqi0zJZoIygQtR8RqtmXIAcshBuu8DgbO3Kt8K1mNJf0_XYa-OvAZvu7UrF2E7zlSk7kzjXOcH9Vt5cDr74THGNDkEckmSErsZInsihPdm7QlVYonR6Jct-RYcAOFreD0UZMogsPoX09jmSC-RD2yPbVhshCPsXOQVvYWUYwIr_0fjntf9UVEg93A_6Yj0H8vQ"/>
+<div class="absolute inset-0 image-overlay-tech flex flex-col justify-end p-[24px]">
+<div class="border-l-2 border-secondary pl-[12px]">
+<h2 class="font-body-bold text-body-bold text-on-surface mb-[4px] text-[20px]">Candle holder</h2>
+<p class="font-meta-mono text-meta-mono text-on-surface-variant text-[12px]">5-axis milled aluminum prototype.</p>
+</div>
+</div>
+</article>
+<!-- Item 3: Wooden clock -->
+<article class="md:col-span-4 md:row-span-1 bg-surface-container border border-copper-trace rounded relative overflow-hidden group hover:border-primary transition-colors duration-300">
+<div class="fiducial-mark fiducial-bl"></div>
+<div class="fiducial-mark fiducial-br"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter grayscale group-hover:grayscale-0" data-alt="An isometric technical render of a mechanical wooden clock mechanism. The image focuses on interlocking wooden gears, escapements, and axels, rendered with precision against a deep black background. The wood grain is subtle, prioritizing the structural geometry over organic texture. Lighting is stark and analytical, casting sharp shadows that define the depth of the gear train in a clean, engineering-focused presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1AwdKlSitbziny0iPJwKkevZ0rVhH49egtzrCudRp8mSMVJbiFAqoWDTDgP7QEwoRI1eEv3QhXCj50Nwnl8EUEqgx8ZCDF7r5okPJsUlrWS0w8yfwKJ__4TEdx4loVWCbE7Y2CFLebxvo-Xg-m9fFGo8QZ1oQvZs8K5RYodew1oAhnK5Pe_7uy5T3b6ZOf4xuXJ0mK2kFayXm97YHmDGcjotwuq0-F5jH73c4t4982bxQMcvrB0-p0Q"/>
+<div class="absolute inset-0 image-overlay-tech flex flex-col justify-end p-[24px]">
+<div class="border-l-2 border-primary pl-[12px]">
+<h2 class="font-body-bold text-body-bold text-on-surface mb-[4px] text-[20px]">Wooden clock</h2>
+<p class="font-meta-mono text-meta-mono text-on-surface-variant text-[12px]">Parametric gear generation.</p>
+</div>
+</div>
+</article>
+<!-- Item 4: Helicopter -->
+<article class="md:col-span-6 md:row-span-1 bg-surface-container border border-copper-trace rounded relative overflow-hidden group hover:border-primary transition-colors duration-300">
+<div class="fiducial-mark fiducial-tl"></div>
+<div class="fiducial-mark fiducial-bl"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter grayscale group-hover:grayscale-0" data-alt="A stylized, low-poly or heavily faceted 3D model of a helicopter, presented in a wireframe or solid surface view against a very dark slate background. The aesthetic is reminiscent of early aerospace CAD software or military simulator assets, with glowing orange copper accents tracing key structural lines. The design feels robust, utilitarian, and deeply technical, existing in a dark-mode industrial void." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr0UUH_M4344ZbPd6cyxTrV-TtHODUwUnQ5O1K_vZRKQPQTS-OLbujAvCx-NQIYpsVrhkG6Kc_5FZjBeJge2olaO1XV-rM_vxMweYS1cKrE3c1q7t4SAws_BwZcWs9q-JvtkeX8DUu4XiHPXpU2TdKkx5vyrnNhZoy5HWPgOsBt88OEpSoggk5kVZ0lPLCoB3mgKMWlMw16XlB88RPbDlUydhwV0b2UNnG0xUz3GDJP0GwM0gbw7uA7A"/>
+<div class="absolute inset-0 image-overlay-tech flex flex-col justify-end p-[24px]">
+<div class="border-l-2 border-secondary pl-[12px]">
+<h2 class="font-body-bold text-body-bold text-on-surface mb-[4px] text-[20px]">Helicopter</h2>
+<p class="font-meta-mono text-meta-mono text-on-surface-variant text-[12px]">Hard surface modeling exercise.</p>
+</div>
+</div>
+</article>
+<!-- Item 5: Orthographic models -->
+<article class="md:col-span-6 md:row-span-1 bg-surface-container border border-copper-trace rounded relative overflow-hidden group hover:border-primary transition-colors duration-300">
+<div class="fiducial-mark fiducial-tr"></div>
+<div class="fiducial-mark fiducial-br"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter grayscale group-hover:grayscale-0" data-alt="A composition of multiple mechanical parts shown in strict orthographic projections (top, front, side views) arranged on a digital blueprint-style canvas. The background is a very dark, near-black slate with faint grid patterns. The parts themselves are rendered in high-contrast solid tones, looking like pure geometry extracted from a CNC interface. The style is strictly analytical, emphasizing documentation and measurement over realism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIxbQLZbBmxeCwrkrcKO-9u3McxoS2IKcoR0U1BEbZntcWNrgS82KDXkjuR7-E95uk1z7VkUvYvupvTr09nHK8r_OJf_ScwYt2_yoGIG-xsw6EUuxHazCBurevF3idLlt9e-IIHbFlruzuaUvl9NimjGdVpqu2Z2vOpsaUtqtx79r2ewmmVPFJgdrqK6tLiS71OZRZA5SmfnbTiDRfVjG6s5b70LFfzlOFDXLXswEkKFrAwgzg7Eearw"/>
+<div class="absolute inset-0 image-overlay-tech flex flex-col justify-end p-[24px]">
+<div class="border-l-2 border-primary pl-[12px]">
+<h2 class="font-body-bold text-body-bold text-on-surface mb-[4px] text-[20px]">Orthographic models</h2>
+<p class="font-meta-mono text-meta-mono text-on-surface-variant text-[12px]">Drafting and layout studies.</p>
+</div>
+</div>
+</article>
+<!-- Item 6: AGM-65 Maverick (Full width feature) -->
+<article class="md:col-span-12 md:row-span-2 bg-surface-container border border-copper-trace rounded relative overflow-hidden group hover:border-primary transition-colors duration-300 mt-[24px]">
+<div class="fiducial-mark fiducial-tl"></div>
+<div class="fiducial-mark fiducial-tr"></div>
+<div class="fiducial-mark fiducial-bl"></div>
+<div class="fiducial-mark fiducial-br"></div>
+<img class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 filter grayscale group-hover:grayscale-0" data-alt="An incredibly detailed, photorealistic render of an AGM-65 Maverick missile suspended in a dark, anechoic chamber or high-tech testing facility. The cylindrical body, sensor window, and fin assemblies are modeled with extreme precision, showing simulated wear and machining marks. The lighting is clinical and focused, casting long shadows against a dark graphite background. The entire image exudes military-grade engineering and brutalist technical rigor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUwQ_nfodyhtXR_eJ9jwYxqqyBYIXzqOJ3LRc07gd9UfuOYTjaPMVt8AApmjQCmDSlZ9BJ0BRC18ariOxhW6NxWniSVwRrC-SN8b-E29OOUmVeOuuE8jv0Xk6yLseW2FGtEFE04Fx-oPAwoLtV38WU3ytLqp0epfsgBcZ4MrMtX4PCdtVLgAmDihuDlZ1YqCQkjAl7piZs58Og7qMzj8nH6jHlmIU1zGupfCb6JeStkwqhSMEFHARvfw"/>
+<div class="absolute inset-0 image-overlay-tech flex flex-col justify-end p-[48px]">
+<div class="max-w-[600px] border-l-2 border-error-container pl-[24px]">
+<h2 class="font-display-xl text-display-xl text-on-surface mb-[12px]">AGM-65 Maverick</h2>
+<p class="font-body-base text-body-base text-on-surface-variant font-mono text-[16px] leading-relaxed">
+                            Complete exterior recreation based on declassified technical diagrams. Focus on aerodynamic surface continuity and modular assembly logic.
+                        </p>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-copper-trace mt-20 bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-margin-desktop max-w-max-width-ui mx-auto gap-gutter">
+<span class="font-headline-lg text-headline-lg text-on-surface">Narasinga Ujjini</span>
+<div class="flex gap-gutter">
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors" href="#">LinkedIn</a>
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors" href="#">GitHub</a>
+<a class="font-meta-mono text-meta-mono text-on-surface-variant hover:text-secondary transition-colors" href="#">Email</a>
+</div>
+<span class="font-meta-mono text-meta-mono text-on-surface-variant">© 2024 Narasinga Ujjini. All rights reserved.</span>
+</div>
+</footer>
+</body></html>

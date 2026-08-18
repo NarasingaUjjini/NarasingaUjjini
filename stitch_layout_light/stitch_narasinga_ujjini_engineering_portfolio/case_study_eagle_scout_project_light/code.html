@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eagle Scout Project - Case Study</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=Space+Grotesk:wght@700&amp;family=Source+Serif+4:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "outline-variant": "#d9c2b4",
+                "tertiary-fixed-dim": "#c6c6ca",
+                "tertiary": "#5a5c5f",
+                "secondary-container": "#8df4e6",
+                "on-background": "#1b1c1a",
+                "inverse-primary": "#ffb782",
+                "background": "#faf9f5",
+                "on-surface": "#1b1c1a",
+                "text-primary": "#1A1C1F",
+                "on-secondary-container": "#007167",
+                "secondary": "#006a61",
+                "on-primary": "#ffffff",
+                "soldermask-tint": "rgba(42, 155, 143, 0.15)",
+                "surface-raised": "#EAE9E4",
+                "surface-variant": "#e3e2df",
+                "primary": "#8c4b0f",
+                "tertiary-fixed": "#e2e2e6",
+                "surface-container-highest": "#e3e2df",
+                "surface-container": "#efeeea",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#30312e",
+                "primary-fixed": "#ffdcc5",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#ffb782",
+                "on-error-container": "#93000a",
+                "text-muted": "#5A5E66",
+                "surface": "#faf9f5",
+                "on-tertiary": "#ffffff",
+                "surface-tint": "#8f4d11",
+                "on-tertiary-fixed-variant": "#45474a",
+                "on-tertiary-container": "#fdfcff",
+                "surface-container-high": "#e9e8e4",
+                "on-secondary-fixed-variant": "#005049",
+                "surface-bright": "#faf9f5",
+                "surface-dim": "#dbdad6",
+                "copper-trace": "rgba(196, 120, 58, 0.25)",
+                "on-primary-container": "#fffbff",
+                "on-surface-variant": "#534439",
+                "tertiary-container": "#737478",
+                "secondary-fixed-dim": "#70d8ca",
+                "secondary-fixed": "#8df4e6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#aa6327",
+                "on-secondary-fixed": "#00201d",
+                "on-primary-fixed-variant": "#703800",
+                "on-tertiary-fixed": "#1a1c1f",
+                "inverse-on-surface": "#f2f1ed",
+                "on-primary-fixed": "#301400",
+                "outline": "#867368",
+                "on-error": "#ffffff",
+                "surface-container-low": "#f5f4f0"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "4px",
+                "margin-mobile": "16px",
+                "max-width-ui": "1152px",
+                "gutter": "24px",
+                "margin-desktop": "48px",
+                "max-width-editorial": "672px",
+                "max-width-standard": "1152px"
+        },
+        "fontFamily": {
+                "display-xl": [
+                        "Space Grotesk"
+                ],
+                "headline-lg": [
+                        "Space Grotesk"
+                ],
+                "headline-lg-mobile": [
+                        "Space Grotesk"
+                ],
+                "body-base": [
+                        "IBM Plex Sans"
+                ],
+                "display-2xl": [
+                        "Space Grotesk"
+                ],
+                "meta-mono": [
+                        "IBM Plex Mono"
+                ],
+                "meta-mono-sm": [
+                        "IBM Plex Mono"
+                ],
+                "body-bold": [
+                        "IBM Plex Sans"
+                ],
+                "body-editorial": [
+                        "\"Source Serif 4\""
+                ],
+                "ui-base": [
+                        "IBM Plex Sans"
+                ],
+                "ui-bold": [
+                        "IBM Plex Sans"
+                ]
+        },
+        "fontSize": {
+                "display-xl": [
+                        "40px",
+                        {
+                                "lineHeight": "46px",
+                                "letterSpacing": "-0.035em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-base": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-2xl": [
+                        "56px",
+                        {
+                                "lineHeight": "60px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "meta-mono": [
+                        "13px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "meta-mono-sm": [
+                        "11px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.06em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-bold": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-editorial": [
+                        "17px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "-0.005em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "ui-base": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ],
+                "ui-bold": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .pcb-trace {
+            position: relative;
+        }
+        .pcb-trace::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(196, 120, 58, 0.25);
+        }
+        .fiducial-tl::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 8px; height: 1px; background: rgba(196, 120, 58, 0.5);
+        }
+        .fiducial-tl::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 1px; height: 8px; background: rgba(196, 120, 58, 0.5);
+        }
+        .fiducial-tr::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 8px; height: 1px; background: rgba(196, 120, 58, 0.5);
+        }
+        .fiducial-tr::after {
+            content: ''; position: absolute; top: 0; right: 0; width: 1px; height: 8px; background: rgba(196, 120, 58, 0.5);
+        }
+        .fiducial-bl::before {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 8px; height: 1px; background: rgba(196, 120, 58, 0.5);
+        }
+        .fiducial-bl::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 1px; height: 8px; background: rgba(196, 120, 58, 0.5);
+        }
+        .fiducial-br::before {
+            content: ''; position: absolute; bottom: 0; right: 0; width: 8px; height: 1px; background: rgba(196, 120, 58, 0.5);
+        }
+        .fiducial-br::after {
+            content: ''; position: absolute; bottom: 0; right: 0; width: 1px; height: 8px; background: rgba(196, 120, 58, 0.5);
+        }
+      </style>
+</head>
+<body class="bg-surface-container-low text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-low fixed top-0 w-full h-16 z-50 border-b border-copper-trace bg-surface-container-low/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-desktop max-w-max-width-standard mx-auto h-full">
+<div class="font-headline-lg text-headline-lg text-on-surface tracking-tighter">
+                Narasinga Ujjini
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-ui-bold border-b-2 border-primary pb-1" href="#">Work</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200" href="#">Resume</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200" href="#">Articles</a>
+</div>
+<div class="flex items-center">
+<button aria-label="Toggle dark mode" class="text-primary hover:text-primary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow pt-[112px] pb-[112px]">
+<article class="max-w-max-width-standard mx-auto px-margin-desktop md:px-margin-desktop">
+<!-- Hero Header -->
+<header class="mb-[80px] md:mb-[112px]">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-soldermask-tint rounded border border-secondary mb-6">
+<span class="material-symbols-outlined text-secondary text-sm">engineering</span>
+<span class="font-meta-mono-sm text-meta-mono-sm text-secondary uppercase tracking-wider">Project 03 · Leadership</span>
+</div>
+<h1 class="font-display-2xl text-display-2xl text-on-surface mb-8">
+                    Bench and cubbies for Torrey Pines Wrestling
+                </h1>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant max-w-max-width-editorial">
+                    A comprehensive Eagle Scout service project demonstrating structural woodworking, team leadership, and community impact through the design and fabrication of custom athletic equipment storage.
+                </p>
+</header>
+<!-- Photo Trio Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-[112px]">
+<div class="md:col-span-8 bg-surface-container-highest border border-copper-trace relative fiducial-tl fiducial-tr fiducial-bl fiducial-br h-[400px] md:h-[600px] rounded p-1">
+<div class="w-full h-full bg-surface-container-low relative overflow-hidden rounded-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-quality, brutalist style photograph of a newly constructed wooden sports bench in a wrestling room setting. The bench is sturdy, made of lightly stained wood, contrasting with the dark industrial environment. The lighting is dramatic, similar to a high-end engineering laboratory, with deep shadows and sharp highlights on the wood grain. The overall mood is serious and robust, reflecting a modern industrial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg1n3WWZgd8Uy6_H8JlztzbT8_Of9eEA087016jl3eOKGGLpWLL09n_myV40aBkTNpY0YPeDCAkTWDlt4T_NjytC5jsXyWzIPdxr6MxbEdTVeUEBpZwdDktYGG7ACusdijTLQGUREa1gigA3s4chtWr0cYIN8y_EhHi1xUevotmCXTh-_Itlihoj_eB_ywpNWSmDbPa7N4iIqm_gimndigIZd5bcsf2S6AxiQDLajWkI6mMBR2QDru2w"/>
+<div class="absolute bottom-4 left-4 bg-surface/90 backdrop-blur border border-copper-trace px-3 py-1 font-meta-mono-sm text-meta-mono-sm text-primary">
+                            FIG_01: FINISHED BENCH STRUCTURE
+                        </div>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-gutter h-[400px] md:h-[600px]">
+<div class="flex-1 bg-surface-container-highest border border-copper-trace relative fiducial-tl fiducial-tr fiducial-bl fiducial-br rounded p-1">
+<div class="w-full h-full bg-surface-container-low relative overflow-hidden rounded-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up, high-contrast photograph of custom wooden storage cubbies built for a wrestling team. The image focuses on the precise joinery and robust construction. The environment is dark, with harsh, directional light highlighting the texture of the wood and the copper-toned hardware. The scene conveys a sense of rigorous fabrication and heavy-duty utility within a modern industrial context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBkLFPu_4ae-6mjzomPdKeFxfoHkwSyvI8RAvT10YM9XWptVxAEnvEZk52WrDmMaVGo7ToDRGIPiKLdeV9DsPk-2sdJKB209CdF9u7FPtBYFL02WwY9Wd7AF9DyPfyiGP56xLJiMaxvxo9Bf18D-AJXuZFxly7PkD7h_n8wWMPWGnVFBIa_Nl4kwjv_p9-RQHzHyqEGX3YcZg6TI75IKsJd37jldDWTc2UZ826G44m2lDRIbSX_kn6Sw"/>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur border border-copper-trace px-2 py-0.5 font-meta-mono-sm text-meta-mono-sm text-secondary">
+                                FIG_02: CUBBY MODULES
+                            </div>
+</div>
+</div>
+<div class="flex-1 bg-surface-container-highest border border-copper-trace relative fiducial-tl fiducial-tr fiducial-bl fiducial-br rounded p-1">
+<div class="w-full h-full bg-surface-container-low relative overflow-hidden rounded-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A wide-angle, atmospheric photograph showing the complete installation of the wooden benches and cubbies in the Torrey Pines wrestling room. The room is dimly lit, resembling an industrial facility or a high-end gym, with the new wooden structures acting as the focal point. The lighting emphasizes the scale of the project and its integration into the space. A subtle copper haze pervades the scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz7OY1zqA-1TeCKRCnF7j11qSFyZmXAnAGi3IfagziFJi8XnN0kdNELDmuCWxMUvlyBxtyZSPEVxi34WpFarTivkPECsd2s20NqJmg6SM54VnUXP3CgRxnhFpGXkOhAlh_ow5NAEdSXOKerpqCraCIXaZo8uARQuwm-4wZS4gxv9dwAdMfr-p0ZXeFFgatVbti3pq-Z-iuQwwMYqfyyW7sIOfrIYeL51RNIMYEkrYPGBCG4lV9hgU67g"/>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur border border-copper-trace px-2 py-0.5 font-meta-mono-sm text-meta-mono-sm text-tertiary">
+                                FIG_03: FACILITY OVERVIEW
+                            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Cards -->
+<section class="mb-[80px]">
+<div class="flex items-center gap-4 mb-12 pcb-trace">
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tighter">Process &amp; Execution</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1: Construction -->
+<div class="bg-surface border border-copper-trace rounded p-6 flex flex-col hover:bg-surface-raised transition-colors duration-300">
+<div class="mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">construction</span>
+</div>
+<h3 class="font-ui-bold text-ui-bold text-on-surface mb-3 uppercase tracking-wide">01. Construction Phase</h3>
+<p class="font-meta-mono text-meta-mono text-on-surface-variant flex-grow">
+                            Translation of CAD schematics into physical modules. Managed material procurement, precise milling, and heavy-duty assembly ensuring high-tolerance joints suitable for athletic facility wear.
+                        </p>
+</div>
+<!-- Card 2: Leadership -->
+<div class="bg-surface border border-copper-trace rounded p-6 flex flex-col hover:bg-surface-raised transition-colors duration-300">
+<div class="mb-4">
+<span class="material-symbols-outlined text-secondary text-3xl">group</span>
+</div>
+<h3 class="font-ui-bold text-ui-bold text-on-surface mb-3 uppercase tracking-wide">02. Leadership Coordination</h3>
+<p class="font-meta-mono text-meta-mono text-on-surface-variant flex-grow">
+                            Directed a team of 15 volunteers across multiple fabrication shifts. Implemented strict safety protocols, distributed tasks based on skill levels, and maintained project momentum to meet facility deadlines.
+                        </p>
+</div>
+<!-- Card 3: Outcome -->
+<div class="bg-surface border border-copper-trace rounded p-6 flex flex-col hover:bg-surface-raised transition-colors duration-300">
+<div class="mb-4">
+<span class="material-symbols-outlined text-tertiary text-3xl">fact_check</span>
+</div>
+<h3 class="font-ui-bold text-ui-bold text-on-surface mb-3 uppercase tracking-wide">03. Project Outcome</h3>
+<p class="font-meta-mono text-meta-mono text-on-surface-variant flex-grow">
+                            Delivered modular storage and seating systems that organized equipment and improved facility efficiency. The finalized build passed rigorous inspection and met all athletic department specifications.
+                        </p>
+</div>
+</div>
+</section>
+</article>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-12 border-t border-copper-trace mt-20">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-margin-desktop max-w-max-width-standard mx-auto gap-gutter">
+<div class="font-headline-lg text-headline-lg text-on-surface">
+                Narasinga Ujjini
+            </div>
+<div class="flex gap-6 font-meta-mono text-meta-mono">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">GitHub</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Email</a>
+</div>
+<div class="font-meta-mono text-meta-mono text-on-surface-variant">
+                © 2024 Narasinga Ujjini. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

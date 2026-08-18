@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom Putter - Machining Project</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=Space+Grotesk:wght@700&amp;family=Source+Serif+4:wght@400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "outline-variant": "#d9c2b4",
+                "tertiary-fixed-dim": "#c6c6ca",
+                "tertiary": "#5a5c5f",
+                "secondary-container": "#8df4e6",
+                "on-background": "#1b1c1a",
+                "inverse-primary": "#ffb782",
+                "background": "#faf9f5",
+                "on-surface": "#1b1c1a",
+                "text-primary": "#1A1C1F",
+                "on-secondary-container": "#007167",
+                "secondary": "#006a61",
+                "on-primary": "#ffffff",
+                "soldermask-tint": "rgba(42, 155, 143, 0.15)",
+                "surface-raised": "#EAE9E4",
+                "surface-variant": "#e3e2df",
+                "primary": "#8c4b0f",
+                "tertiary-fixed": "#e2e2e6",
+                "surface-container-highest": "#e3e2df",
+                "surface-container": "#efeeea",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#30312e",
+                "primary-fixed": "#ffdcc5",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#ffb782",
+                "on-error-container": "#93000a",
+                "text-muted": "#5A5E66",
+                "surface": "#faf9f5",
+                "on-tertiary": "#ffffff",
+                "surface-tint": "#8f4d11",
+                "on-tertiary-fixed-variant": "#45474a",
+                "on-tertiary-container": "#fdfcff",
+                "surface-container-high": "#e9e8e4",
+                "on-secondary-fixed-variant": "#005049",
+                "surface-bright": "#faf9f5",
+                "surface-dim": "#dbdad6",
+                "copper-trace": "rgba(196, 120, 58, 0.25)",
+                "on-primary-container": "#fffbff",
+                "on-surface-variant": "#534439",
+                "tertiary-container": "#737478",
+                "secondary-fixed-dim": "#70d8ca",
+                "secondary-fixed": "#8df4e6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#aa6327",
+                "on-secondary-fixed": "#00201d",
+                "on-primary-fixed-variant": "#703800",
+                "on-tertiary-fixed": "#1a1c1f",
+                "inverse-on-surface": "#f2f1ed",
+                "on-primary-fixed": "#301400",
+                "outline": "#867368",
+                "on-error": "#ffffff",
+                "surface-container-low": "#f5f4f0"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "4px",
+                "margin-mobile": "16px",
+                "max-width-ui": "1152px",
+                "gutter": "24px",
+                "margin-desktop": "48px"
+        },
+        "fontFamily": {
+                "display-xl": [
+                        "Space Grotesk"
+                ],
+                "headline-lg": [
+                        "Space Grotesk"
+                ],
+                "headline-lg-mobile": [
+                        "Space Grotesk"
+                ],
+                "body-base": [
+                        "IBM Plex Sans"
+                ],
+                "display-2xl": [
+                        "Space Grotesk"
+                ],
+                "meta-mono": [
+                        "IBM Plex Mono"
+                ],
+                "meta-mono-sm": [
+                        "IBM Plex Mono"
+                ],
+                "body-bold": [
+                        "IBM Plex Sans"
+                ]
+        },
+        "fontSize": {
+                "display-xl": [
+                        "40px",
+                        {
+                                "lineHeight": "46px",
+                                "letterSpacing": "-0.035em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-base": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-2xl": [
+                        "56px",
+                        {
+                                "lineHeight": "60px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "meta-mono": [
+                        "13px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "meta-mono-sm": [
+                        "11px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.06em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-bold": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+</head>
+<body class="bg-surface-container-low text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full h-16 z-50 border-b border-copper-trace bg-surface-container-low/80 backdrop-blur-md transition-all duration-300">
+<div class="flex justify-between items-center px-margin-desktop max-w-max-width-ui mx-auto h-full px-margin-mobile md:px-margin-desktop">
+<a class="font-headline-lg text-headline-lg text-on-surface tracking-tighter hover:text-primary transition-colors" href="#">Narasinga Ujjini</a>
+<nav class="hidden md:flex gap-gutter items-center h-full">
+<a class="text-primary font-body-bold border-b-2 border-primary pb-1 h-full flex items-center mt-1" href="#">Work</a>
+<a class="text-on-surface-variant font-body-base pb-1 hover:text-primary transition-colors duration-200 h-full flex items-center mt-1" href="#">About</a>
+<a class="text-on-surface-variant font-body-base pb-1 hover:text-primary transition-colors duration-200 h-full flex items-center mt-1" href="#">Resume</a>
+<a class="text-on-surface-variant font-body-base pb-1 hover:text-primary transition-colors duration-200 h-full flex items-center mt-1" href="#">Articles</a>
+</nav>
+<button aria-label="Toggle dark mode" class="text-on-surface hover:text-primary transition-colors p-2 rounded active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="dark_mode">light_mode</span>
+</button>
+</div>
+</header>
+<main class="flex-grow pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-max-width-ui mx-auto w-full">
+<!-- Hero Section -->
+<section class="mb-20 md:mb-32">
+<div class="flex flex-col gap-unit">
+<span class="font-meta-mono text-meta-mono text-primary uppercase tracking-widest">Project 06 · Machining</span>
+<h1 class="font-display-2xl text-display-2xl text-on-surface mt-2 mb-6">Custom putter</h1>
+<p class="font-body-base text-body-base text-on-surface-variant max-w-[672px]">
+                    Designing and machining a custom golf putter from a solid billet of 303 stainless steel. Focus on high-tolerance 4-axis milling, precise center of gravity calculations, and achieving a flawless milled finish.
+                </p>
+</div>
+<div class="mt-12 flex gap-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface border border-copper-trace rounded font-meta-mono-sm text-meta-mono-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                    STATUS: COMPLETED
+                </div>
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface border border-copper-trace rounded font-meta-mono-sm text-meta-mono-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">precision_manufacturing</span>
+                    TOLERANCE: ±0.001"
+                </div>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full h-px bg-copper-trace mb-20 relative">
+<div class="absolute left-1/4 top-0 w-8 h-px bg-copper-trace transform -translate-y-[4px] rotate-45 origin-left"></div>
+<div class="absolute left-[calc(25%+8px)] top-[8px] w-full h-px bg-copper-trace"></div>
+</div>
+<!-- Gallery Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- CAD -->
+<div class="md:col-span-7 flex flex-col gap-4 group">
+<div class="relative w-full aspect-video bg-surface border border-copper-trace rounded overflow-hidden p-1">
+<!-- Fiducial Marks -->
+<div class="absolute top-2 left-2 w-2 h-2 border-t border-l border-copper-trace z-10"></div>
+<div class="absolute top-2 right-2 w-2 h-2 border-t border-r border-copper-trace z-10"></div>
+<div class="absolute bottom-2 left-2 w-2 h-2 border-b border-l border-copper-trace z-10"></div>
+<div class="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-copper-trace z-10"></div>
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0" data-alt="A highly detailed 3D CAD rendering of a modern golf putter head displayed on a dark grey software interface screen. The rendering highlights intricate internal weight pockets, alignment lines, and precise geometry. The lighting is studio-quality, emphasizing the metallic sheen of simulated 303 stainless steel. The aesthetic is clean, technical, and industrial, reflecting a high-end engineering design environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArC3dKC4aiAUhkndSNgUzS_Iy-0k8bvQ07IAUZSQXINTtToY_fgq-H6-9_4XdLwdKvKSKJO30KNEOYZiVm_cxNg9iN8XJ2td7vmaybkowVJfGvu0GnYLf3Y74kZiSBl1tIQ5Rdo58aDaZG8Z8exmZdE2igH-Mr27aFI64UoZ5403Z9Johd_1-UQxymm_WRNUH7Bv7PnWWsC2ZRkYCzG8_S8OS8EByc--tkVkA9tyKl8GJPZDlVUU4spw"/>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-meta-mono text-meta-mono text-primary">01</span>
+<div>
+<h3 class="font-body-bold text-body-bold text-on-surface">CAD Geometry</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Parametric modeling to establish ideal weight distribution and toe hang.</p>
+</div>
+</div>
+</div>
+<!-- CAM -->
+<div class="md:col-span-5 flex flex-col gap-4 group mt-12 md:mt-0">
+<div class="relative w-full aspect-square md:aspect-auto md:h-[calc(100%-4rem)] bg-surface border border-copper-trace rounded overflow-hidden p-1">
+<!-- Fiducial Marks -->
+<div class="absolute top-2 left-2 w-2 h-2 border-t border-l border-copper-trace z-10"></div>
+<div class="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-copper-trace z-10"></div>
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0" data-alt="A high-contrast screenshot of a CAM software interface showing complex toolpath generation for a golf putter. Brightly colored green and red lines representing milling passes overlay a dark grey 3D model of the putter. The interface includes technical panels with numbers and code on the sides. The overall mood is analytical, precise, and heavily technical, suited for a modern industrial context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFSrQI6XIk5FsNnt0_YPFMwxv0nooa6dMxXnlo94Gh9JH7UpPjOJ0E-uXxNuRZdXZNXuZG9G2lv-w3EC5RuBa3t1PaeK4DLpa9mm0-V9sE6NDOIv8nSu28BO96_pAvIzI50CeGFEUzoVru7UvQLVlLuLCwfOZlgRXRSJocCNd--k70oEGQ2ogzw9XGZxbGfm6IH0QZ-gR_6DXfl25H-6G9mT9jZwnNvY2JHFk9hm9GflHWT7Q7FogeLA"/>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-meta-mono text-meta-mono text-secondary">02</span>
+<div>
+<h3 class="font-body-bold text-body-bold text-on-surface">CAM Toolpaths</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Optimizing feed rates and stepovers for a flawless face milling pattern.</p>
+</div>
+</div>
+</div>
+<!-- CUT -->
+<div class="md:col-span-5 flex flex-col gap-4 group mt-12">
+<div class="relative w-full aspect-square md:aspect-auto md:h-[calc(100%-4rem)] bg-surface border border-copper-trace rounded overflow-hidden p-1">
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0" data-alt="A close-up, dramatic action shot of a CNC milling machine cutting into a block of stainless steel to form a golf putter. Coolant fluid sprays violently as sparks and metal chips fly off the high-speed spinning endmill. The lighting is harsh and industrial, casting deep shadows against a dark machine interior. The focus is entirely on the brutal yet precise interaction between tool and material." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMs1BAyIAkAWd9dr4ldiTPI6O8jHEPTznm6woAU_asMR_5baqCl2dkSGTqmAByxwfI4tl-y7P1pvv1DJoXGTHiVDX4Axsy1vX_rNr271TmZN5IgS1Vj03CNjJDm6r21olFE8O1XmpSPU2OKrdHRFZLcSg-aDpcIPQ4hS6bm-a07H9kI-jcY0wowgCa_2c_CziqhU04I50_WEiOgrWquwxfnfYJhFA6y8X9lBeHXCU4hZKDyaPQYvyJrw"/>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-meta-mono text-meta-mono text-tertiary">03</span>
+<div>
+<h3 class="font-body-bold text-body-bold text-on-surface">Haas 4-Axis Milling</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Roughing and finishing passes on a solid 303 stainless billet.</p>
+</div>
+</div>
+</div>
+<!-- FINISH -->
+<div class="md:col-span-7 flex flex-col gap-4 group mt-12">
+<div class="relative w-full aspect-video bg-surface border border-copper-trace rounded overflow-hidden p-1">
+<!-- Fiducial Marks -->
+<div class="absolute top-2 left-2 w-2 h-2 border-t border-l border-copper-trace z-10"></div>
+<div class="absolute top-2 right-2 w-2 h-2 border-t border-r border-copper-trace z-10"></div>
+<div class="absolute bottom-2 left-2 w-2 h-2 border-b border-l border-copper-trace z-10"></div>
+<div class="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-copper-trace z-10"></div>
+<img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0" data-alt="A beautifully lit macro photograph of a finished custom milled golf putter head resting on a dark graphite inspection table. The focus is incredibly sharp on the precisely machined face grooves, showing off a perfectly uniform geometric pattern. The metal has a satin finish that catches a soft, cool light, creating a strong contrast with deep shadows. The aesthetic screams high-end craftsmanship and absolute precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcs0kPLgLXs6sYQCyWfZ82YvA77YYTrka_wUXJFjqCUBGFxh3wHhsQLCxKgvi26cPUpTKIK_L7fbxMxDw6A7nO2cxPfNoae3ninTCzjDJvWdVxh4911ZcjbN8-njm-azqc-b0YkHWqcMKTH2PZDBRmZvW3eacrMxCgG3Kxkvw6HFH2UhGaSXJtjJuFZTrRIu6PC3YcYDpNzBbhpx-_eyHMaU2HWBDfF-4uYh5rI7Tj2yEt4o1XgkV9zA"/>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-meta-mono text-meta-mono text-primary">04</span>
+<div>
+<h3 class="font-body-bold text-body-bold text-on-surface">Final Inspection</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mt-1">Verifying deep-milled face pattern and hand-applied alignment fill.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface border-t border-copper-trace mt-20">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-margin-desktop max-w-max-width-ui mx-auto gap-gutter px-margin-mobile md:px-margin-desktop">
+<span class="font-headline-lg text-headline-lg text-on-surface text-[24px] md:text-[32px]">Narasinga Ujjini</span>
+<div class="flex gap-gutter font-meta-mono text-meta-mono">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">GitHub</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Email</a>
+</div>
+<span class="font-meta-mono text-meta-mono text-on-surface-variant">© 2024 Narasinga Ujjini. All rights reserved.</span>
+</div>
+</footer>
+</body></html>

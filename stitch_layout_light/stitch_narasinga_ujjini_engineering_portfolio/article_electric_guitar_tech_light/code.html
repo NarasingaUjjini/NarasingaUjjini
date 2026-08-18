@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How does an electric guitar really work? - Narasinga Ujjini</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "outline-variant": "#d9c2b4",
+                "tertiary-fixed-dim": "#c6c6ca",
+                "tertiary": "#5a5c5f",
+                "secondary-container": "#8df4e6",
+                "on-background": "#1b1c1a",
+                "inverse-primary": "#ffb782",
+                "background": "#faf9f5",
+                "on-surface": "#1b1c1a",
+                "text-primary": "#1A1C1F",
+                "on-secondary-container": "#007167",
+                "secondary": "#006a61",
+                "on-primary": "#ffffff",
+                "soldermask-tint": "rgba(42, 155, 143, 0.15)",
+                "surface-raised": "#EAE9E4",
+                "surface-variant": "#e3e2df",
+                "primary": "#8c4b0f",
+                "tertiary-fixed": "#e2e2e6",
+                "surface-container-highest": "#e3e2df",
+                "surface-container": "#efeeea",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#30312e",
+                "primary-fixed": "#ffdcc5",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#ffb782",
+                "on-error-container": "#93000a",
+                "text-muted": "#5A5E66",
+                "surface": "#faf9f5",
+                "on-tertiary": "#ffffff",
+                "surface-tint": "#8f4d11",
+                "on-tertiary-fixed-variant": "#45474a",
+                "on-tertiary-container": "#fdfcff",
+                "surface-container-high": "#e9e8e4",
+                "on-secondary-fixed-variant": "#005049",
+                "surface-bright": "#faf9f5",
+                "surface-dim": "#dbdad6",
+                "copper-trace": "rgba(196, 120, 58, 0.25)",
+                "on-primary-container": "#fffbff",
+                "on-surface-variant": "#534439",
+                "tertiary-container": "#737478",
+                "secondary-fixed-dim": "#70d8ca",
+                "secondary-fixed": "#8df4e6",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "primary-container": "#aa6327",
+                "on-secondary-fixed": "#00201d",
+                "on-primary-fixed-variant": "#703800",
+                "on-tertiary-fixed": "#1a1c1f",
+                "inverse-on-surface": "#f2f1ed",
+                "on-primary-fixed": "#301400",
+                "outline": "#867368",
+                "on-error": "#ffffff",
+                "surface-container-low": "#f5f4f0"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "4px",
+                "margin-mobile": "16px",
+                "max-width-editorial": "672px",
+                "max-width-standard": "1152px",
+                "max-width-ui": "1152px",
+                "gutter": "24px",
+                "margin-desktop": "48px"
+        },
+        "fontFamily": {
+                "display-xl": [
+                        "Space Grotesk"
+                ],
+                "headline-lg": [
+                        "Space Grotesk"
+                ],
+                "headline-lg-mobile": [
+                        "Space Grotesk"
+                ],
+                "body-base": [
+                        "IBM Plex Sans"
+                ],
+                "body-editorial": [
+                        "\"Source Serif 4\""
+                ],
+                "ui-base": [
+                        "IBM Plex Sans"
+                ],
+                "ui-bold": [
+                        "IBM Plex Sans"
+                ],
+                "display-2xl": [
+                        "Space Grotesk"
+                ],
+                "meta-mono": [
+                        "IBM Plex Mono"
+                ],
+                "meta-mono-sm": [
+                        "IBM Plex Mono"
+                ],
+                "body-bold": [
+                        "IBM Plex Sans"
+                ]
+        },
+        "fontSize": {
+                "display-xl": [
+                        "40px",
+                        {
+                                "lineHeight": "46px",
+                                "letterSpacing": "-0.035em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "38px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-base": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-editorial": [
+                        "17px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "-0.005em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "ui-base": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ],
+                "ui-bold": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-2xl": [
+                        "56px",
+                        {
+                                "lineHeight": "60px",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "meta-mono": [
+                        "13px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "meta-mono-sm": [
+                        "11px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.06em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-bold": [
+                        "15px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Custom structural styles for industrial feel */
+        .fiducial-tl { position: absolute; top: 0; left: 0; width: 8px; height: 8px; border-top: 1px solid rgba(196, 120, 58, 0.5); border-left: 1px solid rgba(196, 120, 58, 0.5); }
+        .fiducial-tr { position: absolute; top: 0; right: 0; width: 8px; height: 8px; border-top: 1px solid rgba(196, 120, 58, 0.5); border-right: 1px solid rgba(196, 120, 58, 0.5); }
+        .fiducial-bl { position: absolute; bottom: 0; left: 0; width: 8px; height: 8px; border-bottom: 1px solid rgba(196, 120, 58, 0.5); border-left: 1px solid rgba(196, 120, 58, 0.5); }
+        .fiducial-br { position: absolute; bottom: 0; right: 0; width: 8px; height: 8px; border-bottom: 1px solid rgba(196, 120, 58, 0.5); border-right: 1px solid rgba(196, 120, 58, 0.5); }
+        
+        .pcb-trace-divider {
+            position: relative;
+            height: 1px;
+            background-color: rgba(196, 120, 58, 0.25);
+            width: 100%;
+        }
+        .pcb-trace-divider::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -3px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #faf9f5;
+            border: 1px solid rgba(196, 120, 58, 0.5);
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low text-on-background antialiased min-h-screen selection:bg-primary-container selection:text-on-primary-container flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-low text-primary font-ui-base text-ui-base fixed top-0 w-full h-16 z-50 border-b border-copper-trace bg-surface-container-low/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-desktop max-w-max-width-standard mx-auto h-full">
+<div class="font-headline-lg text-headline-lg text-on-surface tracking-tighter">
+                Narasinga Ujjini
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200 active:scale-95 transition-transform" href="#">Work</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200 active:scale-95 transition-transform" href="#">About</a>
+<a class="text-on-surface-variant font-ui-base pb-1 hover:text-primary transition-colors duration-200 active:scale-95 transition-transform" href="#">Resume</a>
+<a class="text-primary font-ui-bold border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200 active:scale-95 transition-transform" href="#">Articles</a>
+</div>
+<div class="flex items-center">
+<button aria-label="Toggle light mode" class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">light_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow pt-32 pb-24 px-margin-mobile md:px-margin-desktop">
+<article class="max-w-max-width-editorial mx-auto">
+<!-- Header Section -->
+<header class="mb-16 flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<span class="font-meta-mono text-meta-mono text-primary bg-primary-container/10 px-2 py-1 rounded-sm border border-copper-trace inline-flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                        Essay · Audio
+                    </span>
+</div>
+<h1 class="font-display-xl md:font-display-2xl text-display-xl md:text-display-2xl text-on-surface">
+                    How does an electric guitar really work?
+                </h1>
+<p class="font-body-editorial text-body-editorial text-on-surface-variant text-lg">
+                    Beneath the wood and lacquer lies a miniature power plant relying on Faraday's law of induction to turn string vibration into high-voltage tone.
+                </p>
+<div class="flex items-center gap-4 mt-4 pt-6 border-t border-copper-trace">
+<div class="font-meta-mono-sm text-meta-mono-sm text-text-muted uppercase tracking-widest">
+                        Byline:
+                    </div>
+<div class="font-ui-bold text-ui-bold text-on-surface">
+                        Narasinga Ujjini
+                    </div>
+</div>
+</header>
+<!-- Article Body -->
+<div class="font-body-editorial text-body-editorial text-on-surface space-y-8 max-w-[65ch]">
+<p>
+                    When a guitarist strikes a chord, the immediate visceral impact feels acoustic, physical. But the reality of a solid-body electric guitar is profoundly electromagnetic. It is, at its core, a transducer—a device designed specifically to convert kinetic energy into a tiny, alternating electrical current.
+                </p>
+<p>
+                    To understand this mechanism, one must peer into the heart of the instrument: the pickup. While it may look like a simple plastic bar studded with metal poles, it is actually a precisely wound induction coil sitting atop a permanent magnet.
+                </p>
+<!-- Figure Slot -->
+<figure class="my-12 -mx-4 md:-mx-12 lg:-mx-24 relative">
+<div class="bg-surface-container p-2 border border-copper-trace rounded-sm relative">
+<div class="fiducial-tl"></div>
+<div class="fiducial-tr"></div>
+<div class="fiducial-bl"></div>
+<div class="fiducial-br"></div>
+<div class="aspect-video relative overflow-hidden bg-surface-container-low">
+<img class="object-cover w-full h-full opacity-90 hover:opacity-100 transition-opacity duration-500 grayscale hover:grayscale-0 mix-blend-multiply" data-alt="A highly detailed macro photograph of an electric guitar magnetic pickup. Copper wire is tightly wound thousands of times around cylindrical Alnico magnetic pole pieces. The scene is lit with harsh, high-contrast industrial lighting, emphasizing the metallic textures of the wire and the machined precision of the metal components against a dark, shadowy slate background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKwUQ2LkODL4_K9mXB2SNwC2Ldvnal1gKz3wNISmyvB5LanFrxxsmQmZf8Uzaf_Bhyfyc5YmCQ_XaPhEIF9px87LqXzecO2SduoYWkCv8wkGLzuQ7JzI6pBnlCOACEgyYb-e4P-lRhpg_jMcPk9kl2z7u1FBTxt1O3DfTp2MvVqwXuzZToUnKDlLDHCKBf-7bNOLhOxeWjzcUuqYglhw-U5HuZRW-1kwZdgB-pOW7LzLL-ZBcXqjvO0A"/>
+<!-- Simulated overlay scanline effect -->
+<div class="absolute inset-0 pointer-events-none" style="background: repeating-linear-gradient(transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);"></div>
+</div>
+</div>
+<figcaption class="mt-4 font-meta-mono-sm text-meta-mono-sm text-text-muted flex gap-4">
+<span class="text-primary">FIG 1.0</span>
+<span>A standard single-coil transducer. Thousands of turns of 42 AWG copper wire enclose the magnetic field.</span>
+</figcaption>
+</figure>
+<p>
+                    The strings of an electric guitar are manufactured from ferromagnetic alloys, typically nickel-plated steel. When resting, these strings sit within the stationary magnetic field generated by the pickup's magnets. This field essentially magnetizes a small segment of the string directly above it.
+                </p>
+<!-- Pull Quote -->
+<blockquote class="my-10 pl-gutter border-l-2 border-primary font-ui-base text-ui-base text-on-surface-variant italic relative">
+<span class="absolute -left-3 -top-2 text-primary opacity-20 font-display-xl leading-none">"</span>
+                    It is not the acoustic resonance of the wood that defines the primary electrical signal, but the disruption of the flux field by a vibrating mass of steel.
+                </blockquote>
+<p>
+                    The magic happens upon plucking. As the magnetized string vibrates, it physically moves the magnetic field along with it. This moving magnetic field cuts across the thousands of turns of microscopic copper wire wound around the pickup bobbin. According to Faraday's law of induction, this fluctuating magnetic flux induces a corresponding alternating voltage in the coil.
+                </p>
+<p>
+                    This signal, though weak—usually measuring between 100 to 500 millivolts—contains the complex harmonic footprint of the string's vibration. It travels through the volume and tone potentiometers, out the output jack, and down an instrument cable to an amplifier, where silicon or vacuum tubes multiply its power until it can drive a speaker cone.
+                </p>
+</div>
+<!-- Divider -->
+<div class="my-20">
+<div class="pcb-trace-divider"></div>
+</div>
+<!-- Prev/Next Navigation -->
+<nav class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<a class="group block p-6 bg-surface-container border border-copper-trace hover:bg-surface-container-high transition-colors relative" href="#">
+<div class="fiducial-tl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="font-meta-mono-sm text-meta-mono-sm text-text-muted mb-2 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">arrow_back</span> Previous
+                    </div>
+<div class="font-ui-bold text-ui-bold text-on-surface group-hover:text-primary transition-colors">
+                        Understanding Vacuum Tube Rectification
+                    </div>
+</a>
+<a class="group block p-6 bg-surface-container border border-copper-trace hover:bg-surface-container-high transition-colors relative text-right" href="#">
+<div class="fiducial-tr opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="font-meta-mono-sm text-meta-mono-sm text-text-muted mb-2 uppercase flex items-center justify-end gap-2">
+                        Next <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</div>
+<div class="font-ui-bold text-ui-bold text-on-surface group-hover:text-primary transition-colors">
+                        The Physics of Analog Delay Circuits
+                    </div>
+</a>
+</nav>
+</article>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-12 border-t border-copper-trace mt-20">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-margin-desktop max-w-max-width-standard mx-auto gap-gutter">
+<div class="font-headline-lg text-headline-lg text-on-surface">
+                Narasinga Ujjini
+            </div>
+<div class="flex items-center gap-6 font-meta-mono text-meta-mono">
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">GitHub</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors" href="#">Email</a>
+</div>
+<div class="font-meta-mono text-meta-mono text-on-surface-variant">
+                © 2024 Narasinga Ujjini. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>
