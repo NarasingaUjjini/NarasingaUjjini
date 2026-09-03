@@ -1134,6 +1134,74 @@ html.dark .card-shot img { mix-blend-mode: normal; opacity: 1; }
 .gallery h3 { margin: 1rem 1rem 0.25rem; font-size: 1.05rem; }
 .gallery p { margin: 0 1rem 1rem; color: var(--text-soft); font-size: 14px; }
 
+.phone-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+  margin: 0 0 3rem;
+}
+
+@media (min-width: 700px) {
+  .phone-gallery { grid-template-columns: repeat(5, 1fr); }
+}
+
+.phone-gallery figure {
+  margin: 0;
+  padding: 4px;
+  background: var(--bg-lowest);
+}
+
+.phone-gallery img {
+  width: 100%;
+  height: auto;
+  max-height: 22rem;
+  object-fit: contain;
+  object-position: top;
+  display: block;
+  cursor: zoom-in;
+  background: #0b0d10;
+}
+
+.phone-gallery figcaption {
+  padding: 0.65rem 0.4rem 0.5rem;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--trace);
+  text-align: center;
+}
+
+.figure--phone {
+  max-width: 16rem;
+}
+
+.card-shot--phone {
+  height: 16rem;
+}
+
+.card-shot--phone img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 12%;
+}
+
+.tile-media--phone {
+  height: 16rem;
+  overflow: hidden;
+}
+
+.tile-media--phone img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center 12%;
+}
+
+@media (min-width: 768px) {
+  .tile.span-12 .tile-media--phone { height: 22rem; }
+}
+
 .code-block {
   margin: 1.5rem 0;
   overflow: hidden;
