@@ -1,133 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-    document.documentElement.classList.remove("no-js");
-    (function () {
-      try {
-        var t = localStorage.getItem("portfolio-theme");
-        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
-        document.documentElement.classList.toggle("dark", dark);
-      } catch (e) {}
-    })();
-  </script>
-  <title>AI automation of OpenLane — Narasinga Ujjini</title>
-  <meta name="description" content="Using a locally trained qwen2.5 Coder model to translate English into Verilog and automate OpenLane chip design — and why people still matter.">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <meta http-equiv="refresh" content="0; url=edaautomation.html">
+  <link rel="canonical" href="edaautomation.html">
+  <title>Redirecting…</title>
+  <script>location.replace("edaautomation.html");</script>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
-    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
-      <a href="work.html" aria-current="page">Work</a>
-      <a href="about.html">About</a>
-      <a href="resume.html">Resume</a>
-      <a href="articles.html">Articles</a>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
-        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
-      </button>
-    </nav>
-  </div>
-</header>
-
-<main class="canvas">
-  <header class="case-head fade-in">
-    <h1 class="display">AI automation of OpenLane</h1>
-  </header>
-
-  <div class="case-layout">
-    <div class="prose fade-in">
-      <p>
-        OpenLane is an open-source Electronic Design Automation (EDA) tool. Anyone can design a small integrated circuit on SkyWater’s 130 nanometer scale ‘Process Design Kit’ (PDK) - a fancy name for the requirements of a certain manufacturing process. An EDA tool takes the code you write in RTL (Register Transfer-Level, a way to describe computers at a low level), compares it to what can be done in the PDK, and lays out your integrated circuit for you, so long as your design meets the manufacturing requirements of the PDK. The end result is a Ground Design Schematic II file (GDSII) that can be sent to chip factories (foundries) for manufacturing.
-      </p>
-      <p>
-        Even though EDA tools like OpenLane have made the chip design process much faster, the chip design process still requires:
-      </p>
-      <ul>
-        <li>Knowledge of RTL languages (like Verilog or VHDL), and</li>
-        <li>A time-consuming verification process to make sure your chip actually meets manufacturing requirements.</li>
-      </ul>
-      <p>
-        After designing a rudimentary 4-bit counter in OpenLane, I wondered: could AI make this a much faster process?
-      </p>
-      <p>
-        To tackle the first problem of RTL knowledge, I used Ollama’s qwen2.5 Coder model to take a plain-English prompt and translate it to Verilog (the RTL language used in OpenLane). Ollama is an open-source AI platform that allows you to download open-source AI models, like qwen2.5 Coder, on your own computer. This process began as a prompt-engineering problem. However, I quickly realized that qwen2.5 was pretty bad at the ‘translation’ process!
-      </p>
-      <p>
-        This meant that the next problem was training qwen2.5 to be viable for this specific task, before approaching the verification problem. To train the model, I had Cursor create a training script specifically for this use-case: creating small integrated circuits in this specific PDK. Google Colab allowed me to use NVIDIA’s T4 GPU to train the model on the cloud for free! The newly trained qwen2.5 Coder model performed significantly better compared to its predecessor - less unnecessary or redundant code, and less time for the translation process.
-      </p>
-      <p>
-        The next step was to attack the verification problem, and finally answer the question: is it possible to fully automate the chip design process? Instead of isolating the newly trained qwen2.5 model to the translation process, I gave it full control over the entire EDA (electronic design automation) process. After some further training, automated ‘gates’ were created to catch any mistakes in RTL, floorplanning, or other steps of the chip design pipeline.
-      </p>
-      <p>
-        Unfortunately, due to a combination of the several different tools in the design pipeline (Docker, Linux, OpenLane, KLayout, etc.) the model still had trouble catching any errors. Furthermore, the model is still poorly trained - it specializes in small integrated circuits like counters or registers, but fails for anything even slightly more complicated. Furthermore, any ‘special conditions’ thrown at the model (forcing it to break certain rules of the PDK (process design kit), or specifying a number of gates) caused it to either hallucinate or give up.
-      </p>
-      <p>
-        I learned that for now, humans are still very important to the chip design process. Certain nuances, like the special conditions or understanding the intent of the plain-English prompt, still requires people to ensure that the chip that comes out of the other end could actually work. Furthermore, the model’s poor performance on a relatively simple PDK (compared to more intensive and complicated manufacturing processes) demonstrates how far we are from truly automated EDA tools, and where we could innovate more.
-      </p>
-
-      <figure class="module figure">
-        <span class="module-marks"></span>
-        <img src="openlaneai-ui-01.png" alt="Project overview with in-bounds and out-of-bounds limits" onclick="openModal(this.src)" width="1400" height="900">
-        <figcaption>Project overview with in-bounds and out-of-bounds limits</figcaption>
-      </figure>
-      <figure class="module figure">
-        <span class="module-marks"></span>
-        <img src="openlaneai-ui-02.png" alt="English prompt for a 4-bit counter and manufacturability pass results" onclick="openModal(this.src)" width="1400" height="900">
-        <figcaption>English prompt for a 4-bit counter and manufacturability pass results</figcaption>
-      </figure>
-      <figure class="module figure">
-        <span class="module-marks"></span>
-        <img src="openlaneai-ui-03.png" alt="Generated Verilog and KLayout GDS preview" onclick="openModal(this.src)" width="1400" height="900">
-        <figcaption>Generated Verilog and KLayout GDS preview</figcaption>
-      </figure>
-      <figure class="module figure">
-        <span class="module-marks"></span>
-        <img src="openlaneai-ui-04.png" alt="Technical log showing quality gates and example prompts" onclick="openModal(this.src)" width="1400" height="900">
-        <figcaption>Technical log showing quality gates and example prompts</figcaption>
-      </figure>
-    </div>
-
-    <aside class="module telemetry fade-in">
-      <span class="module-marks"></span>
-      <h3>Tools and Libraries</h3>
-      <div class="chips" style="margin: 0 0 1.75rem;">
-        <span class="chip">OpenLane</span>
-        <span class="chip">Ollama</span>
-        <span class="chip">qwen2.5 Coder</span>
-        <span class="chip">Google Colab</span>
-        <span class="chip">Docker</span>
-        <span class="chip">KLayout</span>
-      </div>
-      <a class="button button--ghost" href="asic-librelane.html" style="width:100%;margin-bottom:0.75rem;">Related: first ASIC</a>
-      <a class="button" href="work.html" style="width:100%;">All work</a>
-    </aside>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">Narasinga Ujjini</div>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
-    </div>
-    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
-  </div>
-</footer>
-
-<div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">
-  <img id="modalImg" src="" alt="">
-</div>
+  <p>This page moved to <a href="edaautomation.html">edaautomation.html</a>.</p>
 </body>
 </html>
