@@ -14,7 +14,7 @@
     })();
   </script>
   <title>TrailMap GPS — Narasinga Ujjini</title>
-  <meta name="description" content="Building a free, import-first hiking app that actually works with no Wi-Fi and no data.">
+  <meta name="description" content="Building a free hiking GPS that imports a GPX file, draws it on local topographic maps, and still works with the radios off — including a field test on Middle Palisade.">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
@@ -44,7 +44,7 @@
   <header class="case-head fade-in">
     <p class="meta">08 // Android · MapLibre · offline GNSS</p>
     <h1 class="display">TrailMap GPS</h1>
-    <p class="lede">Building a free, import-first hiking app that actually works with no Wi-Fi and no data.</p>
+    <p class="lede">A free hiking GPS that still works with no Wi-Fi and no data.</p>
   </header>
 
   <div class="phone-gallery fade-in">
@@ -79,126 +79,127 @@
     <div class="prose fade-in">
       <h2>Introduction</h2>
       <p>
-        I hike with two apps. AllTrails is where I find trails, read what other people thought, and export a GPX file of the route. Gaia GPS is where I actually navigate: topographic maps, satellite imagery, offline downloads, and a GPS track I can trust when I am off the pavement. That split has always bothered me. I am carrying a smartphone that is supposed to replace a paper map, and I still need two programs, a subscription, and a cell signal for the features that matter.
+        GPS (Global Positioning System) is a constellation of satellites that tell a phone where it is. A hiking app still has to draw a map around that point, keep a trail line on the screen, and do all of that when there is no Wi-Fi and no cell data. Most of the apps I used for that job still needed the internet, a subscription, or both.
       </p>
       <p>
-        The irritation is specific. Satellite view is locked behind premium. Anything worth using on the trail—offline maps, decent layers, tools that go beyond what a printed quad sheet already does—sits behind a paywall. Gaia’s interface has never felt like something I wanted to look at for twelve hours. And if the phone dies, I am worse off than if I had just brought paper.
+        I split my hiking workflow across two programs. AllTrails is where I find trails and export a GPX file (GPS Exchange Format - a list of coordinates that describes a route). Gaia GPS is where I actually navigate: topographic maps (maps that show contour lines and elevation), satellite imagery, and a location marker I can trust off pavement. Carrying a modern smartphone and still needing a paid, two-app split with data dependencies felt like a problem I should be able to solve.
       </p>
       <p>
-        I wanted one app for myself. Totally free. Optimized for the United States. Import a route from AllTrails, put it on a topographic map, download the area I will be in, and navigate with GPS when there is no Wi-Fi and no data. I am not a software engineer by training.         I am a high-school senior who likes electrical engineering, CAD, and building things that have to work in the real world. This project was a chance to treat a phone the way I treat a chip layout or a welded frame: decide what it has to do, then iterate until the failure modes are honest.
+        The irritation was specific. Satellite view sat behind a paywall. Offline downloads - the whole point of replacing a paper map - sat behind a paywall too. Battery drain was a constant risk. If the phone died at mile eight, I was worse off than if I had just brought paper.
+      </p>
+      <p>
+        TrailMap GPS is my personal answer: a free, Android-native tool built to import a trusted GPX track, display it on local topographic data, and navigate completely offline. I am a high-school senior interested in electrical engineering and practical design. I approached the phone the way I approach hardware - decide what it actually has to do, then iterate until the system holds up.
       </p>
 
-      <h2>What the app actually had to do</h2>
+      <h2>What the app had to do</h2>
       <p>
-        I originally considered replacing AllTrails as well as Gaia. That is not realistic. AllTrails’ value is a proprietary database of routes, photos, reviews, and crowd metadata. I cannot copy that, and I should not. Organic Maps, which is built on OpenStreetMap, was accurate enough on trails I already knew, but I did not want the app guessing a path. If AllTrails mapped a route a certain way, I wanted that exact line on my screen.
+        I originally considered replacing AllTrails as well as Gaia. That is not realistic. AllTrails’ value is a private database of routes, photos, reviews, and other people’s notes. I cannot copy that, and I should not. Organic Maps, which is built on OpenStreetMap (a free, public map of the world), was accurate enough on trails I already knew. However, I did not want the app guessing a path. If AllTrails mapped a route a certain way, I wanted that exact line on my screen.
       </p>
       <p>
-        So the split became simple. AllTrails stays the discovery tool. TrailMap GPS is the navigator. The daily workflow is: find a trail, export GPX, share it into the app, preview it on a map, save it, download the area, and hike. Later I can record a track or draw a custom line. Browsing nearby OpenStreetMap trails can wait. Importing a file I already trust is the whole product.
+        So the split became simple. AllTrails stays the discovery tool. TrailMap GPS is the navigator. The daily workflow is:
+      </p>
+      <ul>
+        <li>Find a trail and export a GPX file,</li>
+        <li>Load that file into the app,</li>
+        <li>Download the target bounding box (the rectangle of map around the hike), and</li>
+        <li>Head out with the radios off.</li>
+      </ul>
+      <p>
+        Later I can record a track or draw a custom line. Browsing nearby OpenStreetMap trails can wait. Importing a file I already trust is the whole product.
       </p>
       <p>
-        The other constraint was battery. OLED screens can turn pixels off if the interface is true black. Satellite tiles are heavier to draw than topo. Animations, blur, and gradients cost power for no navigational benefit. I wanted a Battery Saver navigation mode that drops the map entirely and keeps three numbers: distance, elevation, time. Power profiles in settings—Battery, Balanced, Accuracy—change how often the GPS wakes up. If the GUI is pretty but the phone is dead at mile eight, the design failed.
+        The other constraint was battery. OLED screens (the kind of screen on many phones) can turn pixels off if the interface is true black, which saves power. Satellite tiles are heavier to draw than topographic tiles. Animations, blur, and gradients cost power for no navigational benefit. I wanted a Battery Saver mode that drops the map entirely and keeps three numbers: distance, elevation, and time. Power profiles in settings - Battery, Balanced, Accuracy - change how often the GPS wakes up. If the interface is pretty but the phone is dead halfway through a long day, the design failed.
       </p>
 
       <h2>How I built it</h2>
       <p>
-        I started with the product decisions, not the code. Platform: Android only, because that is what I carry. Stack: Kotlin and Jetpack Compose for the interface, MapLibre for the map (an open-source renderer that does not require a Google Maps key or a vendor lock-in), Room for storing routes on the device, and DataStore for settings. No accounts. No analytics. No ads. If the data is not on the phone, it should not need to exist.
+        I started with the product decisions, not the code. The platform is Android only, because that is what I carry. The stack is:
+      </p>
+      <ul>
+        <li>Kotlin (the language Android apps are written in) and Jetpack Compose (a toolkit for building the screens),</li>
+        <li>MapLibre, an open-source map renderer that does not require a Google Maps key,</li>
+        <li>Room, a local database for storing routes on the phone, and</li>
+        <li>DataStore, for settings.</li>
+      </ul>
+      <p>
+        There are no accounts, no analytics, and no ads. If the data is not on the phone, it should not need to exist.
       </p>
       <p>
-        Before writing screens, I specified them. I used Google Stitch to produce a dark, mountaineering-looking GUI: full-screen topo, a thin metrics bar, large glove-friendly targets, and a bottom bar for Routes, Record, Layers, and Settings. The design language was deliberate. True black chrome. One accent color—trail green—for the route line and active controls. No glassmorphism. The Stitch mockups were not the app, but they gave me something to match instead of inventing a UI by accident.
+        Before writing screens, I specified them. I used Google Stitch to produce a dark, mountaineering-looking layout: a full-screen topographic map, a thin bar of metrics, large glove-friendly buttons, and a bottom bar for Routes, Record, Layers, and Settings. True black chrome. One accent color - trail green - for the route line and active controls. The Stitch mockups were not the app, but they gave me something to match instead of inventing an interface by accident.
       </p>
       <p>
-        I do not write Android apps for a living. I directed the architecture and then tested every screen on a Pixel 10 Pro the way I would test a physical build: install it, try the real workflow, write down what broke, and send it back. Import from AllTrails worked early. Almost everything around it did not. That loop—use it, complain in plain language, fix the actual failure—was the engineering method. The notes below are the failures that mattered.
+        I do not write Android apps for a living. Import from AllTrails worked early. Almost everything around it did not. Testing on a real phone revealed the first flaws: clipped metrics, system buttons overlapping the things I needed to tap, a north button that did not reorient, and a map that would not jump back to my GPS position. Opening Routes crashed the app. Opening Settings crashed the app. Battery Saver showed three stats and no map, which was the point of the mode, but ‘tap to exit’ did not exit, so I was trapped on a black screen.
+      </p>
+      <p>
+        I use Android’s three-button navigation. The first bottom bar sat under the system buttons, so Routes, Record, Layers, and Settings were unreachable. Padding for the system insets (the space Android reserves for those buttons) dropped the bar too low, and I could barely see the icons. Getting a custom bar to sit above both three-button navigation and gesture navigation took several passes. None of this is exotic computer science. All of it is the difference between a demo and something I would take into the mountains.
       </p>
 
-      <h2>The map was the first real problem</h2>
+      <h2>The map itself</h2>
       <p>
-        The first topo layer was USGS raster tiles. They look like a familiar paper map until you pinch in. Then they go blurry, because the source simply does not have more detail past a certain zoom. Gaia’s worldwide topo stays readable as you zoom because it is styled from vector data, closer to OpenStreetMap than to a scanned quad. I needed the same property without paying anyone.
+        The first topographic layer was USGS raster tiles (scanned-looking map images from the U.S. Geological Survey). They look like a familiar paper map until you pinch in. Then they go blurry, because the source simply does not have more detail past a certain zoom. Gaia’s worldwide topo stays readable as you zoom because it is styled from vector data - math describing lines and labels, closer to OpenStreetMap than to a scanned quad sheet. I needed the same property without paying anyone.
       </p>
       <p>
-        I tried a hosted vector style from OpenFreeMap for sharpness, with OpenTopoMap contours overlaid so the map still looked like a USGS sheet. OpenTopoMap is OpenStreetMap data rendered with contour lines. It is not a USGS product, but it behaves like the maps hikers actually read. Satellite came from Esri World Imagery, which allows personal non-revenue use. OpenStreetMap raster was the third layer. Switching among those three sounds trivial. In the first builds I was stuck on topo and could not change layers at all.
+        I switched to OpenTopoMap, which is OpenStreetMap data rendered with contour lines. It is not a USGS product, but it behaves like the maps hikers actually read. Satellite came from Esri World Imagery, which allows personal non-revenue use. OpenStreetMap raster was the third layer. Switching among those three sounds trivial. In the first builds I was stuck on topo and could not change layers at all. I could import a Sierra route while sitting in San Diego and not see it, because the map refused to leave my current location. A hiking app that only shows trails near the living room is not a hiking app.
       </p>
       <p>
-        That pattern repeated. Features existed in the architecture and failed in the hand. The layer picker did not switch the map. The north button did not reorient. There was no recenter control to jump back to my GPS position. There was no compass rose. I could import a Sierra route while sitting in San Diego and not see it, because the map refused to leave my current location. A hiking app that only shows trails near the living room is not a hiking app.
-      </p>
-
-      <figure class="module figure figure--phone">
-        <span class="module-marks"></span>
-        <img src="trailmap-layers.jpg" alt="Map layers picker with OpenTopoMap selected and hillshade enabled" onclick="openModal(this.src)" width="1000" height="2231">
-        <figcaption>Layer switching had to work in the hand, not just in the architecture</figcaption>
-      </figure>
-
-      <h2>Making the interface survive a phone</h2>
-      <p>
-        I use Android’s three-button navigation. The first bottom bar sat under the system buttons, so Routes, Record, Layers, and Settings were unreachable. We padded for the system insets. Then the bar dropped too low and I could barely see the icons. Getting a custom bar to sit above both three-button nav and gesture nav, on a Pixel and theoretically on any Android phone, took several passes. Insets are not a visual preference. They are whether the product can be opened.
+        Offline maps were in the plan from day one. The first download screen asked me to download a map of the world. That is useless. I need a box around a ridge, a canyon, or a twelve-mile loop - not a continent. I wanted to pan and zoom, put a green rectangle over the terrain I cared about, pick a zoom range, see an estimated size, and pull only those tiles. Building that screen was its own problem. The interface said ‘pan the map to position the box,’ and the map would not pan. Gestures were being eaten by overlays, or the map was fitting the route and fighting me.
       </p>
       <p>
-        The metrics bar started as three grey overlays that ate the map. Labels for elevation, speed, and bearing were clipped. Settings stacked unit selectors on top of each other and buried power-profile descriptions under the mode buttons. Opening Routes crashed the app. Opening Settings crashed the app. Battery Saver showed three stats and no map, which was the point of the mode, but “tap to exit” did not exit, so I was trapped on a black screen. None of this is exotic computer science. All of it is the difference between a demo and something I would take into the mountains.
-      </p>
-      <p>
-        I matched the Stitch HTML as closely as the Android toolkit allowed: type, spacing, the compass with a small arrow on the N so north is obvious, a location button, and a map that can be oriented north-up or in the direction I am facing. I added an elevation profile on the route. I wanted to tap the map to drop waypoints while drawing. Each of those was a separate fight with Compose, MapLibre, and the fact that a map view is a native Android view living inside a Compose layout, which is exactly the kind of seam where touch handling and lifecycle bugs hide.
+        Once panning worked, the box had to report its geographic bounds back to the downloader: southwest and northeast corners, converted into tile coordinates at each zoom level, with a safety cap so I could not accidentally request thousands of tiles and fill the phone. That downloader wrote PNG images into local storage. I marked the route as ‘offline downloaded’ and showed a file size. On paper, the app was ready for the backcountry. It was not.
       </p>
 
-      <h2>Download an area, not the world</h2>
+      <h2>The offline problem</h2>
       <p>
-        Offline maps were in the plan from day one. The first download screen asked me to download a map of the world. That is useless. I need a box around a ridge, a canyon, or a twelve-mile loop—not a continent. I wanted to pan and zoom, put a green rectangle over the terrain I cared about, pick a zoom range, see an estimated size, and pull only those tiles.
+        After designing a download button that saved map images to disk, I wondered: does this actually work with the radios off?
       </p>
       <p>
-        Building that screen was its own comedy. The UI said “pan the map to position the box,” and the map would not pan. Gestures were being eaten by overlays, or the map was fitting the route and fighting me. Once panning worked, the box had to report its geographic bounds back to the downloader: southwest and northeast corners, converted into tile coordinates at each zoom level, with a safety cap so I could not accidentally request five thousand tiles and fill the phone.
+        I quickly realized that it did not! MapLibre was still trying to fetch live URLs over the network. If I turned on airplane mode, the style fetch failed and the map went blank even if the tiles were sitting in a folder on the phone. The function that looked up a local tile file was never called. Downloading the pictures was not the same as teaching the map to use them.
       </p>
       <p>
-        That downloader wrote PNG tiles into local storage. I marked the route as “offline downloaded” and showed a file size. On paper, the app was ready for the backcountry. It was not.
-      </p>
-
-      <h2>The offline problem I almost shipped</h2>
-      <p>
-        I asked a blunt question late in the project: make this work with no Wi-Fi and no data, and let me download ephemeris—the satellite orbit data that helps GPS lock faster—before I leave service. When I checked whether that work had actually been done, the honest answer was no.
+        GPS had a related problem. The hardware GNSS receiver (the radio in the phone that talks to navigation satellites) does not need cell service. Satellites broadcast their own ephemeris (orbit data that helps the phone lock onto them faster). A cold start without assistance just takes longer. However, the app was using Google’s Fused Location Provider, which is happy to lean on network location. There was no way to inject assistance data while I still had signal, and no preference for the GPS chip itself once I did not. A hiking GPS that waits on Wi-Fi is a toy.
       </p>
       <p>
-        The download button saved OpenTopoMap images to disk. The map renderer never read them. MapLibre was still loading a live style from the internet, plus live contour, satellite, and OSM URLs. If I turned on airplane mode, the style fetch failed and the map went blank even if the tiles were sitting in a folder on the phone. The function that looked up a local tile file was never called. I had built a packing crate and left it in the garage.
+        This meant that the next problem was treating offline capability as a core pipeline, before I could honestly take the app into the mountains. To tackle the first problem of map tiles, a resource transform (a checkpoint in front of every map request) checks local storage before allowing MapLibre to query remote URLs. If the file exists on disk, it serves the file. If I am offline and the file does not exist, it serves a blank tile instead of hanging on the network. The map style is local JSON, not a remote address, so the renderer does not need the internet just to learn how to draw.
       </p>
       <p>
-        GPS had a related lie. The hardware GNSS receiver in a phone does not need cell service. Satellites broadcast their own ephemeris. A cold start without assistance just takes longer. But the app was using Google’s Fused Location Provider, which is happy to lean on network location. There was no way to inject assistance data while I still had signal, and no preference for the GPS chip itself once I did not. A hiking GPS that waits on Wi-Fi is a toy.
+        The next step was to attack the location problem. The tracker now prefers the hardware GPS provider, bypassing network location helpers so the phone talks to its raw GNSS receiver. Settings grew a ‘Prepare for offline’ block that downloads assistance data (Android’s XTRA / time injection) and takes a fix while I still have sky and, ideally, signal. Downloading a map area does the same refresh. The route only shows OFFLINE READY if the maps are packed and the GPS data is fresh. Maps without a recent assist show MAPS SAVED. I would rather see an honest label than a green badge that lies at the trailhead.
       </p>
-      <p>
-        The fix was to treat “offline” as a system, not a button. Tiles are stored in a shared cache by source and zoom, not hidden under one route ID. When MapLibre asks the network for a tile, a resource transform intercepts the URL. If the file exists on disk, it serves the file. If I am offline and the file does not exist, it serves a blank tile instead of hanging on HTTPS. The map style is local JSON, not a remote OpenFreeMap URI, so the renderer does not need the internet just to learn how to draw. A download packs topo plus whatever extra layer I am actually using—satellite or OSM—and hillshade if that overlay is on.
-      </p>
-      <p>
-        For GPS, the tracker prefers the hardware GPS provider. Settings grew a “Prepare for offline” block that downloads assistance data (Android’s XTRA / time injection) and takes a fix while I still have sky and, ideally, signal. Downloading a map area does the same refresh. The route only shows OFFLINE READY if the maps are packed and the GPS data is fresh. Maps without a recent assist show MAPS SAVED. I would rather see an honest label than a green badge that lies at the trailhead.
-      </p>
-
-      <figure class="module figure figure--phone">
-        <span class="module-marks"></span>
-        <img src="trailmap-settings.jpg" alt="Prepare for offline settings and GPS accuracy power profile" onclick="openModal(this.src)" width="1000" height="2231">
-        <figcaption>Prepare for offline sits in settings, not behind a badge that lies at the trailhead</figcaption>
-      </figure>
-
-      <h2>What “it works offline” means</h2>
       <p>
         After that work, the contract is clear. If I download the area I will be in, that area should keep rendering with the phone in airplane mode. The imported route is already on the device; it never needed a network. GPS should still produce a position, faster if I refreshed assistance the day before. If I walk off the packed rectangle, the map goes blank there. If I switch to a layer I did not download, that layer is empty. That is the same deal a paper map makes: you have what you brought.
       </p>
       <p>
-        I could not ethically claim USGS topo when the tiles are OpenTopoMap. I could not claim worldwide Gaia-like vector beauty once the offline path is raster tiles. Zoom still has a ceiling. Hillshade depends on a third-party tile source that is not as reliable as I would like. Those are real limits. They are also written down, which is more than most “offline” buttons do.
+        I could not ethically claim USGS topo when the tiles are OpenTopoMap. I could not claim worldwide Gaia-like vector beauty once the offline path is raster tiles. Zoom still has a ceiling. Hillshade depends on a third-party tile source that is not as reliable as I would like. Those are real limits. They are also written down.
+      </p>
+
+      <h2>Testing on Middle Palisade</h2>
+      <p>
+        Airplane mode in a bedroom is not a field test. To test the validity of the app, I took TrailMap GPS up Middle Palisade, a 14er (a peak over 14,000 feet) in the Sierra Nevada. There is no cell service on that kind of terrain. The map has to be right, the location marker has to keep up, and the battery has to last a long day.
+      </p>
+      <p>
+        I imported a trusted GPX, downloaded the bounding box around the route before leaving service, and used the app as the navigator on the mountain. It worked better than the other tools I had been carrying, in three ways that actually matter on a 14er:
+      </p>
+      <ul>
+        <li>Accurate imagery - the topographic layer stayed readable on technical terrain, instead of going blurry or blank when the radios were off,</li>
+        <li>Saving battery - the true-black interface and Battery Saver path conserved power compared with the heavier commercial apps, and</li>
+        <li>Up-to-date location - forcing the hardware GNSS receiver, instead of a network-assisted location provider, kept the marker current when there was no cell tower to lean on.</li>
+      </ul>
+      <p>
+        That was the point of the whole project. A download button that looks finished on Wi-Fi is not a GPS. A GPS is a map that still draws, and a position that still updates, on a Sierra ridge with the radios off.
       </p>
 
       <h2>What I learned</h2>
       <p>
-        A feature is not done when the file is written. It is done when the other half of the program reads that file on the trail. Downloading tiles without teaching the map to use them is the software equivalent of packing a stove and leaving the fuel in the car.
+        I learned that for now, ‘offline’ is not a toggle in settings. It is a pipeline. Tiles have to be stored, then intercepted, then served without asking the network. Location has to talk to the GNSS chip, not to a helper that quietly prefers Wi-Fi. If either half is missing, the app fails the moment you need it.
       </p>
       <p>
-        Phones are hostile environments. System navigation bars, permission prompts, location providers that silently prefer the network, and map libraries that default to live URLs will all betray a design that looked finished on Wi-Fi. The only test that counts for this app is airplane mode over a downloaded box, with a GPX I imported myself, standing somewhere the map has to be right.
+        Furthermore, an open-source stack - MapLibre, OpenStreetMap, OpenTopoMap, Esri’s personal-use imagery, and the GNSS already in the phone - can replace the paid core of a commercial hiking navigator, so long as the software treats offline storage and hardware communication as an unbroken system. The proprietary piece I cannot replace is AllTrails’ social database, so I did not try. Import the file. Own the navigation.
       </p>
       <p>
-        I also learned that free is a stack, not a slogan. MapLibre, OpenStreetMap, OpenTopoMap, Esri’s personal-use imagery, and the GNSS already in the phone are enough to replace the paid core of a hiking GPS. The proprietary piece I cannot replace is AllTrails’ social database, so I did not try. Import the file. Own the navigation. That is a better engineering boundary than pretending I can clone a company.
-      </p>
-
-      <h2>Looking forward</h2>
-      <p>
-        TrailMap GPS is a personal tool, not a product launch. I still want GPX export, sturdier waypoint editing, and a vector offline pack if I can download glyphs and tiles without dragging the map back onto the network. Battery Saver can get a minimal route line on the black canvas without paying for a full tile set. The hillshade source should be something I can actually cache for years, not a URL that might vanish.
+        TrailMap GPS is a personal tool, not a product launch. I still want GPX export, sturdier waypoint editing, and a vector offline pack if I can download labels and tiles without dragging the map back onto the network. Battery Saver can get a minimal route line on the black canvas without paying for a full tile set. The hillshade source should be something I can actually cache for years, not a URL that might vanish.
       </p>
       <p>
-        The point was never to out-feature Gaia. The point was the same as the four-bit counter I ran through LibreLane: follow a system all the way through. From a complaint about paywalls, to a workflow, to a map that renders without a cell tower, to a GPS chip that does not wait on Google’s network location. If I cannot open the map on a ridge with the radios off, I do not have a GPS app. I have a website with extra steps.
+        The purpose of the project was to follow a system all the way through: from a complaint about paywalls, to a workflow, to a map that renders without a cell tower, to a GPS chip that does not wait on network location, to a day on Middle Palisade where those pieces had to hold. If I cannot open the map on a ridge with the radios off, I do not have a GPS app.
       </p>
-      <p>Related: <a href="asic-librelane.html">ASIC Design via LibreLane</a></p>
     </div>
 
     <aside class="module telemetry fade-in">
