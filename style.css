@@ -1346,15 +1346,16 @@ html.dark .card-shot img { mix-blend-mode: normal; opacity: 1; }
   max-width: 18rem;
   justify-self: center;
   background: var(--recessed);
+  overflow: hidden;
 }
 
 .install-phone img {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 28rem;
   object-fit: cover;
   object-position: center 18%;
-  max-height: min(42vh, 28rem);
 }
 
 .install-copy {
