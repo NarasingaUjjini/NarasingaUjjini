@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Arête — Narasinga Ujjini</title>
+  <meta name="description" content="Arête is a free Android mountaineering GPS: topographic maps, GPX import, a Position Engine, and three layouts, with no accounts and no cloud.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="canvas">
+  <header class="case-head fade-in">
+    <p class="meta">08 // Android · GNSS · mountaineering</p>
+    <h1 class="display">Arête</h1>
+  </header>
+
+  <div class="case-layout">
+    <div class="prose fade-in">
+      <p>
+        I’m an avid hiker and love spending my time outdoors. On hikes and mountaineering trips, I found myself increasingly using several apps in tandem: AllTrails, CalTopo, Gaia, and a compass app among a myriad of others. As I used these tools more and more I realized:
+      </p>
+      <ol>
+        <li>The apps I was using consumed more battery than I was comfortable with</li>
+        <li>All the ‘premium’ features on all these apps that I wanted so badly (but didn’t want to pay for) were already open-sourced and free</li>
+        <li>I could combine a lot of the apps and tools into one</li>
+      </ol>
+      <p>
+        I set out to create my own Android app that could do it all. I wanted the following functions:
+      </p>
+      <ul>
+        <li>An accurate topographic map</li>
+        <li>Accurate and quick location and heading information</li>
+        <li>The ability to import GPX formatted routes from AllTrails or any other source</li>
+        <li>A simple but customizable UI</li>
+        <li>Weather conditions and alerts</li>
+        <li>Download any map area I wanted</li>
+        <li>Low power</li>
+        <li>No user accounts / syncing / cloud storage</li>
+        <li>100% free</li>
+      </ul>
+      <p>
+        Knowing that I knew nothing about programming an app in Java and Kotlin, I entrusted the programming to my not-so-trustworthy tool, Cursor. The first goal was to be able to use public maps published by OpenStreetMaps (OSM), the USGS, and ESRI satellite imagery. Once I import a trail via the GPX format from AllTrails, I should be able to see it overlaid on the map. As expected, I encountered a handful of problems. The GUI was pretty difficult to use, and the information being displayed on data bars (like speed, elevation, or even the current location) was extremely inaccurate compared to other apps like Gaia or Google Maps. These inaccuracies tended to accumulate after I set up the offline maps, which involved downloading a certain area of my choosing, at a resolution of my choosing. I just couldn’t find out what the problem was - all the other apps on the phone were fed the same information! How could Gaia, using the same GPS receiver on my phone, be so much more accurate?
+      </p>
+      <p>
+        I decided to push this extremely important issue aside for the time being, to investigate what else worked and what didn’t. And boy, the power saving was great! After using the phone on the same ~6mi loop hike twice (once with Gaia, once with the new app), the new app used less than half the amount of battery that Gaia used, when both were on power-saving mode. The difference was less on regular operation. Expecting much thinner margins between the two apps, I was elated! But the pertinent issue of poor GPS information remained: how could it be that the new app with downloaded map data was so much more inaccurate than another app, like Gaia, without downloaded data?
+      </p>
+      <p>
+        Turns out, the source of my joy was that of my sorrow. The aggressive power throttling methods that Cursor designed (this one was my fault) was so much so that the GPS data was captured every ~7min and cached rather than constant updates. Back to square one, I thought.
+      </p>
+      <p>
+        The trade-off between super-accurate GPS and extreme power saving became a decision ‘for later’. ‘For later’ meant whenever I felt like it.
+      </p>
+      <p>
+        So, I dragged Cursor through redesigning the GUI. I wanted something novel and ergonomic, but my artistic limits showed. Cursor was instructed to design a GUI that saved battery, made the map the central focus of the application, but allowed users to access a myriad of new options, such as:
+      </p>
+      <ul>
+        <li>Layers (ESRI Satellite Imagery, old and new topo data, USGS satellite imagery, OSM…)</li>
+        <li>Accurate location data</li>
+        <li>A settings bar with color palettes</li>
+        <li>Imported routes</li>
+        <li>A recording option to record trips, and save them to .GPX format</li>
+        <li>A small compass rose</li>
+        <li>A scale for the map</li>
+        <li>Elevation info…</li>
+      </ul>
+      <p>
+        The list went on. Through every iteration and idea of the GUI, either 1) The GUI worked, but was incredibly ugly, or 2) The GUI didn’t work but it was beautiful.
+      </p>
+      <p>
+        I struggled for a while with creating the perfect hiking GUI, but realized I already had the perfect GUI designer: Stitch by Google.
+      </p>
+      <p>
+        Another AI tool, Stitch by Google specializes in GUI creation for apps, websites, and interfaces. In fact, the portfolio website you’re reading this on was re-designed by Stitch (it used to be so ugly…). The advantage of Stitch was that I could iteratively design the UI, with a “I don’t like this, perhaps this goes here…” or “The color palette doesn’t work so well”. The tool worked great with the extremely indecisive project manager (me) instructing it. Eventually, the indecision led to an idea: what if the app allowed for different UIs? Each user, after all, may prefer a different experience. By catering to a larger user pool, it could mean the application would be that much more successful.
+      </p>
+      <p>
+        While Stitch re-designed the GUI (a pretty long process), I finally made concrete decisions about the app:
+      </p>
+      <ol>
+        <li>‘For later’ had finally arrived, and it was time to tackle the GPS inaccuracy problem</li>
+        <li>The app would be redesigned to cater more towards mountaineering</li>
+        <li>I would rename the app from what was ‘TrailMap’ (vanilla) to ‘Arête’ (aura).</li>
+        <li>I’d add a few features:
+          <ol>
+            <li>An extremely detailed report on GPS info - how new is it? How many satellites are in play? What kind of accuracy do I have? etc.</li>
+            <li>A transparent compass</li>
+            <li>A ‘terrain inspect’ option for downloaded maps</li>
+            <li>Integration with NPS and Recreation.gov (RIDB) APIs to get campsite, alert, and closure info</li>
+            <li>Conditions retrieved from NWS, National Fire Centers, USGS, and Avalanche.org</li>
+            <li>Customizable data bar and instrument rail</li>
+          </ol>
+        </li>
+      </ol>
+
+      <div class="phone-gallery fade-in">
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-gps.jpg" alt="GPS Diagnostics screen showing fix quality, satellite count, and coordinates" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>GPS diagnostics</figcaption>
+        </figure>
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-layers.jpg" alt="Map layers sheet with Arête Topo USGS, hillshade, and DEM contours" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>Map layers</figcaption>
+        </figure>
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-settings.jpg" alt="Settings screen with mountaineering data bar slots" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>Custom data bar</figcaption>
+        </figure>
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-conditions.jpg" alt="Mountain Conditions with NWS forecast, daylight, and alerts" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>NWS conditions</figcaption>
+        </figure>
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-conditions-nps.jpg" alt="Mountain Conditions with NPS, Recreation.gov, and Avalanche.org" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>NPS and rec.gov</figcaption>
+        </figure>
+      </div>
+
+      <p>
+        Problems 2-4 listed above were largely a GUI/API integration issue, and something that Cursor was excellent at. The app was updated with those facilities, and after some iteration passed the usage and offline tests. After some investigation into the source of the GPS data, I found the problem: the moment the native GPS receiver faltered, the app fell back onto the notoriously poor Play Services GPS data. Cursor tried to fix this on its own by implementing a map-embedding system called MapLibre, which had its own conflicting GPS client. The system was also restricted to the smaller GPS satellite ecosystem rather than the now fully publicly-usable GNSS system (which includes China’s BeiDou, Russia’s GLONASS, and EU’s Galileo among others). Finally, there was no verification engine for the GPS - oftentimes, a user would experience a sudden ‘jump’ in elevation or lat/long location. This could be managed with the myriad of other sensors that modern smartphones have.
+      </p>
+      <p>
+        Along the way I picked up a lesson: coding with Cursor is like coding with the hare in the fable of the Hare and the Tortoise. It seems so fast, until you hit a seemingly impassable block and have to take a nap, during which a more procedural programmer (the tortoise) would easily pass you. Using this lesson I decided to first architect the new “position engine” before building it.
+      </p>
+      <p>
+        The Position Engine used the phone’s GPS receiver as the ultimate source of truth, and a surrounding suite of sensors as ministers of verification. The first idea was to use dead reckoning with the phone’s clock and step counter for an estimation of where the user should be. So long as the GPS location and dead-reckoning location were close enough, the user would be satisfied. However, this didn’t account for elevation differences. Thankfully, most modern smartphones have a barometer. My idea was to establish a base barometer reading close to the beginning of route navigation, using the GPS’s relative location to the start of the user’s selected GPX route. Since change in elevation is proportional to change in air pressure, altitude could now be verified. 3DEP also provided a slope verification channel.
+      </p>
+      <p>
+        The now extremely accurate Position Engine was, however, extremely power-hungry. The constant verification was clearly the problem. Instead, I decided to create an intermittent verification program - if the User was abnormally off-route or experienced ‘jumps’ in location (calculated by cached-and-deleted location every 30s), the verification program would go into effect. The Position Engine, being the most authoritative source, was extremely efficient in that it could take the inputs of several sources, compile and comprehend, and pass them to the toolkit of the app quite quickly before becoming dormant. This created an extremely accurate, but power-saving program for location.
+      </p>
+      <p>
+        The obvious question is, isn’t GPS an excellent and time-tested tool? Why would it ever be wrong frequently enough to have this whole verification system?
+      </p>
+      <p>
+        The answer lies in geography and the stark truth of mountaineering and similar activities - when in a canyon, near steep mountain faces, or extremely thick tree cover, GPS is known to be inaccurate. The verification system provides a fallback to maintain the user’s location until GPS is available again.
+      </p>
+      <p>
+        As I finished architecting the Position Engine, Stitch finished creating the GUI. To ensure that the several layouts of GUI could work with the Position Engine, I instructed Cursor to split the program into two distinct parts, with further subdivisions:
+      </p>
+      <ol>
+        <li>The data collecting and processing engine, with:
+          <ol>
+            <li>Input sources, which fed into the</li>
+            <li>Position Engine, which fed into the</li>
+            <li>Output products (Compass, GPS Data, etc.). Having this explicit hierarchy ensured that the output didn’t get ‘double data’ from both input sources and Position Engine. Since I was vibe coding the entire project, I knew that compartmentalization was key.</li>
+          </ol>
+        </li>
+        <li>The GUI:
+          <ol>
+            <li>Layer 1, which had the pure information of the output products</li>
+            <li>Layer 2, which combined the output products with their UI implementation and</li>
+            <li>Layer 3, which were three separate GUIs:
+              <ol>
+                <li>Rail: A ‘rail’ of the tools on the left hand side of the app</li>
+                <li>Spatial: Fully-collapsed menus, underneath which the map was the sole focus</li>
+                <li>Edge: Similar to rail, but no visual underlay to options, providing a middle ground between Rail and Spatial</li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+
+      <figure class="module figure">
+        <span class="module-marks"></span>
+        <img src="arete-position-engine.png" alt="Diagram of input sources feeding a Position Engine that outputs compass, GPS data, route, and NPS information" onclick="openModal(this.src)" width="1485" height="885">
+        <figcaption>The Position Engine sits between input sources (3DEP, GNSS, barometer, steps) and output products (compass, GPS data, route, NPS/Rec info)</figcaption>
+      </figure>
+
+      <p>
+        Rail puts a rail of tools on the left, Spatial collapses the menus so the map is the sole focus, and Edge is the middle ground: similar to Rail, but with no visual underlay.
+      </p>
+
+      <div class="phone-gallery fade-in">
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-rail.jpg" alt="Rail layout with a left instrument rail over a USGS topographic map" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>Rail</figcaption>
+        </figure>
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-spatial.jpg" alt="Spatial layout with collapsed menus and a full topographic map" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>Spatial</figcaption>
+        </figure>
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-edge.jpg" alt="Edge layout with tools along the right edge and no dark underlay" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>Edge</figcaption>
+        </figure>
+        <figure class="module">
+          <span class="module-marks"></span>
+          <img src="arete-compass.jpg" alt="Transparent compass overlay showing heading and route ahead" onclick="openModal(this.src)" width="922" height="2048">
+          <figcaption>Transparent compass</figcaption>
+        </figure>
+      </div>
+
+      <p>
+        The compartmentalization worked excellently. The final product came together beautifully, but must be tested further in real-world scenarios to find any shortcomings.
+      </p>
+      <p>
+        You can download the app at: <a href="https://github.com/NarasingaUjjini/Arete" target="_blank" rel="noopener noreferrer">https://github.com/NarasingaUjjini/Arete</a>
+      </p>
+      <p>
+        Note: You’ll need Android Studio and Developer options enabled on your phone.
+      </p>
+    </div>
+
+    <aside class="module telemetry fade-in">
+      <span class="module-marks"></span>
+      <h3>Tools and Libraries</h3>
+      <div class="chips" style="margin: 0 0 1.75rem;">
+        <span class="chip">Kotlin</span>
+        <span class="chip">Jetpack Compose</span>
+        <span class="chip">MapLibre</span>
+        <span class="chip">GNSS</span>
+        <span class="chip">Stitch</span>
+        <span class="chip">NWS</span>
+      </div>
+      <div class="telem-item">
+        <span class="meta">Map data</span>
+        <strong>USGS · 3DEP · Esri · OSM</strong>
+      </div>
+      <div class="telem-item">
+        <span class="meta">Location</span>
+        <strong>Position Engine</strong>
+      </div>
+      <a class="button" href="https://github.com/NarasingaUjjini/Arete" target="_blank" rel="noopener noreferrer" style="width:100%;margin-bottom:0.75rem;">GitHub</a>
+      <a class="button button--ghost" href="work.html" style="width:100%;">All work</a>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
+</footer>
+
+<div id="imgModal" class="modal" onclick="closeModal()" role="dialog" aria-modal="true" aria-label="Image preview">
+  <img id="modalImg" src="" alt="">
+</div>
+</body>
+</html>
