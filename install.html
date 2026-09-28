@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        var dark = t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Install Arête — Narasinga Ujjini</title>
+  <meta name="description" content="Download Arête for Android. One APK, no Play Store, no account.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="nav-brand" href="index.html">Narasinga Ujjini</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <nav id="main-nav" class="nav-inner" aria-label="Main navigation">
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="articles.html">Articles</a>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="material-symbols-outlined theme-icon" aria-hidden="true">dark_mode</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="canvas install-canvas">
+  <section class="module install-stage fade-in">
+    <span class="module-marks"></span>
+    <figure class="install-phone">
+      <img src="arete-rail.jpg" alt="Arête Rail layout over a USGS topographic map">
+    </figure>
+    <div class="install-copy">
+      <p class="kicker"><span class="led" aria-hidden="true"></span> Android APK · no Play Store</p>
+      <h1 class="display">Arête</h1>
+      <p class="lede">A free mountaineering GPS. One file. No account.</p>
+      <a
+        class="button button--install"
+        href="https://github.com/NarasingaUjjini/Arete/releases/latest/download/Arete.apk"
+        download="Arete.apk"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">download</span>
+        Download for Android
+      </a>
+      <p class="install-note">
+        Android 8 or newer. Your phone will ask to allow installs from this browser.
+        Maps, GPS, and import work in this build. Rec Info stays empty.
+      </p>
+      <div class="install-links">
+        <a href="arete.html">How it was built</a>
+        <a href="https://github.com/NarasingaUjjini/Arete" target="_blank" rel="noopener noreferrer">Source</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Narasinga Ujjini</div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/narasinga-ujjini-havildar/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/narasingaujjini" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+    <div class="footer-copy">© 2026 Narasinga Ujjini. All rights reserved.</div>
+  </div>
+</footer>
+</body>
+</html>
